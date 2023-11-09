@@ -1,0 +1,422 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:bpbm2/screens/components/animationcontroller.dart';
+import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/rules.dart';
+
+class DrawerPage extends StatefulWidget {
+  const DrawerPage({Key? key}) : super(key: key);
+
+  @override
+  State<DrawerPage> createState() => _DrawerPageState();
+}
+
+class _DrawerPageState extends State<DrawerPage>
+    with SingleTickerProviderStateMixin {
+  final double _iconsize = 18;
+  final double _iconspace = 40;
+  final double _fontsize = 14;
+  bool showAllItems = false;
+
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _animationController = AnimationController(
+        duration: const Duration(milliseconds: 300),
+        vsync: this,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  final Map<Image, String> images = {
+    Image.asset('assets/icons/homeicons/nasbeanten.png'):
+        'نصب آنتن و آنتن مرکزی',
+    Image.asset('assets/icons/homeicons/nasbeiphon.png'):
+        'نصب و تعمیر انواع آیفون',
+    Image.asset('assets/icons/homeicons/nasbekoolergazi.png'):
+        'نصب و سرویس کولر گازی',
+    Image.asset('assets/icons/homeicons/nasbekoolerabi.png'):
+        'نصب و سرویس کولر آبی',
+    Image.asset('assets/icons/homeicons/nasbeups.png'): 'نصب و تعمیر انواع UPS',
+    Image.asset('assets/icons/homeicons/nasbekelid.png'):
+        'نصب انواع کلید و پریز',
+    Image.asset('assets/icons/homeicons/simkeshi.png'): 'سیم کشی و کابل کشی',
+    Image.asset('assets/icons/homeicons/nasbedoorbin.png'):
+        'نصب دوربین مداربسته',
+    Image.asset('assets/icons/homeicons/santral.png'):
+        'خدمات سانترال و تلفن های وویپ',
+    Image.asset('assets/icons/homeicons/simtelephone.png'): 'سیم کشی تلفن ثابت',
+    Image.asset('assets/icons/homeicons/nasbeharigh.png'):
+        'نصب سیستم های اطفا حریق',
+    Image.asset('assets/icons/homeicons/nasbecheragh.png'):
+        'نصب انواع چراغ و سنسور',
+    Image.asset('assets/icons/homeicons/drill.png'): 'دریل کاری و سوراخکاری',
+    Image.asset('assets/icons/homeicons/earth.png'): 'نصب و تست سیستم ارت',
+    Image.asset('assets/icons/homeicons/lighting.png'):
+        'نورپردازی داخل و محوطه ساختمان',
+    Image.asset('assets/icons/homeicons/electricpanel.png'):
+        'تابلو برق صنعتی و ساختمانی',
+    Image.asset('assets/icons/homeicons/television.png'):
+        'نصب تلویزیون روی دیوار',
+    Image.asset('assets/icons/homeicons/fan.png'):
+        'نصب انواع پنکه سقفی و دیواری',
+    Image.asset('assets/icons/homeicons/remote.png'):
+        'نصب ریموت لوستر و روشنایی',
+    Image.asset('assets/icons/homeicons/aramband.png'):
+        'نصب و تعمیر انواع آرام بند',
+    Image.asset('assets/icons/homeicons/airconditioner.png'):
+        'نصب انواع تهویه و هواکش',
+    Image.asset('assets/icons/homeicons/burglar.png'): 'نصب سیستم های ضدسرقت',
+    Image.asset('assets/icons/homeicons/modem.png'):
+        'نصب و راه اندازی مودم WiFi',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: Drawer(
+          backgroundColor: Color(0xFFCDEEF0),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 130,
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                      dividerTheme:
+                          const DividerThemeData(color: Colors.transparent),
+                    ),
+                    child: DrawerHeader(
+                      decoration: BoxDecoration(
+                          // color: Color(0xFFCDEEF0),
+                          // border: Border(bottom: BorderSide.none),
+                          ),
+                      child: Image.asset('assets/images/logo.png'),
+                      padding: EdgeInsets.only(top: 0),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 50, left: 30, top: 10),
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.topRight,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFF04A8B2),
+                          ),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.bar_chart_rounded,
+                            color: Color(0xFF037E85),
+                            size: 24,
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            'دسته بندی خدمات',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF037E85),
+                              // fontWeight: FontWeight.bold,
+                              fontFamily: 'iransans',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 70, left: 30, top: 15),
+                child: AnimatedSize(
+                  duration: Duration(microseconds: 300),
+                  child: Column(
+                    children: List<Widget>.generate(images.length, (index) {
+                      final image = images.keys.toList()[index];
+                      if (index <= 6 || showAllItems) {
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: _iconsize,
+                                height: _iconsize,
+                                child: image,
+                              ),
+                              SizedBox(width: 10),
+                              SizedBox(
+                                width: 200,
+                                height: 20,
+                                child: Text(
+                                  images[image]!,
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontSize: _fontsize,
+                                    color: Color(0xFF037E85),
+                                    fontFamily: 'iransans',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        return SizedBox.shrink();
+                      }
+                    }),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 50, left: 30, top: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showAllItems = !showAllItems;
+                      if (showAllItems) {
+                        _animationController.forward();
+                      } else {
+                        _animationController.reverse();
+                      }
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(right: 15),
+                    alignment: Alignment.topRight,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFF04A8B2),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      showAllItems ? 'موارد کمتر ...' : 'موارد بیشتر ...',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF037E85),
+                        // fontWeight: FontWeight.bold,
+                        fontFamily: 'iransans',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+              Padding(
+                padding: EdgeInsets.only(right: 95, left: 30, top: 0),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FrequentlyAskedQs2()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'پرسشهای متداول',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FrequentlyAskedQs2()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'درخواست همکاری',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FrequentlyAskedQs2()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'پشتیبانی',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FrequentlyAskedQs2()),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'قوانین و مقررات',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () async {
+                        const url = 'https://blog.bespareshbema.com';
+                        final uri = Uri.parse(url);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'مجله بسپارش به ما',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            // fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.only(right: 0),
+                child: Column(
+                  children: [
+                    Text(
+                      'ما را در شبکه های اجتماعی دنبال کنید',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF04A8B2),
+                        // fontWeight: FontWeight.bold,
+                        fontFamily: 'iransans',
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 15,
+                      direction: Axis.horizontal,
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.squareFacebook,
+                            color: Color(0xFF04A8B2),
+                            size: 30,
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.instagram,
+                            color: Color(0xFF04A8B2),
+                            size: 30,
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.telegram,
+                            color: Color(0xFF04A8B2),
+                            size: 30,
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: FaIcon(
+                            FontAwesomeIcons.linkedin,
+                            color: Color(0xFF04A8B2),
+                            size: 30,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

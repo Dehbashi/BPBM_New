@@ -1,15 +1,25 @@
 //import 'dart:html';
 
-import 'package:bpbm2/screens/components/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:bpbm2/screens/components/footer.dart';
+import 'package:bpbm2/screens/components/header.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   // This widget is the root of your application.
+  final double _iconsize = 55;
 
-  final double iconsize = 55;
   final double _iconspace = 95;
+
   final double _fontsize = 13;
+
   final double textboxwidth = 90;
+
   final double textboxheight = 40;
 
   final Map<Image, String> images1 = {
@@ -58,6 +68,12 @@ class HomePage extends StatelessWidget {
         'نصب و راه اندازی WiFi مودم',
   };
 
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // void _openDrawer() {
+  //   Scaffold.of(context).openEndDrawer();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,15 +98,31 @@ class HomePage extends StatelessWidget {
             width: 121,
             height: 68,
           ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(Icons.menu, color: Colors.grey),
+          //     onPressed: () {
+          //       //here goes the drawer
+          //     },
+          //   )
+          // ],
           actions: [
-            IconButton(
-              icon: Icon(Icons.menu, color: Colors.grey),
-              onPressed: () {
-                //opendrawer
+            Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                );
               },
-            )
+            ),
           ],
         ),
+        endDrawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8),
           child: Column(
@@ -144,8 +176,8 @@ class HomePage extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        width: iconsize,
-                                        height: iconsize,
+                                        width: _iconsize,
+                                        height: _iconsize,
                                         child: image,
                                       ),
                                       SizedBox(
@@ -220,8 +252,8 @@ class HomePage extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        width: iconsize,
-                                        height: iconsize,
+                                        width: _iconsize,
+                                        height: _iconsize,
                                         child: image,
                                       ),
                                       SizedBox(
