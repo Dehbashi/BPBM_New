@@ -443,7 +443,7 @@ class _GasCoolerPageState extends State<GasCoolerPage> {
                                     height: 30,
                                     child: Text(
                                       antennaimages[image]!,
-                                      textAlign: TextAlign.right,
+                                      textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontSize: _fontsize,
                                         color: Color(0xFF025459),

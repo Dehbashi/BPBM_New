@@ -7,6 +7,9 @@ import 'package:bpbm2/screens/components/services/antennapage.dart';
 import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
 import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
 import 'package:bpbm2/screens/components/services/iphonepage.dart';
+import 'package:bpbm2/screens/components/services/cctvpage.dart';
+import 'package:bpbm2/screens/components/services/outletpage.dart';
+import 'package:bpbm2/screens/components/services/wiringpage.dart';
 import 'package:bpbm2/screens/components/rules.dart';
 
 class DrawerPage extends StatefulWidget {
@@ -115,18 +118,18 @@ class _DrawerPageState extends State<DrawerPage>
           break;
         case 'نصب انواع کلید و پریز':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => OutletPage()));
           break;
         case 'سیم کشی و کابل کشی':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => WiringPage()));
           break;
         case 'نصب دوربین مداربسته':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CctvPage()));
           break;
         case 'خدمات سانترال و تلفن های وویپ':
           // Navigate to the home page
