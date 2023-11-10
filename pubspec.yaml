@@ -64,6 +64,8 @@ flutter:
     - assets/images/intro/
     - assets/icons/
     - assets/icons/homeicons/
+    - assets/icons/antennaicons/
+    - assets/images/services/
 
   fonts:
     - family: iranSans

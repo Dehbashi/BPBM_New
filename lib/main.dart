@@ -10,6 +10,10 @@ import 'package:bpbm2/screens/components/frequently2.dart';
 import 'package:bpbm2/screens/components/contactus.dart';
 import 'package:bpbm2/screens/components/techinfo.dart';
 import 'package:bpbm2/screens/components/consultant.dart';
+import 'package:bpbm2/screens/components/services/antennapage.dart';
+import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
+import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
+import 'package:bpbm2/screens/components/services/iphonepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      home: IphonePage(),
     );
   }
 }

@@ -3,6 +3,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:bpbm2/screens/components/animationcontroller.dart';
 import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/services/antennapage.dart';
+import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
+import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
+import 'package:bpbm2/screens/components/services/iphonepage.dart';
 import 'package:bpbm2/screens/components/rules.dart';
 
 class DrawerPage extends StatefulWidget {
@@ -81,6 +85,128 @@ class _DrawerPageState extends State<DrawerPage>
         'نصب و راه اندازی مودم WiFi',
   };
 
+  void _navigateToPage(String title) {
+    setState(() {
+      switch (title) {
+        case 'نصب آنتن و آنتن مرکزی':
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AntennaPage()));
+          break;
+        case 'نصب و تعمیر انواع آیفون':
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IphonePage()));
+          break;
+        case 'نصب و سرویس کولر گازی':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => GasCoolerPage()));
+          break;
+        case 'نصب و سرویس کولر آبی':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => WaterCoolerPage()));
+          break;
+        case 'نصب و تعمیر انواع UPS':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب انواع کلید و پریز':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'سیم کشی و کابل کشی':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب دوربین مداربسته':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'خدمات سانترال و تلفن های وویپ':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'سیم کشی تلفن ثابت':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب سیستم های اطفا حریق':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب انواع چراغ و سنسور':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'دریل کاری و سوراخکاری':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب و تست سیستم ارت':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نورپردازی داخل و محوطه ساختمان':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'تابلو برق صنعتی و ساختمانی':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب تلویزیون روی دیوار':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب انواع پنکه سقفی و دیواری':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب ریموت لوستر و روشنایی':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب و تعمیر انواع آرام بند':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب انواع تهویه و هواکش':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب سیستم های ضدسرقت':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+        case 'نصب و راه اندازی مودم WiFi':
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -157,34 +283,41 @@ class _DrawerPageState extends State<DrawerPage>
                   child: Column(
                     children: List<Widget>.generate(images.length, (index) {
                       final image = images.keys.toList()[index];
+                      final title = images[image]!;
                       if (index <= 6 || showAllItems) {
-                        return Container(
-                          padding: EdgeInsets.only(bottom: 15),
-                          // width: _iconspace,
-                          width: double.infinity,
-                          // height: 20,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: _iconsize,
-                                height: _iconsize,
-                                child: image,
-                              ),
-                              SizedBox(width: 10),
-                              SizedBox(
-                                width: 200,
-                                height: 20,
-                                child: Text(
-                                  images[image]!,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: _fontsize,
-                                    color: Color(0xFF037E85),
-                                    fontFamily: 'iransans',
+                        return GestureDetector(
+                          onTap: () {
+                            // Perform navigation based on the tapped item
+                            _navigateToPage(title);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(bottom: 15),
+                            // width: _iconspace,
+                            width: double.infinity,
+                            // height: 20,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 10),
+                                SizedBox(
+                                  width: 200,
+                                  height: 20,
+                                  child: Text(
+                                    images[image]!,
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      fontSize: _fontsize,
+                                      color: Color(0xFF037E85),
+                                      fontFamily: 'iransans',
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       } else {
