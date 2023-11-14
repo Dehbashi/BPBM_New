@@ -10,6 +10,22 @@ import 'package:bpbm2/screens/components/services/iphonepage.dart';
 import 'package:bpbm2/screens/components/services/cctvpage.dart';
 import 'package:bpbm2/screens/components/services/outletpage.dart';
 import 'package:bpbm2/screens/components/services/wiringpage.dart';
+import 'package:bpbm2/screens/components/services/telephonepage.dart';
+import 'package:bpbm2/screens/components/services/breakerpage.dart';
+import 'package:bpbm2/screens/components/services/sensorpage.dart';
+import 'package:bpbm2/screens/components/services/centralpage.dart';
+import 'package:bpbm2/screens/components/services/indpowerpage.dart';
+import 'package:bpbm2/screens/components/services/upspage.dart';
+import 'package:bpbm2/screens/components/services/firealarmpage.dart';
+import 'package:bpbm2/screens/components/services/lightingpage.dart';
+import 'package:bpbm2/screens/components/services/earthpage.dart';
+import 'package:bpbm2/screens/components/services/drillpage.dart';
+import 'package:bpbm2/screens/components/services/damperpage.dart';
+import 'package:bpbm2/screens/components/services/lightremotepage.dart';
+import 'package:bpbm2/screens/components/services/ceilingfanpage.dart';
+import 'package:bpbm2/screens/components/services/walltvpage.dart';
+import 'package:bpbm2/screens/components/services/airconditioningpage.dart';
+import 'package:bpbm2/screens/components/services/burglaralarmpage.dart';
 import 'package:bpbm2/screens/components/rules.dart';
 
 class DrawerPage extends StatefulWidget {
@@ -113,8 +129,8 @@ class _DrawerPageState extends State<DrawerPage>
           break;
         case 'نصب و تعمیر انواع UPS':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => UpsPage()));
           break;
         case 'نصب انواع کلید و پریز':
           // Navigate to the home page
@@ -133,73 +149,73 @@ class _DrawerPageState extends State<DrawerPage>
           break;
         case 'خدمات سانترال و تلفن های وویپ':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CentralPage()));
           break;
         case 'سیم کشی تلفن ثابت':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => TelephonePage()));
           break;
         case 'نصب سیستم های اطفا حریق':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => FireAlarmPage()));
           break;
         case 'نصب انواع چراغ و سنسور':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SensorPage()));
           break;
         case 'دریل کاری و سوراخکاری':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DrillPage()));
           break;
         case 'نصب و تست سیستم ارت':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => EarthPage()));
           break;
         case 'نورپردازی داخل و محوطه ساختمان':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LightingPage()));
           break;
         case 'تابلو برق صنعتی و ساختمانی':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IndPowerPage()));
           break;
         case 'نصب تلویزیون روی دیوار':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => WallTvPage()));
           break;
         case 'نصب انواع پنکه سقفی و دیواری':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => CeilingFanPage()));
           break;
         case 'نصب ریموت لوستر و روشنایی':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => LightRemotePage()));
           break;
         case 'نصب و تعمیر انواع آرام بند':
           // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DamperPage()));
           break;
         case 'نصب انواع تهویه و هواکش':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => AirConditioningPage()));
           break;
         case 'نصب سیستم های ضدسرقت':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
+              MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
           break;
         case 'نصب و راه اندازی مودم WiFi':
           // Navigate to the home page
@@ -444,8 +460,7 @@ class _DrawerPageState extends State<DrawerPage>
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => FrequentlyAskedQs2()),
+                          MaterialPageRoute(builder: (context) => Rules()),
                         );
                       },
                       child: Container(

@@ -17,6 +17,22 @@ import 'package:bpbm2/screens/components/services/cctvpage.dart';
 import 'package:bpbm2/screens/components/services/iphonepage.dart';
 import 'package:bpbm2/screens/components/services/outletpage.dart';
 import 'package:bpbm2/screens/components/services/wiringpage.dart';
+import 'package:bpbm2/screens/components/services/telephonepage.dart';
+import 'package:bpbm2/screens/components/services/breakerpage.dart';
+import 'package:bpbm2/screens/components/services/sensorpage.dart';
+import 'package:bpbm2/screens/components/services/centralpage.dart';
+import 'package:bpbm2/screens/components/services/upspage.dart';
+import 'package:bpbm2/screens/components/services/indpowerpage.dart';
+import 'package:bpbm2/screens/components/services/firealarmpage.dart';
+import 'package:bpbm2/screens/components/services/lightingpage.dart';
+import 'package:bpbm2/screens/components/services/earthpage.dart';
+import 'package:bpbm2/screens/components/services/drillpage.dart';
+import 'package:bpbm2/screens/components/services/damperpage.dart';
+import 'package:bpbm2/screens/components/services/lightremotepage.dart';
+import 'package:bpbm2/screens/components/services/ceilingfanpage.dart';
+import 'package:bpbm2/screens/components/services/walltvpage.dart';
+import 'package:bpbm2/screens/components/services/airconditioningpage.dart';
+import 'package:bpbm2/screens/components/services/burglaralarmpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: WiringPage(),
+      home: BurglarAlarmPage(),
     );
   }
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_captcha/flutter_captcha.dart';
-
 
 class ContactUs extends StatefulWidget {
   @override
   State<ContactUs> createState() => _ContactUsState();
-
 }
 
 class _ContactUsState extends State<ContactUs> {
@@ -60,15 +59,31 @@ class _ContactUsState extends State<ContactUs> {
             width: 121,
             height: 68,
           ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(Icons.menu, color: Colors.grey),
+          //     onPressed: () {
+          //       //here goes the drawer
+          //     },
+          //   )
+          // ],
           actions: [
-            IconButton(
-              icon: Icon(Icons.menu, color: Colors.grey),
-              onPressed: () {
-                //opendrawer
+            Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                );
               },
-            )
+            ),
           ],
         ),
+        endDrawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8),
           child: Column(

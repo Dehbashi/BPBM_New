@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/contactus.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
 // import 'package:bpbm2/customexpansiontile.dart';
 
 class FrequentlyAskedQs2 extends StatelessWidget {
@@ -39,15 +40,31 @@ class FrequentlyAskedQs2 extends StatelessWidget {
             width: 121,
             height: 68,
           ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(Icons.menu, color: Colors.grey),
+          //     onPressed: () {
+          //       //here goes the drawer
+          //     },
+          //   )
+          // ],
           actions: [
-            IconButton(
-              icon: Icon(Icons.menu, color: Colors.grey),
-              onPressed: () {
-                //opendrawer
+            Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                );
               },
-            )
+            ),
           ],
         ),
+        endDrawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8),
           child: Column(

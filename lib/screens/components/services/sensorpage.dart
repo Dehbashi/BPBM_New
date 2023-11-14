@@ -1,0 +1,442 @@
+import 'package:flutter/material.dart';
+import 'package:bpbm2/screens/components/footer.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+List<Faq> faqs = [
+  Faq(
+    question:
+        'برای نصب لوستر زنجیر ندارم، کارشناس بسپارش به ما کار اتصال زنجیر رو هم انجام میده؟',
+    answer:
+        'بله کارشناس می‌تونه در صورت نیاز، زنجیر لوستر رو هم براتون وصل کنه.',
+  ),
+  Faq(
+    question:
+        'لوستری که می خوام وصل کنم سر هم شده نیست و قطعاتش از هم جداست، کارشناس این کار رو برام انجام می ده؟',
+    answer: 'بله کارشناس می‌تونه لوستر رو براتون سر هم کنه.',
+  ),
+  Faq(
+    question:
+        'تأمین وسایل مورد نیاز برای نصب چراغ، لوستر یا سنسور چراغ با خودمه؟',
+    answer:
+        'نه لازم نیست شما هیچ وسیله‌ای تهیه کنین. براساس درخواست و نوع خدماتی که توی بسپارش به ما ثبت کردین، کارشناس متخصص تمام وسایل مورد نیاز برای انجام کار رو همراه خودش میاره. اگر هم حین انجام کار متوجه بشه که نیاز به وسیله یا قطعه‌ی دیگه‌ای داره، با هماهنگی شما و پشتیبانی بسپارش به ما، برای تهیه اون‌ها اقدام می‌کنه.',
+  ),
+  Faq(
+    question:
+        'چه زمان هایی می تونم برای خدمات چراغ، لوستر یا سنسور چراغ توی بسپارش به ما درخواست بدم؟',
+    answer:
+        'از اونجایی که درخواست خدمات رو به صورت آنلاین ثبت می‌کنین، بنابراین هرموقعی که برای سیم‌کشی ساختمون نیاز به متخصص داشتین می‌تونین توی بسپارش به ما درخواست بدین. هرزمان که کارشناس‌ها در دسترس باشن، بهترین کارشناس رو برای انجام کار به محل شما می‌فرستیم.',
+  ),
+
+  Faq(
+    question: 'بسپارش به ما برای خدمات و تجهیزات ضمانت می ده؟',
+    answer:
+        'بله، تمام خدمات و تجهیزات شامل گارانتی و ضمانت بسپارش به ما می‌شه. ما حتی در مورد تعهد اخلاقی و رفتار کارشناس‌ها هم به شما ضمانت می‌دیم تا توی اون زمانی که مهمون خونه یا محل کارتون هستیم، خاطره‌ی خوبی از ارائه‌ی خدمات براتون ثبت کنیم.',
+  ),
+  Faq(
+    question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
+    answer:
+        'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
+  ),
+  Faq(
+    question:
+        'توی کدوم از مناطق می تونم از خدمات چراغ، لوستر یا سنسور چراغ بسپارش به ما استفاده کنم؟',
+    answer:
+        'توی هرکدوم از مناطق ۲۲ گانه شهر تهران که زندگی می‌کنین، کارشناس‌های ما می‌تونن برای ارائه خدمات در محل شما حاضر بشن.',
+  ),
+  // Add more FAQs as needed
+];
+
+class Faq {
+  final String question;
+  final String answer;
+
+  Faq({required this.question, required this.answer});
+}
+
+class SensorPage extends StatefulWidget {
+  @override
+  State<SensorPage> createState() => _SensorPageState();
+}
+
+final Map<Image, String> antennaimages = {
+  Image.asset('assets/icons/antennaicons/troubleshooting.png'):
+      'سیم‌کشی و نصب انواع چراغ و لوستر',
+  Image.asset('assets/icons/antennaicons/help.png'):
+      'جانمایی نصب چراغ و سنسور چراغ',
+  Image.asset('assets/icons/antennaicons/setupbox.png'):
+      'نصب انواع چراغ سنسوردار راه‌پله، مشاعات و پارکینگ',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'نصب انواع چراغ تایمردار',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'تعویض تایمر با سنسور',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'نصب انواع سنسور حرکتی',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'تعمیر انواع چراغ چشمی راه‌پله',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'تعمیر انواع سنسور حرکتی',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'):
+      'عیب‌یابی، سیم‌کشی مجدد و تنظیمات انواع سنسور چراغ',
+  Image.asset('assets/icons/antennaicons/setupcenter.png'): 'نصب پروژکتور',
+};
+
+class _SensorPageState extends State<SensorPage> {
+  final double headingpadding = 12;
+  final double _imageradius = 15;
+  final double textpadding = 12;
+  final double textsize = 16;
+  final double answerpadding = 30;
+  final double questionboxpadding = 8;
+  final double questionboxborderradius = 7;
+  final double _iconsize = 24;
+  final double _fontsize = 16;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            selectedItemColor: Color(0xFF037E85),
+            unselectedItemColor: Color(0xFF037E85),
+            selectedLabelStyle: TextStyle(
+              fontFamily: 'iransans',
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontFamily: 'iransans',
+            ),
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+          )),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Image.asset(
+            'assets/images/logo.png',
+            width: 121,
+            height: 68,
+          ),
+          // actions: [
+          //   IconButton(
+          //     icon: Icon(Icons.menu, color: Colors.grey),
+          //     onPressed: () {
+          //       //here goes the drawer
+          //     },
+          //   )
+          // ],
+          actions: [
+            Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+        endDrawer: DrawerPage(),
+        body: Container(
+          padding: EdgeInsets.all(8),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: headingpadding, top: 20),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Text(
+                          'آشنایی با سرویس چراغ و سنسور',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      'assets/images/services/sensor.png',
+                      fit: BoxFit.fitWidth,
+                      width: double.infinity,
+                      height: 220,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    // decoration: BoxDecoration(
+                    //   border: Border(
+                    //     bottom: BorderSide(
+                    //       color: Color(0xFF04A8B2),
+                    //     ),
+                    //   ),
+                    // ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: textpadding)
+                          .add(EdgeInsets.only(bottom: 5)),
+                      child: Text(
+                        'جانمایی، نصب و تعمیر انواع چراغ و سنسور رو بسپارش به ما\n'
+                        'اگه برای راه‌پله و مشاعات ساختمون خونه یا محل کارت نیاز به نصب سنسور چراغ یا چراغ تایمردار داری، می‌تونی روی کارشناس‌های حرفه‌ای بسپارش به ما حساب کنی.\n'
+                        'کارشناس‌های بسپارش به ما در اسرع وقت می‌تونن هر نوع چراغ و لوستری که برای خونه یا محل کارت تهیه کردی برات نصب کنن.',
+                        style: TextStyle(
+                          color: Color(0xFF025459),
+                          fontFamily: 'iransans',
+                          height: 1.8,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.justify,
+                        textDirection: TextDirection.rtl,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Padding(
+                    padding: EdgeInsets.only(right: headingpadding, top: 0),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Flexible(
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Text(
+                              'از سنسور چراغ توی کدوم بخش‌های ساختمون استفاده می‌شه؟',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF037E85),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'iransans',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    // decoration: BoxDecoration(
+                    //   border: Border(
+                    //     bottom: BorderSide(
+                    //       color: Color(0xFF04A8B2),
+                    //     ),
+                    //   ),
+                    // ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: textpadding)
+                          .add(EdgeInsets.only(bottom: 5)),
+                      child: Text(
+                        'سنسورها یا حسگرها جزو اون دسته از تجهیزاتی هستن که هم باعث راحتی کار ما می‌شن و هم جلوی اتلاف بی‌رویه‌ی انرژی رو می‌گیرن. سنسورهایی که توی برق ساختمون به کار می‌رن عموما برای مشاعات مثل پارکینگ، راه‌پله و طبقات استفاده می‌شن. توی خیلی از ساختمون‌ها دیدیم که بعد از وارد شدن به پارکینگ، چراغ مربوط به همون بخشی که ازش رد شدیم روشن می‌شه. این کار رو سنسور انجام می‌ده و بعد از اینکه حرکت ما رو تشخیص داد به چراغ فرمان می‌ده که روشن بشه.\n'
+                        'سنسورها رو می‌شه دوجور نصب کرد، همراه با چراغ‌ها یا به‌صورت جدا. وقتی سنسور به‌صورت جدا قرار می‌گیره، باید با سیم‌کشی به چراغ‌های مدنظر وصل بشه. تعداد چراغ‌هایی که می‌شه به هر سنسور وصل کرد براساس ظرفیت جریانی یا عدد آمپر اون سنسور مشخص می‌شه، بنابراین اینطوری نیست که بشه هرتعداد چراغی که دلمون خواست به یه سنسور وصل کنیم.\n'
+                        'سنسورهایی که در حاضر توی ساختمون‌ها به کار می‌رن عموما از نوع حرکتی هستن و بر اساس زاویه‌ی دیدی که ارائه می‌کنن برای استفاده توی راهرو، راه‌پله یا محوطه پارکینگ ازشون استفاده می‌شه. مثلا سنسورهای ۱۴۰ و ۳۶۰ درجه عموما برای راه‌پله‌ها استفاده می‌شن و سنسورهای ۱۸۰ درجه هم برای روی دیوار انتخاب می‌شن. توی بعضی کاربردها هم به‌جای سنسورهای حرکتی، از سنسورهای فتوسل که به نور حساسن استفاده می‌شه. مثلا برای محوطه‌ی حیات ساختمون‌ها، می‌شه از سنسورهای فتوسل استفاده کرد تا وقتی نور محیط از یه حدی کمتر شد، روشن بشن.\n'
+                        'بعضی وقت‌ها هم توی ساختمون‌ها به جای سنسور، از چراغ‌های تایمردار استفاده می‌شه. عملکرد چراغ‌های تایمردار اینطوریه که تا چند دقیقه بعد از اینکه شما کلید مربوط به چراغ رو فشار دادین، چراغ روشن می‌شه و بعدش خودش خاموش می‌شه. توی بعضی از ساختمون‌ها، برای راه‌پله چراغ تایمردار درنظر گرفته می‌شه تا وقتی اشخاص دارن از پله‌ها تردد می‌کنن، کلید برق رو بزنن و چراغ‌های راه‌پله تا چند دقیقه روشن بمونن. عیب چراغ‌های تایمردار اینه که شما توی تاریکی باید دنبال کلید بگردین تا بتونین چراغ رو روشن کنین.\n'
+                        'برای هرنوع خدماتی که در مورد انواع چراغ، لوستر سنسور و چراغ‌های سنسوردار داشته باشین، می‌تونین از خدمات کارشناس‌های بسپارش به ما استفاده کنین.',
+                        style: TextStyle(
+                          color: Color(0xFF025459),
+                          fontFamily: 'iransans',
+                          height: 1.8,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.justify,
+                        textDirection: TextDirection.rtl,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Padding(
+                    padding: EdgeInsets.only(right: headingpadding, top: 0),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Text(
+                          'سوالات متداول',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF037E85),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'iransans',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: questionboxpadding,
+                      right: questionboxpadding,
+                    ),
+                    // height: MediaQuery.of(context).size.height * 0.8,
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                          dividerColor:
+                              Colors.transparent, // Remove the gray line border
+                        ),
+                        child: Column(
+                          children: [
+                            ...faqs.map((faq) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFCDEEF0),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(
+                                        questionboxborderradius),
+                                    topLeft: Radius.circular(
+                                        questionboxborderradius),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey
+                                          .withOpacity(0.5), // Shadow color
+                                      spreadRadius: 2, // Spread radius
+                                      blurRadius: 5, // Blur radius
+                                      offset: Offset(0,
+                                          3), // Offset in the x and y direction
+                                    ),
+                                  ],
+                                ),
+                                child: ExpansionTile(
+                                  title: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      faq.question,
+                                      style: TextStyle(
+                                        color: Color(0xFF025459),
+                                        fontFamily: 'iransans',
+                                        fontSize: textsize,
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 15),
+                                          child: Text(
+                                            faq.answer,
+                                            style: TextStyle(
+                                              color: Color(0xFF025459),
+                                              fontFamily: 'iransans',
+                                              fontSize: textsize,
+                                            ),
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  Padding(
+                    padding: EdgeInsets.only(right: 40, top: 0),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Flexible(
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Text(
+                              'بسپارش به ما برای چراغ و سنسور چه خدماتی ارائه می‌کنه؟',
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 2,
+                                color: Color(0xFF037E85),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'iransans',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: AnimatedSize(
+                      duration: Duration(microseconds: 300),
+                      child: Column(
+                        children: List<Widget>.generate(antennaimages.length,
+                            (index) {
+                          final image = antennaimages.keys.toList()[index];
+                          final title = antennaimages[image]!;
+                          return Container(
+                            padding: EdgeInsets.only(bottom: 15),
+                            // width: _iconspace,
+                            width: double.infinity,
+                            // height: 20,
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: _iconsize,
+                                    height: _iconsize,
+                                    child: image,
+                                  ),
+                                  SizedBox(width: 30),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    width: 310,
+                                    height: 45,
+                                    child: Text(
+                                      antennaimages[image]!,
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                        fontSize: _fontsize,
+                                        color: Color(0xFF025459),
+                                        fontFamily: 'iransans',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        bottomNavigationBar: Footer(),
+      ),
+    );
+  }
+}
