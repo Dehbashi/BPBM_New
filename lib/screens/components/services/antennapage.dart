@@ -2,61 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:bpbm2/screens/components/faq.dart';
 
-List<Faq> faqs = [
-  Faq(
+List<FAQItem> faqList = [
+  FAQItem(
     question:
         'می خوام برای خونم آنتن نصب کنم، از کجا بدونم چه نوع آنتنی برام مناسبه؟',
     answer:
         'قبل از نصب آنتن و برای بررسی شرایط محل، کارشناس‌های بسپارش به ما در محل حاضر می‌شن و بهتون مشاوره می‌دن که بهتره چه نوع آنتنی نصب بشه. کافیه از بخش خدمات، گزینه‌ی مشاوره برای نصب آنتن رو انتخاب کنین.',
   ),
-  Faq(
+  FAQItem(
     question:
         'اگه برای نصب آنتن نیاز به نصب پایه هم باشه، بسپارش به ما برام انجام می ده؟',
     answer:
         'ما همیشه سعی می‌کنیم علاوه‌بر بهترین راهکار، سریع‌ترین راهکار رو ارائه بدیم و اجرا کنیم تا کار شما هم در سریع‌ترین زمان ممکن انجام بشه. در صورتی که کارشناس در محل تشخیص بده که نیاز به نصب پایه برای آنتن هست، این کار رو هم براتون انجام می‌ده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'تهیه کابل برای کابل کشی آنتن به عهده خودمه یا کارشناس بسپارش به ما برام انجام میده؟',
     answer:
         'قبل از ثبت سفارش، با سوالاتی که ازتون می‌پرسیم، به صورت حدودی متراژ کابل مورد نیاز برای سیم‌کشی رو متوجه می‌شیم تا کارشناس برای انجام کار از قبل تهیه کنه. اگه موقع ثبت سفارش حس کردین که توی جواب دادن به سوال‌ها مشکل دارین و نمی‌تونین متراژ کابل مورد نیاز رو حتی به صورت حدودی درست وارد کنین، نگران نباشین. کافیه با پشتیبانی ما تماس بگیرین تا با سوال‌هایی که ازتون می‌پرسن راهنمایی‌تون کنن.',
   ),
-  Faq(
+  FAQItem(
     question:
         'همراه با نصب آنتن می تونم درخواست نصب و راه اندازی ستاپ باکس هم بدم؟',
     answer:
         'بله. موقع ثبت سفارش توی خدمات مدنظرتون گزینه نصب ستاپ باکس رو هم وارد کنین تا کارشناس علاوه‌بر نصب آنتن، کار نصب و راه‌اندازی گیرنده دیجیتال رو هم براتون انجام بده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'نمی دونم چه مدل یا برند ستاپ باکسی تهیه کنم، امکانش هست که قبل نصب خود کارشناس برام تهیه کنه؟',
     answer:
         'بله، کارشناس پیش از حضور در محل امکان این رو داره که خودش ستاپ باکس رو براتون تهیه کنه. اما از اونجایی که ستاپ باکس‌ها امکانات مختلفی ارائه می‌کنن، باید حتما امکانات مدنظرتون رو به کارشناس بگین تا بتونه بهترین مدل رو براتون انتخاب کنه. حین خرید، کارشناس با شما در تماسه و با سوال‌هایی که ازتون می‌پرسه، بهترین و با کیفیت‌ترین مدل رو براتون خریداری می‌کنه.',
   ),
-  Faq(
+  FAQItem(
     question:
         'تأمین وسایل مورد نیاز برای نصب، تنظیم یا تعمیر آنتن و ستاپ باکس با خودمه؟',
     answer:
         'نه لازم نیست شما هیچ وسیله‌ای تهیه کنین. براساس درخواست و نوع خدماتی که توی بسپارش به ما ثبت کردین، کارشناس متخصص تمام وسایل مورد نیاز برای انجام کار رو همراه خودش میاره. اگر هم حین انجام کار متوجه بشه که نیاز به وسیله یا قطعه‌ی دیگه‌ای داره، با هماهنگی شما و پشتیبانی بسپارش به ما، برای تهیه اون‌ها اقدام می‌کنه.',
   ),
-  Faq(
+  FAQItem(
     question:
         'چه زمان هایی می تونم برای نصب، تنظیم یا تعمیر آنتن و ستاپ باکس توی بسپارش به ما درخواست بدم؟',
     answer:
         'از اونجایی که درخواست خدمات رو به صورت آنلاین ثبت می‌کنین، بنابراین هرموقعی که برای نصب، تنظیم یا تعمیر آنتن و ستاپ باکس نیاز به متخصص داشتین می‌تونین توی بسپارش به ما درخواست بدین. هرزمان که کارشناس‌ها در دسترس باشن، بهترین کارشناس رو برای انجام کار به محل شما می‌فرستیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'بسپارش به ما برای خدمات و تجهیزات ضمانت می ده؟',
     answer:
         'بله، تمام خدمات و تجهیزات شامل گارانتی و ضمانت بسپارش به ما می‌شه. ما حتی در مورد تعهد اخلاقی و رفتار کارشناس‌ها هم به شما ضمانت می‌دیم تا توی اون زمانی که مهمون خونه یا محل کارتون هستیم، خاطره‌ی خوبی از ارائه‌ی خدمات براتون ثبت کنیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'توی کدوم مناطق می تونم از خدمات آنتن و ستاپ باکس بسپارش به ما استفاده کنم؟',
     answer:
@@ -285,85 +286,7 @@ class _AntennaPageState extends State<AntennaPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: questionboxpadding,
-                      right: questionboxpadding,
-                    ),
-                    // height: MediaQuery.of(context).size.height * 0.8,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor:
-                              Colors.transparent, // Remove the gray line border
-                        ),
-                        child: Column(
-                          children: [
-                            ...faqs.map((faq) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFCDEEF0),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(
-                                        questionboxborderradius),
-                                    topLeft: Radius.circular(
-                                        questionboxborderradius),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 5, // Blur radius
-                                      offset: Offset(0,
-                                          3), // Offset in the x and y direction
-                                    ),
-                                  ],
-                                ),
-                                child: ExpansionTile(
-                                  title: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    child: Text(
-                                      faq.question,
-                                      style: TextStyle(
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                        fontSize: textsize,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 15),
-                                        child: Text(
-                                          faq.answer,
-                                          style: TextStyle(
-                                            color: Color(0xFF025459),
-                                            fontFamily: 'iransans',
-                                            fontSize: textsize,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  FAQ(faqItems: faqList),
                   SizedBox(height: 50),
                   Padding(
                     padding: EdgeInsets.only(right: 40, top: 0),

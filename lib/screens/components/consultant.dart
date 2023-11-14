@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
-import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_captcha/flutter_captcha.dart';
-
 
 class ConsultantPage extends StatefulWidget {
   @override
   State<ConsultantPage> createState() => _ConsultantPageState();
-
 }
 
 class _ConsultantPageState extends State<ConsultantPage> {
@@ -83,8 +81,7 @@ class _ConsultantPageState extends State<ConsultantPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding:
-                              EdgeInsets.only(top: 60),
+                              padding: EdgeInsets.only(top: 60),
                               child: Text(
                                 'درخواست مشاوره',
                                 style: TextStyle(
@@ -131,14 +128,13 @@ class _ConsultantPageState extends State<ConsultantPage> {
                                         context,
                                         PageRouteBuilder(
                                           transitionDuration:
-                                          Duration(milliseconds: 300),
+                                              Duration(milliseconds: 300),
                                           transitionsBuilder:
                                               (BuildContext context,
-                                              Animation<double>
-                                              animation,
-                                              Animation<double>
-                                              secondaryAnimation,
-                                              Widget child) {
+                                                  Animation<double> animation,
+                                                  Animation<double>
+                                                      secondaryAnimation,
+                                                  Widget child) {
                                             return SlideTransition(
                                               position: Tween<Offset>(
                                                 begin: Offset(1.0, 0.0),
@@ -147,11 +143,10 @@ class _ConsultantPageState extends State<ConsultantPage> {
                                               child: child,
                                             );
                                           },
-                                          pageBuilder: (BuildContext
-                                          context,
+                                          pageBuilder: (BuildContext context,
                                               Animation<double> animation,
                                               Animation<double>
-                                              secondaryAnimation) {
+                                                  secondaryAnimation) {
                                             return FrequentlyAskedQs2();
                                           },
                                         ),
@@ -169,27 +164,26 @@ class _ConsultantPageState extends State<ConsultantPage> {
                               ],
                             ),
                             SizedBox(height: 20),
-                            Padding (
+                            Padding(
                               padding: EdgeInsets.only(right: 10),
-                            child:
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            textDirection: TextDirection.rtl,
-                            children: [
-                            Text(
-                              textDirection: TextDirection.rtl,
-                              textAlign: TextAlign.justify,
-                              'تلفن همراه',
-                              style: TextStyle(
-                                color: Color(0xFF037E85),
-                                fontFamily: 'iransans',
-                                // height: linespacing,
-                                fontSize: 12,
-                                // fontWeight: FontWeight.bold,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                textDirection: TextDirection.rtl,
+                                children: [
+                                  Text(
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.justify,
+                                    'تلفن همراه',
+                                    style: TextStyle(
+                                      color: Color(0xFF037E85),
+                                      fontFamily: 'iransans',
+                                      // height: linespacing,
+                                      fontSize: 12,
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                              ],
-                            ),
                             ),
                             SizedBox(height: 5),
                             Directionality(
@@ -197,8 +191,7 @@ class _ConsultantPageState extends State<ConsultantPage> {
                               child: Container(
                                 width: double
                                     .infinity, // Set the width of the TextField
-                                height:
-                                60, // Set the height of the TextField
+                                height: 60, // Set the height of the TextField
                                 child: TextField(
                                   keyboardType: TextInputType.phone,
                                   style: TextStyle(
@@ -216,8 +209,7 @@ class _ConsultantPageState extends State<ConsultantPage> {
                                     fillColor: Color(0xFFCDEEF0),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
-                                      borderRadius:
-                                      BorderRadius.circular(
+                                      borderRadius: BorderRadius.circular(
                                           messageboxradius),
                                     ),
                                     hintStyle: TextStyle(
@@ -267,39 +259,38 @@ class _ConsultantPageState extends State<ConsultantPage> {
                               ),
                             ),
                             SizedBox(height: 20),
-                               GestureDetector(
-                                  onTap: () async {
-                            final Uri phoneUri = Uri(
-                            scheme: 'tel',
-                            path: '02191077077',
-                            ); // Replace with your phone number
-                            if (await canLaunchUrl(phoneUri)) {
-                            await launchUrl(phoneUri);
-                            } else {
-                            // Handle error: unable to launch the URL
-                            }
-                            },
-                              child:
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.phone,
-                                  size: 48,
-                                  color: Color(0xFF049768),
-                                ),
-                                SizedBox(width: 0),
-                                Text(
-                                  '۰۲۱-۹۱۰۷۷۰۷۷',
-                                  style: TextStyle(
-                                    fontSize: 36,
+                            GestureDetector(
+                              onTap: () async {
+                                final Uri phoneUri = Uri(
+                                  scheme: 'tel',
+                                  path: '02191077077',
+                                ); // Replace with your phone number
+                                if (await canLaunchUrl(phoneUri)) {
+                                  await launchUrl(phoneUri);
+                                } else {
+                                  // Handle error: unable to launch the URL
+                                }
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.phone,
+                                    size: 48,
                                     color: Color(0xFF049768),
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'iransans',
                                   ),
-                                ),
-                              ],
-                            ),
+                                  SizedBox(width: 0),
+                                  Text(
+                                    '۰۲۱-۹۱۰۷۷۰۷۷',
+                                    style: TextStyle(
+                                      fontSize: 36,
+                                      color: Color(0xFF049768),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'iransans',
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(height: 20),
                             Row(

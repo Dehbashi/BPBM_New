@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
-import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs3 extends StatefulWidget {

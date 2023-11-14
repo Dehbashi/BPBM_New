@@ -2,37 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:bpbm2/screens/components/faq.dart';
 
-List<Faq> faqs = [
-  Faq(
+List<FAQItem> faqList = [
+  FAQItem(
     question:
         'وسایل مورد نیاز برای نصب، تعمیر یا سرویس کولر رو باید خودم تهیه کنم؟',
     answer:
         'نه شما لازم نیست هیچ وسیله‌ای رو خودتون تهیه کنین. کارشناس ما تمام وسایل مورد نیاز رو همراه خودش میاره و اگر هم حین کار نیاز به قطعه یا تجهیزی داشته باشه، خودش تهیه می‌کنه.',
   ),
-  Faq(
+  FAQItem(
     question:
         'چه زمان هایی می تونم برای  نصب، تعمیر یا سرویس کولر آبی توی سایت یا اپلیکیشن بسپارش به ما درخواست بدم؟',
     answer:
         'از اونجایی که ثبت سفارش برای دریافت خدمات به صورت آنلاین انجام می‌شه، بنابراین شما می‌تونین هر روز و هر ساعتی که نیاز به خدمات دارین، سفارشتون رو توی بسپارش به ما ثبت کنین. ما در اسرع وقت بهترین کارشناس رو برای انجام کارتون اعزام می‌کنیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'بسپارش به ما برای خدمات و تجهیزات ضمانت میده؟',
     answer:
         'بله، تمام خدمات و تجهیزات شامل گارانتی و ضمانت بسپارش به ما می‌شه تا حتی بعد از انجام کار هم خیالتون بابت کیفیت خدمات راحت باشه. کارشناس‌های ما علاوه‌بر حرفه‌ای بودن، بااخلاق و متعهد هم هستن.',
   ),
-  Faq(
+  FAQItem(
     question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'توی کدوم مناطق می تونم از خدمات نصب، سرویس یا تعمیر کولر آبی بسپارش به ما استفاده کنم؟',
     answer:
         'بسپارش به ما خدماتش رو توی ۲۲ منطقه‌ی تهران ارائه می‌کنه، بنابراین هرکجای این شهر شلوغ که باشین، متخصصین بسپارش به ما با سرعت نور خودشون رو به محل شما می‌رسونن.',
   ),
-  Faq(
+  FAQItem(
     question: 'قبل از ثبت درخواست از کجا بفهمیم مشکل کولر آبی چیه؟',
     answer:
         'یکی از خوبی‌های بسپارش به ما اینه که هم پشتیبانی خیلی پیگیری داره و هم نیروهای متخصص‌اش برای مشاوره به شما آماده‌ان. قبل ثبت سفارش هر سوالی که داشته باشین، می‌تونین با ما تماس بگیرین تا پشتیبانی یا کارشناس‌هامون راهنماییتون کنن.',
@@ -301,85 +302,7 @@ class _WaterCoolerPageState extends State<WaterCoolerPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: questionboxpadding,
-                      right: questionboxpadding,
-                    ),
-                    // height: MediaQuery.of(context).size.height * 0.8,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor:
-                              Colors.transparent, // Remove the gray line border
-                        ),
-                        child: Column(
-                          children: [
-                            ...faqs.map((faq) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFCDEEF0),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(
-                                        questionboxborderradius),
-                                    topLeft: Radius.circular(
-                                        questionboxborderradius),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 5, // Blur radius
-                                      offset: Offset(0,
-                                          3), // Offset in the x and y direction
-                                    ),
-                                  ],
-                                ),
-                                child: ExpansionTile(
-                                  title: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    child: Text(
-                                      faq.question,
-                                      style: TextStyle(
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                        fontSize: textsize,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 15),
-                                        child: Text(
-                                          faq.answer,
-                                          style: TextStyle(
-                                            color: Color(0xFF025459),
-                                            fontFamily: 'iransans',
-                                            fontSize: textsize,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  FAQ(faqItems: faqList),
                   SizedBox(height: 50),
                   Padding(
                     padding: EdgeInsets.only(right: 40, top: 0),

@@ -2,49 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:bpbm2/screens/components/faq.dart';
 
-List<Faq> faqs = [
-  Faq(
+List<FAQItem> faqList = [
+  FAQItem(
     question:
         'برای سیم کشی ساختمون خونه یا محل کارم نیاز به مشاوره دارم، می تونم از کارشناس های بسپارش به ما مشاوره بگیرم؟',
     answer:
         'بله. توی بخش خدمات گزینه‌ی مشاوره رو انتخاب کنین. کارشناس‌های ما برای مشاوره و راهنمایی شما در محل حاضر می‌شن.',
   ),
-  Faq(
+  FAQItem(
     question:
         'اگر بدنه یکی از وسایل خونه برقدار بشه و ندونم مشکل از خود وسیله هست یا سیم کشی ساختمون، می تونم با بسپارش به ما تماس بگیرم؟',
     answer:
         'بله. کارشناس‌های ما برای عیب‌یابی در محل شما حاضر می‌شن و اگر مشکل از سیم‌کشی یا برق ساختمون شما باشه، برای رفع و تعمیرش اقدام می‌کنن.',
   ),
-  Faq(
+  FAQItem(
     question:
         'برای برقکاری و سیم کشی کامل ساختمون هم می تونم از خدمات کارشناس های بسپارش به ما استفاده کنم؟',
     answer:
         'بله. فرقی نمی‌کنه کارتون سیم‌کشی کامل یه ساختمون باشه یا فقط برای بخش‌های محدودی نیاز به سیم‌کشی داشته باشین. کارشناس‌های بسپارش به ما کار رو با تعهد و با بهترین کیفیت براتون انجام می‌دن.',
   ),
-  Faq(
+  FAQItem(
     question: 'تأمین وسایل مورد نیاز برای کارهای سیم کشی ساختمون با خودمه؟',
     answer:
         'نه لازم نیست شما هیچ وسیله‌ای تهیه کنین. براساس درخواست و نوع خدماتی که توی بسپارش به ما ثبت کردین، کارشناس متخصص تمام وسایل مورد نیاز برای انجام کار رو همراه خودش میاره. اگر هم حین انجام کار متوجه بشه که نیاز به وسیله یا قطعه‌ی دیگه‌ای داره، با هماهنگی شما و پشتیبانی بسپارش به ما، برای تهیه اون‌ها اقدام می‌کنه.',
   ),
-  Faq(
+  FAQItem(
     question:
         'چه زمان هایی می تونم برای کارهای سیم کشی ساختمون توی بسپارش به ما درخواست بدم؟',
     answer:
         'از اونجایی که درخواست خدمات رو به صورت آنلاین ثبت می‌کنین، بنابراین هرموقعی که برای سیم‌کشی ساختمون نیاز به متخصص داشتین می‌تونین توی بسپارش به ما درخواست بدین. هرزمان که کارشناس‌ها در دسترس باشن، بهترین کارشناس رو برای انجام کار به محل شما می‌فرستیم.',
   ),
 
-  Faq(
+  FAQItem(
     question: 'بسپارش به ما برای خدمات و تجهیزات ضمانت می ده؟',
     answer:
         'بله، تمام خدمات و تجهیزات شامل گارانتی و ضمانت بسپارش به ما می‌شه. ما حتی در مورد تعهد اخلاقی و رفتار کارشناس‌ها هم به شما ضمانت می‌دیم تا توی اون زمانی که مهمون خونه یا محل کارتون هستیم، خاطره‌ی خوبی از ارائه‌ی خدمات براتون ثبت کنیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'توی کدوم از مناطق می تونم از خدمات سیم کشی ساختمون بسپارش به ما استفاده کنم؟',
     answer:
@@ -273,85 +274,7 @@ class _WiringPageState extends State<WiringPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: questionboxpadding,
-                      right: questionboxpadding,
-                    ),
-                    // height: MediaQuery.of(context).size.height * 0.8,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor:
-                              Colors.transparent, // Remove the gray line border
-                        ),
-                        child: Column(
-                          children: [
-                            ...faqs.map((faq) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFCDEEF0),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(
-                                        questionboxborderradius),
-                                    topLeft: Radius.circular(
-                                        questionboxborderradius),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 5, // Blur radius
-                                      offset: Offset(0,
-                                          3), // Offset in the x and y direction
-                                    ),
-                                  ],
-                                ),
-                                child: ExpansionTile(
-                                  title: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    child: Text(
-                                      faq.question,
-                                      style: TextStyle(
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                        fontSize: textsize,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 15),
-                                        child: Text(
-                                          faq.answer,
-                                          style: TextStyle(
-                                            color: Color(0xFF025459),
-                                            fontFamily: 'iransans',
-                                            fontSize: textsize,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  FAQ(faqItems: faqList),
                   SizedBox(height: 50),
                   Padding(
                     padding: EdgeInsets.only(right: 40, top: 0),

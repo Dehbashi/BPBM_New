@@ -2,43 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:bpbm2/screens/components/faq.dart';
 
-List<Faq> faqs = [
-  Faq(
+List<FAQItem> faqList = [
+  FAQItem(
     question:
         'بسپارش به ما برای کدوم مدل ها و برندهای کولر گازی و اسپیلت خدمات ارائه می کنه؟',
     answer:
         'برای کارشناس‌های بسپارش به ما فرقی نمی‌کنه مدل یا برند کولر گازی شما چیه؛ از کولر گازی اسپلیت گرفته تا کولر گازی پرتابل و پنجره‌ای، می‌تونین با خیال راحت نصب، تعمیر یا سرویس رو بسپارینش به ما.',
   ),
-  Faq(
+  FAQItem(
     question:
         'قبل از ثبت درخواست از کجا بفهمم کولر گازی یا اسپیلت خونه و محل کارم چه مشکلی داره؟',
     answer:
         'خوبی بسپارش به ما اینکه که توی هیچ مرحله‌ای از ثبت سفارش تا زمان انجام کار شما رو تنها نمی‌ذاره. حتی اگه نمی‌دونین مشکل کولر گازی یا اسپلیت‌تون چیه، کافیه با پشتیبانی بسپارش به ما تماس بگیرین. نیروهای پشتیبانی یا کارشناس‌های متخصص ما با سوال‌هایی که از شما می‌پرسن، راهنمایی‌تون می‌کنن.',
   ),
-  Faq(
+  FAQItem(
     question:
         'وسایل مورد نیاز برای نصب، تعمیر یا سرویس کولر گازی یا اسپیلت رو باید خودم تهیه کنم؟',
     answer:
         'نه شما لازم نیست هیچ وسیله‌ای تهیه کنین. براساس درخواست و نوع خدماتی که توی بسپارش به ما ثبت کردین، کارشناس متخصص تمام وسایل مورد نیاز برای انجام کار رو همراه خودش میاره. اگر هم حین انجام کار متوجه بشه که نیاز به وسیله یا قطعه‌ی دیگه‌ای داره، با هماهنگی شما و پشتیبانی بسپارش به ما، برای تهیه اون‌ها اقدام می‌کنه.',
   ),
-  Faq(
+  FAQItem(
     question:
         'چه زمان هایی می تونم برای نصب، تعمیر یا سرویس کولر گازی یا اسپیلت توی بسپارش به ما درخواست بدم؟',
     answer:
         'با توجه به اینکه درخواست خدمات رو به صورت آنلاین ثبت می‌کنین، بنابراین هرموقعی که برای نصب، تعمیر یا سرویس کولر گازی نیاز به متخصص داشتین می‌تونین توی بسپارش به ما درخواست بدین. هرزمان که کارشناس‌ها در دسترس باشن، بهترین کارشناس رو برای انجام کارتون به محل شما می‌فرستیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'بسپارش به ما برای خدمات و تجهیزات ضمانت میده؟',
     answer:
         'بله، تمام خدماتی که کارشناس‌ها ارائه می‌دن و تجهیزاتی که براتون به کار می‌برن، شامل گارانتی و ضمانت بسپارش به ما می‌شه. ما حتی در مورد تعهد اخلاقی و رفتار کارشناس‌ها هم به شما ضمانت می‌دیم تا توی اون زمانی که مهمون خونه یا محل کارتون هستیم، خاطره‌ی خوبی از ارائه‌ی خدمات براتون ثبت کنیم.',
   ),
-  Faq(
+  FAQItem(
     question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
-  Faq(
+  FAQItem(
     question:
         'توی کدوم مناطق می تونم از خدمات کولر گازی یا اسپیلت بسپارش به ما استفاده کنم؟',
     answer:
@@ -314,85 +315,7 @@ class _GasCoolerPageState extends State<GasCoolerPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: questionboxpadding,
-                      right: questionboxpadding,
-                    ),
-                    // height: MediaQuery.of(context).size.height * 0.8,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor:
-                              Colors.transparent, // Remove the gray line border
-                        ),
-                        child: Column(
-                          children: [
-                            ...faqs.map((faq) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFCDEEF0),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(
-                                        questionboxborderradius),
-                                    topLeft: Radius.circular(
-                                        questionboxborderradius),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.5), // Shadow color
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 5, // Blur radius
-                                      offset: Offset(0,
-                                          3), // Offset in the x and y direction
-                                    ),
-                                  ],
-                                ),
-                                child: ExpansionTile(
-                                  title: Container(
-                                    padding: EdgeInsets.symmetric(vertical: 5),
-                                    child: Text(
-                                      faq.question,
-                                      style: TextStyle(
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                        fontSize: textsize,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 15),
-                                        child: Text(
-                                          faq.answer,
-                                          style: TextStyle(
-                                            color: Color(0xFF025459),
-                                            fontFamily: 'iransans',
-                                            fontSize: textsize,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  FAQ(faqItems: faqList),
                   SizedBox(height: 50),
                   Padding(
                     padding: EdgeInsets.only(right: 40, top: 0),
