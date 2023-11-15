@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:bpbm2/screens/components/faq.dart';
 
 List<FAQItem> faqList = [
@@ -88,7 +88,6 @@ final Map<Image, String> antennaimages = {
 
 class _WiringPageState extends State<WiringPage> {
   final double headingpadding = 12;
-  final double _imageradius = 15;
   final double textpadding = 12;
   final double textsize = 16;
   final double answerpadding = 30;

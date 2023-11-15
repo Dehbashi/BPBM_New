@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FrequentlyAskedQs2(),
+      home: SplashScreen(),
     );
   }
 }

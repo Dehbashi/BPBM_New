@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:bpbm2/screens/components/animationcontroller.dart';
-import 'package:bpbm2/screens/components/frequently2.dart';
+import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
 import 'package:bpbm2/screens/components/services/antennapage.dart';
 import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
 import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
@@ -22,7 +22,7 @@ class DrawerPage extends StatefulWidget {
 class _DrawerPageState extends State<DrawerPage>
     with SingleTickerProviderStateMixin {
   final double _iconsize = 18;
-  final double _iconspace = 40;
+  // final double _iconspace = 40;
   final double _fontsize = 14;
   bool showAllItems = false;
 
@@ -444,8 +444,7 @@ class _DrawerPageState extends State<DrawerPage>
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => FrequentlyAskedQs2()),
+                          MaterialPageRoute(builder: (context) => Rules()),
                         );
                       },
                       child: Container(
@@ -517,7 +516,15 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            const url = 'https://www.facebook.com';
+                            final uri = Uri.parse(url);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -525,7 +532,15 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            const url = 'https://www.instagram.com';
+                            final uri = Uri.parse(url);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -533,7 +548,15 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            const url = 'https://www.telegram.com';
+                            final uri = Uri.parse(url);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -541,7 +564,15 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            const url = 'https://www.telegram.com';
+                            final uri = Uri.parse(url);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
                         ),
                       ],
                     ),

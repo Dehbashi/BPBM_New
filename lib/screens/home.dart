@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
-import 'package:bpbm2/screens/components/header.dart';
+// import 'package:bpbm2/screens/components/header.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 
 class HomePage extends StatefulWidget {
