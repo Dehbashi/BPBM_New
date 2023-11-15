@@ -3,6 +3,7 @@ import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/contactus.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:bpbm2/screens/components/faq.dart';
+import 'package:bpbm2/screens/components/header.dart';
 // import 'package:bpbm2/customexpansiontile.dart';
 
 List<FAQItem> faqList = [
@@ -103,6 +104,12 @@ class FrequentlyAskedQs2 extends StatelessWidget {
   final double questionboxpadding = 8;
   final double questionboxborderradius = 7;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void handleMenuClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -121,35 +128,12 @@ class FrequentlyAskedQs2 extends StatelessWidget {
             showUnselectedLabels: true,
           )),
       home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            width: 121,
-            height: 68,
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Header(
+            onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: Icon(Icons.menu, color: Colors.grey),
-          //     onPressed: () {
-          //       //here goes the drawer
-          //     },
-          //   )
-          // ],
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                );
-              },
-            ),
-          ],
         ),
         endDrawer: DrawerPage(),
         body: Container(

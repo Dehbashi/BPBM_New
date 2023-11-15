@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
+import 'package:bpbm2/screens/components/header.dart';
 
 import 'package:bpbm2/screens/components/faq.dart';
 
@@ -74,7 +75,6 @@ final Map<Image, String> antennaimages = {
 
 class _DamperPageState extends State<DamperPage> {
   final double headingpadding = 12;
-  final double _imageradius = 15;
   final double textpadding = 12;
   final double textsize = 16;
   final double answerpadding = 30;
@@ -82,6 +82,12 @@ class _DamperPageState extends State<DamperPage> {
   final double questionboxborderradius = 7;
   final double _iconsize = 24;
   final double _fontsize = 16;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void handleMenuClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,35 +107,12 @@ class _DamperPageState extends State<DamperPage> {
             showUnselectedLabels: true,
           )),
       home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            width: 121,
-            height: 68,
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Header(
+            onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: Icon(Icons.menu, color: Colors.grey),
-          //     onPressed: () {
-          //       //here goes the drawer
-          //     },
-          //   )
-          // ],
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                );
-              },
-            ),
-          ],
         ),
         endDrawer: DrawerPage(),
         body: Container(

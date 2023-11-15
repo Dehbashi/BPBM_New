@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatefulWidget {
-  const Header({super.key});
+class Header extends StatelessWidget implements PreferredSizeWidget {
+  final VoidCallback? onMenuClicked; // Named parameter for menu click
 
-  @override
-  State<Header> createState() => _HeaderState();
-}
+  const Header({Key? key, this.onMenuClicked}) : super(key: key);
 
-class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -16,14 +13,6 @@ class _HeaderState extends State<Header> {
         width: 121,
         height: 68,
       ),
-// actions: [
-// IconButton(
-// icon: Icon(Icons.menu, color: Colors.grey),
-// onPressed: () {
-// //here goes the drawer
-// },
-// )
-// ],
       actions: [
         Builder(
           builder: (BuildContext context) {
@@ -32,13 +21,14 @@ class _HeaderState extends State<Header> {
                 Icons.menu,
                 color: Colors.grey,
               ),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
+              onPressed: onMenuClicked, // Invoke the callback function
             );
           },
         ),
       ],
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

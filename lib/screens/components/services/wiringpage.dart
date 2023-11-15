@@ -3,6 +3,7 @@ import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:bpbm2/screens/components/faq.dart';
+import 'package:bpbm2/screens/components/header.dart';
 
 List<FAQItem> faqList = [
   FAQItem(
@@ -96,6 +97,12 @@ class _WiringPageState extends State<WiringPage> {
   final double _iconsize = 24;
   final double _fontsize = 16;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void handleMenuClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -114,35 +121,12 @@ class _WiringPageState extends State<WiringPage> {
             showUnselectedLabels: true,
           )),
       home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            width: 121,
-            height: 68,
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Header(
+            onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: Icon(Icons.menu, color: Colors.grey),
-          //     onPressed: () {
-          //       //here goes the drawer
-          //     },
-          //   )
-          // ],
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                );
-              },
-            ),
-          ],
         ),
         endDrawer: DrawerPage(),
         body: Container(

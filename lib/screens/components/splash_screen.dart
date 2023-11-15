@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:async';
 import 'package:bpbm2/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:bpbm2/screens/components/header.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,9 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage())
-      );
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     });
   }
 

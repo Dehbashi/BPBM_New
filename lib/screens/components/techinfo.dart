@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:bpbm2/screens/components/header.dart';
 
 class TechInfo extends StatelessWidget {
   final double textpadding = 12;
@@ -13,6 +13,12 @@ class TechInfo extends StatelessWidget {
   final double bottomiconsize = 75;
   final double _buttonwidth = 170;
   final double _buttonheight = 50;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void handleMenuClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +38,12 @@ class TechInfo extends StatelessWidget {
             showUnselectedLabels: true,
           )),
       home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            width: 121,
-            height: 68,
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Header(
+            onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.menu, color: Colors.grey),
-              onPressed: () {
-                //opendrawer
-              },
-            )
-          ],
         ),
         body: Container(
           padding: EdgeInsets.all(8),
@@ -61,8 +59,7 @@ class TechInfo extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding:
-                              EdgeInsets.only(top: 60),
+                              padding: EdgeInsets.only(top: 60),
                               child: Text(
                                 'تکنیسین برق هستید؟',
                                 style: TextStyle(
@@ -89,29 +86,27 @@ class TechInfo extends StatelessWidget {
                             ),
                             SizedBox(height: 60),
                             SizedBox(
-                              width:_buttonwidth,
-                            height: _buttonheight,
-                            child:
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFFFF0D55),
-                                // fixedSize:
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(4)),
-                              ),
-                              onPressed: () {
-                                // Handle button press
-                              },
-                              child: Text(
-                                'شروع ثبت نام',
-                                style: TextStyle(
-                                  fontFamily: 'iransans',
-                                  fontSize: 15,
+                              width: _buttonwidth,
+                              height: _buttonheight,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFFFF0D55),
+                                  // fixedSize:
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4)),
+                                ),
+                                onPressed: () {
+                                  // Handle button press
+                                },
+                                child: Text(
+                                  'شروع ثبت نام',
+                                  style: TextStyle(
+                                    fontFamily: 'iransans',
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                             ),
-              ),
                             SizedBox(height: 130),
                             Text(
                               'مجله بسپارش به ما',
@@ -138,20 +133,19 @@ class TechInfo extends StatelessWidget {
                             ),
                             SizedBox(height: 60),
                             SizedBox(
-                              width:_buttonwidth,
+                              width: _buttonwidth,
                               height: _buttonheight,
-                              child:
-                              ElevatedButton(
+                              child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFFFF0D55),
                                   // fixedSize:
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(4)),
+                                      borderRadius: BorderRadius.circular(4)),
                                 ),
                                 onPressed: () async {
                                   // Handle button press
-                                  const url = 'https://blog.bespareshbema.com/'; // Replace with your desired website URL
+                                  const url =
+                                      'https://blog.bespareshbema.com/'; // Replace with your desired website URL
                                   if (await canLaunch(url)) {
                                     await launch(url);
                                   } else {

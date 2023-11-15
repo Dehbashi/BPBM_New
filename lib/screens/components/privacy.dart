@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
+import 'package:bpbm2/screens/components/header.dart';
 
 class PrivacyPage extends StatelessWidget {
   final double textpadding = 12;
@@ -10,6 +11,12 @@ class PrivacyPage extends StatelessWidget {
   final double textsize = 16;
   final double headingsize = 24;
   final double bottomiconsize = 75;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void handleMenuClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,35 +36,12 @@ class PrivacyPage extends StatelessWidget {
             showUnselectedLabels: true,
           )),
       home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            width: 121,
-            height: 68,
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: Header(
+            onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
-          // actions: [
-          //   IconButton(
-          //     icon: Icon(Icons.menu, color: Colors.grey),
-          //     onPressed: () {
-          //       //here goes the drawer
-          //     },
-          //   )
-          // ],
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.grey,
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                );
-              },
-            ),
-          ],
         ),
         endDrawer: DrawerPage(),
         body: Container(
