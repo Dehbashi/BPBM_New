@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import 'package:bpbm2/screens/components/faq.dart';
 
 List<FAQItem> faqList = [
@@ -15,6 +16,7 @@ List<FAQItem> faqList = [
     answer:
         'نه لازم نیست شما هیچ وسیله‌ای تهیه کنین. براساس درخواست و نوع خدماتی که توی بسپارش به ما ثبت کردین، کارشناس متخصص تمام وسایل مورد نیاز برای انجام کار رو همراه خودش میاره. اگر هم حین انجام کار متوجه بشه که نیاز به وسیله یا قطعه‌ی دیگه‌ای داره، با هماهنگی شما و پشتیبانی بسپارش به ما، برای تهیه اون‌ها اقدام می‌کنه.',
   ),
+
   FAQItem(
     question:
         'چه زمان هایی می تونم برای خدمات سیستم ارت توی بسپارش به ما درخواست بدم؟',
@@ -32,6 +34,7 @@ List<FAQItem> faqList = [
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
+
   FAQItem(
     question:
         'توی کدوم از مناطق می تونم از خدمات سیستم ارت بسپارش به ما استفاده کنم؟',

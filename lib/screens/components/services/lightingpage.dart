@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import 'package:bpbm2/screens/components/faq.dart';
 
 List<FAQItem> faqList = [
@@ -28,6 +29,7 @@ List<FAQItem> faqList = [
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
+
   FAQItem(
     question:
         'توی کدوم از مناطق می تونم از خدمات نورپردازی ساختمون بسپارش به ما استفاده کنم؟',

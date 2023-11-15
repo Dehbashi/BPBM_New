@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:bpbm2/screens/components/animationcontroller.dart';
-import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
+import 'package:bpbm2/screens/components/frequently2.dart';
 import 'package:bpbm2/screens/components/services/antennapage.dart';
 import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
 import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
@@ -10,23 +10,6 @@ import 'package:bpbm2/screens/components/services/iphonepage.dart';
 import 'package:bpbm2/screens/components/services/cctvpage.dart';
 import 'package:bpbm2/screens/components/services/outletpage.dart';
 import 'package:bpbm2/screens/components/services/wiringpage.dart';
-import 'package:bpbm2/screens/components/services/telephonepage.dart';
-import 'package:bpbm2/screens/components/services/breakerpage.dart';
-import 'package:bpbm2/screens/components/services/sensorpage.dart';
-import 'package:bpbm2/screens/components/services/centralpage.dart';
-import 'package:bpbm2/screens/components/services/indpowerpage.dart';
-import 'package:bpbm2/screens/components/services/upspage.dart';
-import 'package:bpbm2/screens/components/services/firealarmpage.dart';
-import 'package:bpbm2/screens/components/services/lightingpage.dart';
-import 'package:bpbm2/screens/components/services/earthpage.dart';
-import 'package:bpbm2/screens/components/services/drillpage.dart';
-import 'package:bpbm2/screens/components/services/damperpage.dart';
-import 'package:bpbm2/screens/components/services/lightremotepage.dart';
-import 'package:bpbm2/screens/components/services/ceilingfanpage.dart';
-import 'package:bpbm2/screens/components/services/walltvpage.dart';
-import 'package:bpbm2/screens/components/services/airconditioningpage.dart';
-import 'package:bpbm2/screens/components/services/burglaralarmpage.dart';
-import 'package:bpbm2/screens/components/services/modempage.dart';
 import 'package:bpbm2/screens/components/rules.dart';
 
 class DrawerPage extends StatefulWidget {
@@ -130,8 +113,8 @@ class _DrawerPageState extends State<DrawerPage>
           break;
         case 'نصب و تعمیر انواع UPS':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => UpsPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب انواع کلید و پریز':
           // Navigate to the home page
@@ -150,78 +133,78 @@ class _DrawerPageState extends State<DrawerPage>
           break;
         case 'خدمات سانترال و تلفن های وویپ':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CentralPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'سیم کشی تلفن ثابت':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TelephonePage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب سیستم های اطفا حریق':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FireAlarmPage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب انواع چراغ و سنسور':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SensorPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'دریل کاری و سوراخکاری':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DrillPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب و تست سیستم ارت':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EarthPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نورپردازی داخل و محوطه ساختمان':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LightingPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'تابلو برق صنعتی و ساختمانی':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IndPowerPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب تلویزیون روی دیوار':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WallTvPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب انواع پنکه سقفی و دیواری':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CeilingFanPage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب ریموت لوستر و روشنایی':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => LightRemotePage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب و تعمیر انواع آرام بند':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DamperPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب انواع تهویه و هواکش':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AirConditioningPage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب سیستم های ضدسرقت':
           // Navigate to the home page
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
         case 'نصب و راه اندازی مودم WiFi':
           // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ModemPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FrequentlyAskedQs2()));
           break;
       }
     });
@@ -461,7 +444,8 @@ class _DrawerPageState extends State<DrawerPage>
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Rules()),
+                          MaterialPageRoute(
+                              builder: (context) => FrequentlyAskedQs2()),
                         );
                       },
                       child: Container(
@@ -533,15 +517,7 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () async {
-                            const url = 'https://www.facebook.com';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
+                          onPressed: () {},
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -549,15 +525,7 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () async {
-                            const url = 'https://www.instagram.com';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
+                          onPressed: () {},
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -565,15 +533,7 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () async {
-                            const url = 'https://www.telegram.com';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
+                          onPressed: () {},
                         ),
                         IconButton(
                           icon: FaIcon(
@@ -581,15 +541,7 @@ class _DrawerPageState extends State<DrawerPage>
                             color: Color(0xFF04A8B2),
                             size: 30,
                           ),
-                          onPressed: () async {
-                            const url = 'https://www.linkedin.com';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
+                          onPressed: () {},
                         ),
                       ],
                     ),

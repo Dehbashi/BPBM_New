@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import 'package:bpbm2/screens/components/faq.dart';
 
 List<FAQItem> faqList = [
@@ -11,6 +12,7 @@ List<FAQItem> faqList = [
     answer:
         'بله کارشناس‌های بسپارش به ما خدمات نصب تلویزیون‌های دیواری رو هم انجام می‌دن و می‌تونین درخواستتون رو از بخش نصب تلویزیون‌های دیواری ثبت کنین.',
   ),
+
   FAQItem(
     question: 'تأمین وسایل جانبی مورد نیاز برای خدمات دریل کاری با خودمه؟',
     answer:
@@ -28,11 +30,13 @@ List<FAQItem> faqList = [
     answer:
         'بله، تمام خدمات و تجهیزات شامل گارانتی و ضمانت بسپارش به ما می‌شه. ما حتی در مورد تعهد اخلاقی و رفتار کارشناس‌ها هم به شما ضمانت می‌دیم تا توی اون زمانی که مهمون خونه یا محل کارتون هستیم، خاطره‌ی خوبی از ارائه‌ی خدمات براتون ثبت کنیم.',
   ),
+
   FAQItem(
     question: 'می تونم برای هزینه خدمات فاکتور هم بگیرم؟',
     answer:
         'بله اگه نیاز به فاکتور داشته باشین، بسپارش به ما برای وسایل و اقلام به کار برده شده، بهتون فاکتور می‌ده.',
   ),
+
   FAQItem(
     question:
         'توی کدوم از مناطق می تونم از خدمات دریل کاری بسپارش به ما استفاده کنم؟',
