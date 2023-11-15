@@ -1,16 +1,18 @@
+import 'package:bpbm2/screens/components/profiledrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/home.dart';
 import 'package:bpbm2/screens/components/aboutus.dart';
 import 'package:bpbm2/screens/components/contactus.dart';
 
 class Footer extends StatefulWidget {
-  const Footer({super.key});
-
+  // const Footer({super.key});
   @override
   State<Footer> createState() => _FooterState();
 }
 
 class _FooterState extends State<Footer> {
+  // Named parameter for menu click
+
   int _currentPageIndex = 0;
 
   void _onItemTapped(int index) {

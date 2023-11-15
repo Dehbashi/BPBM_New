@@ -5,6 +5,7 @@ import 'package:bpbm2/screens/components/footer.dart';
 // import 'package:bpbm2/screens/components/header.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:bpbm2/screens/components/header.dart';
+import 'package:bpbm2/screens/components/profiledrawer.dart';
 
 class HomePage extends StatefulWidget {
   @override
