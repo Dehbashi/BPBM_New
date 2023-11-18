@@ -1,3 +1,4 @@
+import 'package:bpbm2/screens/components/rules.dart';
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
@@ -141,6 +142,33 @@ class PrivacyPage extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       // Handle button press
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(
+                                          transitionDuration:
+                                              Duration(milliseconds: 300),
+                                          transitionsBuilder:
+                                              (BuildContext context,
+                                                  Animation<double> animation,
+                                                  Animation<double>
+                                                      secondaryAnimation,
+                                                  Widget child) {
+                                            return SlideTransition(
+                                              position: Tween<Offset>(
+                                                begin: Offset(1.0, 0.0),
+                                                end: Offset.zero,
+                                              ).animate(animation),
+                                              child: child,
+                                            );
+                                          },
+                                          pageBuilder: (BuildContext context,
+                                              Animation<double> animation,
+                                              Animation<double>
+                                                  secondaryAnimation) {
+                                            return Rules();
+                                          },
+                                        ),
+                                      );
                                     },
                                     child: Text(
                                       'قوانین و مقررات',

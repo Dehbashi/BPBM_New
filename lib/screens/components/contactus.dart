@@ -3,6 +3,7 @@ import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:bpbm2/screens/components/header.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
 // import 'package:flutter_captcha/flutter_captcha.dart';
 
 class ContactUs extends StatefulWidget {
@@ -66,6 +67,7 @@ class _ContactUsState extends State<ContactUs> {
             onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
         ),
+        endDrawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8),
           child: Column(
@@ -503,6 +505,7 @@ class _ContactUsState extends State<ContactUs> {
                                             height:
                                                 40, // Set the height of the TextField
                                             child: TextField(
+                                              keyboardType: TextInputType.phone,
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 // color: Color(0xFFA5A3A3),

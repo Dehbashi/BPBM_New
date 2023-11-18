@@ -232,7 +232,7 @@ class _DrawerPageState extends State<DrawerPage>
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.85,
         child: Drawer(
           backgroundColor: Color(0xFFCDEEF0),
           child: ListView(
@@ -297,7 +297,7 @@ class _DrawerPageState extends State<DrawerPage>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 70, left: 30, top: 15),
+                padding: EdgeInsets.only(right: 60, left: 0, top: 15),
                 child: AnimatedSize(
                   duration: Duration(microseconds: 300),
                   child: Column(
@@ -311,9 +311,13 @@ class _DrawerPageState extends State<DrawerPage>
                             _navigateToPage(title);
                           },
                           child: Container(
-                            padding: EdgeInsets.only(bottom: 15),
+                            padding: EdgeInsets.symmetric(vertical: 8),
                             // width: _iconspace,
                             width: double.infinity,
+                            decoration: BoxDecoration(
+                              // color: Colors.red,
+                              border: Border.all(color: Colors.transparent),
+                            ),
                             // height: 20,
                             child: Row(
                               children: [
@@ -322,7 +326,7 @@ class _DrawerPageState extends State<DrawerPage>
                                   height: _iconsize,
                                   child: image,
                                 ),
-                                SizedBox(width: 10),
+                                SizedBox(width: 20),
                                 SizedBox(
                                   width: 200,
                                   height: 20,
@@ -521,81 +525,84 @@ class _DrawerPageState extends State<DrawerPage>
                       ),
                     ),
                     SizedBox(height: 10),
-                    Wrap(
-                      alignment: WrapAlignment.start,
-                      spacing: 15,
-                      direction: Axis.horizontal,
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.squareFacebook,
-                            color: Color(0xFF04A8B2),
-                            size: 30,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        spacing: 15,
+                        direction: Axis.horizontal,
+                        textDirection: TextDirection.rtl,
+                        children: [
+                          IconButton(
+                            icon: FaIcon(
+                              FontAwesomeIcons.squareFacebook,
+                              color: Color(0xFF04A8B2),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              const url =
+                                  'https://www.facebook.com/bespareshbemaco';
+                              final uri = Uri.parse(url);
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
                           ),
-                          onPressed: () async {
-                            const url =
-                                'https://www.facebook.com/bespareshbemaco';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                        ),
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.instagram,
-                            color: Color(0xFF04A8B2),
-                            size: 30,
+                          IconButton(
+                            icon: FaIcon(
+                              FontAwesomeIcons.instagram,
+                              color: Color(0xFF04A8B2),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              const url =
+                                  'https://www.instagram.com/bespareshbemaco';
+                              final uri = Uri.parse(url);
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
                           ),
-                          onPressed: () async {
-                            const url =
-                                'https://www.instagram.com/bespareshbemaco';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                        ),
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.telegram,
-                            color: Color(0xFF04A8B2),
-                            size: 30,
+                          IconButton(
+                            icon: FaIcon(
+                              FontAwesomeIcons.telegram,
+                              color: Color(0xFF04A8B2),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              const url =
+                                  'https://www.telegram.com/bespareshbemaco';
+                              final uri = Uri.parse(url);
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
                           ),
-                          onPressed: () async {
-                            const url =
-                                'https://www.telegram.com/bespareshbemaco';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                        ),
-                        IconButton(
-                          icon: FaIcon(
-                            FontAwesomeIcons.linkedin,
-                            color: Color(0xFF04A8B2),
-                            size: 30,
+                          IconButton(
+                            icon: FaIcon(
+                              FontAwesomeIcons.linkedin,
+                              color: Color(0xFF04A8B2),
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              const url =
+                                  'https://www.linkedin.com/bespareshbemaco';
+                              final uri = Uri.parse(url);
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
                           ),
-                          onPressed: () async {
-                            const url =
-                                'https://www.linkedin.com/bespareshbemaco';
-                            final uri = Uri.parse(url);
-                            if (await canLaunchUrl(uri)) {
-                              await launchUrl(uri);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(height: 20),
                   ],

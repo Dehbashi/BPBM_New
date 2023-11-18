@@ -3,6 +3,7 @@ import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:bpbm2/screens/components/header.dart';
+import 'package:bpbm2/screens/components/drawerpage.dart';
 // import 'package:flutter_captcha/flutter_captcha.dart';
 
 class ConsultantPage extends StatefulWidget {
@@ -66,6 +67,7 @@ class _ConsultantPageState extends State<ConsultantPage> {
             onMenuClicked: handleMenuClicked, // Pass the callback function
           ),
         ),
+        endDrawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8).add(EdgeInsets.symmetric(horizontal: 30)),
           child: Column(

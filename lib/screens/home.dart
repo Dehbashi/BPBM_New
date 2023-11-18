@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             SizedBox(height: 20),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Container(
                                 alignment: Alignment.topCenter,
                                 width: double.infinity,
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(height: 20),
                             Wrap(
                               alignment: WrapAlignment.start,
-                              spacing: 4,
+                              spacing: 2,
                               direction: Axis.horizontal,
                               textDirection: TextDirection.rtl,
                               children: List<Widget>.generate(images1.length,
@@ -219,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(height: 40),
                             Wrap(
                               alignment: WrapAlignment.start,
-                              spacing: 4,
+                              spacing: 2,
                               direction: Axis.horizontal,
                               textDirection: TextDirection.rtl,
                               children: List<Widget>.generate(images2.length,

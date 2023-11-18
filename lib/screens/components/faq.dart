@@ -55,9 +55,11 @@ class FAQ extends StatelessWidget {
                     ),
                     child: ExpansionTile(
                       title: Container(
-                        padding: EdgeInsets.symmetric(vertical: 5),
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         child: Text(
                           faq.question,
+                          // maxLines: 1,
+                          // overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Color(0xFF025459),
                             fontFamily: 'iransans',
