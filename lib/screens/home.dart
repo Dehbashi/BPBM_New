@@ -6,6 +6,8 @@ import 'package:bpbm2/screens/components/footer.dart';
 import 'package:bpbm2/screens/components/drawerpage.dart';
 import 'package:bpbm2/screens/components/header.dart';
 import 'package:bpbm2/screens/components/profiledrawer.dart';
+// import '../components/screen/question_page.dart';
+import '../components/screen/calculator_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -116,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             SizedBox(height: 20),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 25),
+                              padding: EdgeInsets.symmetric(horizontal: 20),
                               child: Container(
                                 alignment: Alignment.topCenter,
                                 width: double.infinity,
@@ -131,6 +133,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Text(
                                   'چه کارهایی رو میتونید با خیال راحت به ما بسپارید!!؟',
+                                  textAlign: TextAlign.right,
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Color(0xFF029A91),
@@ -149,30 +152,39 @@ class _HomePageState extends State<HomePage> {
                               children: List<Widget>.generate(images1.length,
                                   (index) {
                                 final image = images1.keys.toList()[index];
-                                return Container(
-                                  width: _iconspace,
-                                  height: 130,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        width: _iconsize,
-                                        height: _iconsize,
-                                        child: image,
-                                      ),
-                                      SizedBox(
-                                        width: 90,
-                                        height: 40,
-                                        child: Text(
-                                          images1[image]!,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: _fontsize,
-                                            color: Color(0xFF037E85),
-                                            fontFamily: 'iransans',
+                                return GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CalculatorPage(
+                                              serviceTitle: images1[image]!,
+                                            )),
+                                  ),
+                                  child: Container(
+                                    width: _iconspace,
+                                    height: 130,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: _iconsize,
+                                          height: _iconsize,
+                                          child: image,
+                                        ),
+                                        SizedBox(
+                                          width: 90,
+                                          height: 40,
+                                          child: Text(
+                                            images1[image]!,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: _fontsize,
+                                              color: Color(0xFF037E85),
+                                              fontFamily: 'iransans',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
@@ -225,30 +237,39 @@ class _HomePageState extends State<HomePage> {
                               children: List<Widget>.generate(images2.length,
                                   (index) {
                                 final image = images2.keys.toList()[index];
-                                return Container(
-                                  width: _iconspace,
-                                  height: 130,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        width: _iconsize,
-                                        height: _iconsize,
-                                        child: image,
-                                      ),
-                                      SizedBox(
-                                        width: 90,
-                                        height: 40,
-                                        child: Text(
-                                          images2[image]!,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: _fontsize,
-                                            color: Color(0xFF037E85),
-                                            fontFamily: 'iransans',
+                                return GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CalculatorPage(
+                                              serviceTitle: images2[image]!,
+                                            )),
+                                  ),
+                                  child: Container(
+                                    width: _iconspace,
+                                    height: 130,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: _iconsize,
+                                          height: _iconsize,
+                                          child: image,
+                                        ),
+                                        SizedBox(
+                                          width: 90,
+                                          height: 40,
+                                          child: Text(
+                                            images2[image]!,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: _fontsize,
+                                              color: Color(0xFF037E85),
+                                              fontFamily: 'iransans',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
