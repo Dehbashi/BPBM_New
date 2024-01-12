@@ -95,243 +95,181 @@ class _BurglarAlarmPageState extends State<BurglarAlarmPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس دزدگیر',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/burglaralarm.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب دزدگیر برای خونه و محل کارت رو بسپارش به ما\n'
-                        'اگه تو فکر اینی که برای خونه یا محل کارت دزدگیر نصب کنی، کارشناس‌های بسپارش به ما می‌تونن تمام مراحل کار رو برات انجام بدن.\n'
-                        'برای جانمایی و سیم‌کشی سیستم دزدگیر نیاز به کمک داری؟ بسپارش به ما رو خبر کن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس دزدگیر',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'دزدگیر اماکن چطور کار می‌کنه و چه انواعی داره؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/burglaralarm.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'این روزها نه‌تنها خیلی از شرکت‌ها و مجتمع‌های اداری و تجاری برای تأمین امنیتشون از دزدگیرها استفاده می‌کنن، بلکه خیلی از مجتمع‌های مسکونی هم دزدگیر دارن تا خیال ساکنین بابت امنیت خونه‌هاشون راحت باشه. بااینکه دزدگیرها انواع مختلفی دارن اما تقریبا کارکرد همه‌شون با هم یکیه. توی تمام دزدگیرها یک سیستم مرکزی داریم که مهم‌ترین بخش دزدگیر به‌حساب میاد و وظیفه کنترل و هماهنگ کردن بقیه‌ی اجزا رو به‌عهده داره. سیستم مرکزی، سیگنال‌هایی که سنسورها می‌فرستن دریافت می‌کنه و اگه هر سیگنال غیر عادی‌ای بهش برسه، فرمان‌هایی که از قبل براش تعریف شده اجرا می‌کنه.\n'
-                        'بسته به نوع دزدگیر، معمولا سیستم مرکزی رو به تلفن همراه یا تلفن ثابت متصل می‌کنن تا در صورتی که شرایط غیرعادی پیش اومد، با اون شماره‌ها تماس گرفته بشه. بعضی از دزدگیرها، آژیر صوتی هم دارن که وقتی سیستم مرکزی فرمان بده به صدا درمیاد و دزدهای احتمالی رو می‌ترسونه و اطرافیان رو هم آگاه می‌کنه. بعضی وقت‌ها هم کار اطلاع‌رسانی به‌جای آژیر با هشداردهنده‌های نوری مثل چراغ‌های چشمک‌زن انجام می‌شه.\n'
-                        'سیستم مرکزی عموما یه صفحه کلید هم روش داره که می‌شه کد فعال‌سازی دستگاه رو توش وارد کرد. بعضی از دزدگیرها یک ریموت کنترل هم دارن که با استفاده از اون می‌تونیم سیستم رو فعال یا غیرفعال کنیم. احتمالا توی فیلم‌ها دیده باشین که موقع سرقت از طلافروشی یا بانک‌ها، فروشنده یا باجه‌دار یواشکی یه دکمه‌ای رو می‌زنه یا با پاش یه پدال رو فشار می‌ده. این پدال اسمش پدال اضطراریه و دزدگیرهایی که توی چنین محل‌هایی نصب می‌شن معمولا پدال هم دارن.\n'
-                        'بخش مهم دیگه‌ی سیستم‌های دزدگیر، سنسورها هستن که وظیفه‌ی تشخیص ورود افراد یا سایر اتفاقات غیرعادی رو به‌عهده دارن. سنسورها انواع مختلفی دارن؛ سنسور حرکتی، سنسور ورود، سنسور شکست یا تخریب، سنسور دود و سنسور حرارتی، از انواع مختلف سنسورهای متداولی هستن که توی دزدگیرها استفاده می‌شن. بااینکه وظیفه‌ی دزدگیرها مشخصه، اما می‌شه اون‌ها رو یه پله ارتقا داد و با نصب سنسورهای تشخیص حرارت و آتیش، به عنوان سیستم اعلام حریق هم ازشون استفاده کرد.\n'
-                        'دزدگیر انواع مختلفی داره که براساس نحوه‌ی کار می‌شه یه دسته‌بندی ساده براش درنظر گرفت؛ دزدگیر ساده، دزدگیر تلفنی، دزدگیر هوشمند. دزدگیر ساده تقریبا قدیمی‌ترین نوع دزدگیرها هستن که با آژیر صوتی یا آژیر نوری، خبررسانی رو انجام می‌ده و قابلیت این رو نداره که با شما یا پلیس تماس بگیره. دزدگیرهای ساده برای محله‌های شلوغ خیلی گزینه‌ی مناسبیه. چون وقتی آژیر به صدا درمیاد خیالتون راحته که حتما یه نفر صدای آژیر رو می‌شنوه و به پلیس یا به شما خبر می‌ده.\n'
-                        'دزدگیر تلفنی هم اینطوریه که شما توی اون یه سری شماره تلفن مثل شماره پلیس و شماره خودتون رو وارد می‌کنین تا توی موقعیت اضطراری با اون شماره‌ها تماس گرفته بشه و یه پیغامی که از قبل ضبط شده، پخش بشه. دزدگیرهای تلفنی می‌تونن با تلفن ثابت، سیم‌کارت یا هم سیم‌کارت و هم تلفن ثابت کار کنن. بهتره که دزدگیر فقط به تلفن ثابت متکی نباشه، چون دزدها می‌تونن خیلی راحت سیم تلفن خونه رو قطع کنن و دزدگیر رو از کار بندازن. دزدگیر هوشمند، از همه‌ی دزدگیرهای دیگه پیشرفته‌تره و می‌شه از راه دور هم بهش دسترسی داشت. دزدگیر هوشمند به گوشی همراه شما وصل می‌شه و می‌تونین با گوشی‌تون دزدگیر رو کنترل کنین.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای دزدگیر اماکن چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب دزدگیر برای خونه و محل کارت رو بسپارش به ما\n'
+                      'اگه تو فکر اینی که برای خونه یا محل کارت دزدگیر نصب کنی، کارشناس‌های بسپارش به ما می‌تونن تمام مراحل کار رو برات انجام بدن.\n'
+                      'برای جانمایی و سیم‌کشی سیستم دزدگیر نیاز به کمک داری؟ بسپارش به ما رو خبر کن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'دزدگیر اماکن چطور کار می‌کنه و چه انواعی داره؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'این روزها نه‌تنها خیلی از شرکت‌ها و مجتمع‌های اداری و تجاری برای تأمین امنیتشون از دزدگیرها استفاده می‌کنن، بلکه خیلی از مجتمع‌های مسکونی هم دزدگیر دارن تا خیال ساکنین بابت امنیت خونه‌هاشون راحت باشه. بااینکه دزدگیرها انواع مختلفی دارن اما تقریبا کارکرد همه‌شون با هم یکیه. توی تمام دزدگیرها یک سیستم مرکزی داریم که مهم‌ترین بخش دزدگیر به‌حساب میاد و وظیفه کنترل و هماهنگ کردن بقیه‌ی اجزا رو به‌عهده داره. سیستم مرکزی، سیگنال‌هایی که سنسورها می‌فرستن دریافت می‌کنه و اگه هر سیگنال غیر عادی‌ای بهش برسه، فرمان‌هایی که از قبل براش تعریف شده اجرا می‌کنه.\n'
+                      'بسته به نوع دزدگیر، معمولا سیستم مرکزی رو به تلفن همراه یا تلفن ثابت متصل می‌کنن تا در صورتی که شرایط غیرعادی پیش اومد، با اون شماره‌ها تماس گرفته بشه. بعضی از دزدگیرها، آژیر صوتی هم دارن که وقتی سیستم مرکزی فرمان بده به صدا درمیاد و دزدهای احتمالی رو می‌ترسونه و اطرافیان رو هم آگاه می‌کنه. بعضی وقت‌ها هم کار اطلاع‌رسانی به‌جای آژیر با هشداردهنده‌های نوری مثل چراغ‌های چشمک‌زن انجام می‌شه.\n'
+                      'سیستم مرکزی عموما یه صفحه کلید هم روش داره که می‌شه کد فعال‌سازی دستگاه رو توش وارد کرد. بعضی از دزدگیرها یک ریموت کنترل هم دارن که با استفاده از اون می‌تونیم سیستم رو فعال یا غیرفعال کنیم. احتمالا توی فیلم‌ها دیده باشین که موقع سرقت از طلافروشی یا بانک‌ها، فروشنده یا باجه‌دار یواشکی یه دکمه‌ای رو می‌زنه یا با پاش یه پدال رو فشار می‌ده. این پدال اسمش پدال اضطراریه و دزدگیرهایی که توی چنین محل‌هایی نصب می‌شن معمولا پدال هم دارن.\n'
+                      'بخش مهم دیگه‌ی سیستم‌های دزدگیر، سنسورها هستن که وظیفه‌ی تشخیص ورود افراد یا سایر اتفاقات غیرعادی رو به‌عهده دارن. سنسورها انواع مختلفی دارن؛ سنسور حرکتی، سنسور ورود، سنسور شکست یا تخریب، سنسور دود و سنسور حرارتی، از انواع مختلف سنسورهای متداولی هستن که توی دزدگیرها استفاده می‌شن. بااینکه وظیفه‌ی دزدگیرها مشخصه، اما می‌شه اون‌ها رو یه پله ارتقا داد و با نصب سنسورهای تشخیص حرارت و آتیش، به عنوان سیستم اعلام حریق هم ازشون استفاده کرد.\n'
+                      'دزدگیر انواع مختلفی داره که براساس نحوه‌ی کار می‌شه یه دسته‌بندی ساده براش درنظر گرفت؛ دزدگیر ساده، دزدگیر تلفنی، دزدگیر هوشمند. دزدگیر ساده تقریبا قدیمی‌ترین نوع دزدگیرها هستن که با آژیر صوتی یا آژیر نوری، خبررسانی رو انجام می‌ده و قابلیت این رو نداره که با شما یا پلیس تماس بگیره. دزدگیرهای ساده برای محله‌های شلوغ خیلی گزینه‌ی مناسبیه. چون وقتی آژیر به صدا درمیاد خیالتون راحته که حتما یه نفر صدای آژیر رو می‌شنوه و به پلیس یا به شما خبر می‌ده.\n'
+                      'دزدگیر تلفنی هم اینطوریه که شما توی اون یه سری شماره تلفن مثل شماره پلیس و شماره خودتون رو وارد می‌کنین تا توی موقعیت اضطراری با اون شماره‌ها تماس گرفته بشه و یه پیغامی که از قبل ضبط شده، پخش بشه. دزدگیرهای تلفنی می‌تونن با تلفن ثابت، سیم‌کارت یا هم سیم‌کارت و هم تلفن ثابت کار کنن. بهتره که دزدگیر فقط به تلفن ثابت متکی نباشه، چون دزدها می‌تونن خیلی راحت سیم تلفن خونه رو قطع کنن و دزدگیر رو از کار بندازن. دزدگیر هوشمند، از همه‌ی دزدگیرهای دیگه پیشرفته‌تره و می‌شه از راه دور هم بهش دسترسی داشت. دزدگیر هوشمند به گوشی همراه شما وصل می‌شه و می‌تونین با گوشی‌تون دزدگیر رو کنترل کنین.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای دزدگیر اماکن چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

@@ -23,7 +23,7 @@ class _VerifyButtonState extends State<VerifyButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: MediaQuery.of(context).size.width * 0.52,
       height: 50,
       child: ElevatedButton(
         style: ButtonStyle(
@@ -40,6 +40,7 @@ class _VerifyButtonState extends State<VerifyButton> {
         onPressed: onPressed,
         child: Text(
           title,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,

@@ -92,239 +92,187 @@ class _OutletPageState extends State<OutletPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس کلید و پریز',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/outlet.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب و تعویض انواع کلید و پریز ساختمونت رو بسپارش به ما\n'
-                        'بعد از سیم‌کشی خونه یا محل کارت که نیاز به نصب کلید و پریز داری، کار رو بسپارش به ما.\n'
-                        'اگه پریز یا کلید ساختمونت خراب شده، بسپارش به ما برای تعویضش کنارته.\n'
-                        'نمی‌دونی برای ساختمونت چه کلید و پریزی مناسبه؟ کارشناس‌های بسپارش به ما می‌تونن کامل راهنماییت کنن.\n',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس کلید و پریز',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'کلید و پریز چه انواعی داره و فرقشون با هم چیه؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/outlet.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'با اینکه کلید و پریز کوچیک‌ترین اجزای برق ساختمون هستن، اما از اونجایی که خروجی اصلی برق ساختمون به حساب میان، اهمیت خیلی زیادی دارن. شما برای اتصال هروسیله‌ی برقی یا روشن کردن هر چراغ و لامپی باید از کلید و پریز استفاده کنین. حتی اگه بهترین سیم‌کشی ساختمون رو هم انجام داده باشین، کافیه یکی از کلیدها یا پریزها از کار بیفته یا خراب بشه تا کارتون حسابی لنگ بمونه. بااین‌حساب، موقع نصب کلید و پریز، هم باید از محصولات با کیفیت استفاده کنین و هم با خبر کردن یه کارشناس کاربلد، خیال خودتون رو راحت کنین که قراره بهترین خروجی رو تحویل بگیرین.\n'
-                        'اگه یه سری به لاله‌زار و الکتریکی‌ها بزنین، چشمتون به انواع و اقسام کلید و پریز می‌افته که ممکنه علاوه‌بر ظاهر و طراحی، توی طرز کار هم با هم متفاوت باشن. تفاوت ظاهری کلیدها باعث می‌شه که براساس زیبایی و دکوراسیون خونه یا محل کارتون، گزینه‌های مختلفی برای انتخاب داشته باشین.\n'
-                        'کلیدها و پریزها از نظر کاربرد به دو دسته‌ی مسکونی و صنعتی تقسیم می‌شن و تفاوتشون هم توی میزان جریانی هست که می‌تونن تحمل کنن. کلید و پریزها رو هم مثل سیم‌کشی، می‌شه به صورت روکار و توکار پیاده‌سازی کرد.\n'
-                        'از نظر فنی، کلیدها و پریزها انواع مختلفی دارن که بد نیست به صورت اجمالی با اسمشون آشنا بشیم. از انواع مختلف کلید می‌تونیم کلیدهای تک پل، دو پل، سه پل، چهار پل، تبدیل، دیمر و صلیبی رو اسم ببریم. پریزهای برق رو هم می‌تونیم به دو دسته‌ی ارت‌دار و بدون ارت تقسیم‌بندی کنیم. به‌جز پریزهای برق، یه سری پریز دیگه هم داریم؛ مثلا پریز تلفن، پریز شبکه، پریز آنتن و پریز UPS. بسته به سیم‌کشی ساختمون و کاری که قراره هرکدوم از پریزها و کلیدها انجام بدن، برق‌کار تصمیم می‌گیره که بهتره از کدوم نوع کلید یا پریز استفاده کنه.\n'
-                        'بد نیست بدونین به جز کلید و پریزهایی که به‌صورت سوییچی یا فشاری کار می‌کنن، انواع دیگه‌ای هم هستن که مدرن‌تر و پیشرفته‌ترن. مثلا کلیدهای لمسی که به جای فشار دادن کلید، پنلش رو لمس می‌کنین تا چراغ‌ها خاموش و روشن بشن. کلیدهای لمسی رو می‌شه از راه دور هم کنترل کرد. یه نوع دیگه، کلید فوتوالکتریکه که با استفاده از حسگر، کم شدن نور محیط یا تاریک شدن هوا رو تشخیص می‌ده و به‌صورت هوشمند، چراغ‌ها رو روشن می‌کنه. کلید برق حساس به صدا یا حساس به حرکت و کلید و پریز کارتی، از انواع دیگه‌ی کلیدها و پریزها هستن.\n'
-                        'اگه باوجود تمام این کلیدها و پریزهایی که اسم بردیم، گیج شدین و اصلا نمی‌دونین کدوم برای ساختمونتون بهتره، نگران نباشین. کارشناس‌های بسپارش به ما علاوه‌بر مشاوره و راهنمایی شما، توی نصب و تعویض انواع کلید و پریز مهارت کافی دارن و می‌تونن بهترین خدمات رو بهتون ارائه بدن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای کلید و پریز چه خدماتی ارائه می‌ده؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب و تعویض انواع کلید و پریز ساختمونت رو بسپارش به ما\n'
+                      'بعد از سیم‌کشی خونه یا محل کارت که نیاز به نصب کلید و پریز داری، کار رو بسپارش به ما.\n'
+                      'اگه پریز یا کلید ساختمونت خراب شده، بسپارش به ما برای تعویضش کنارته.\n'
+                      'نمی‌دونی برای ساختمونت چه کلید و پریزی مناسبه؟ کارشناس‌های بسپارش به ما می‌تونن کامل راهنماییت کنن.\n',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'کلید و پریز چه انواعی داره و فرقشون با هم چیه؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  // decoration: BoxDecoration(
+                  //   border: Border(
+                  //     bottom: BorderSide(
+                  //       color: Color(0xFF04A8B2),
+                  //     ),
+                  //   ),
+                  // ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'با اینکه کلید و پریز کوچیک‌ترین اجزای برق ساختمون هستن، اما از اونجایی که خروجی اصلی برق ساختمون به حساب میان، اهمیت خیلی زیادی دارن. شما برای اتصال هروسیله‌ی برقی یا روشن کردن هر چراغ و لامپی باید از کلید و پریز استفاده کنین. حتی اگه بهترین سیم‌کشی ساختمون رو هم انجام داده باشین، کافیه یکی از کلیدها یا پریزها از کار بیفته یا خراب بشه تا کارتون حسابی لنگ بمونه. بااین‌حساب، موقع نصب کلید و پریز، هم باید از محصولات با کیفیت استفاده کنین و هم با خبر کردن یه کارشناس کاربلد، خیال خودتون رو راحت کنین که قراره بهترین خروجی رو تحویل بگیرین.\n'
+                      'اگه یه سری به لاله‌زار و الکتریکی‌ها بزنین، چشمتون به انواع و اقسام کلید و پریز می‌افته که ممکنه علاوه‌بر ظاهر و طراحی، توی طرز کار هم با هم متفاوت باشن. تفاوت ظاهری کلیدها باعث می‌شه که براساس زیبایی و دکوراسیون خونه یا محل کارتون، گزینه‌های مختلفی برای انتخاب داشته باشین.\n'
+                      'کلیدها و پریزها از نظر کاربرد به دو دسته‌ی مسکونی و صنعتی تقسیم می‌شن و تفاوتشون هم توی میزان جریانی هست که می‌تونن تحمل کنن. کلید و پریزها رو هم مثل سیم‌کشی، می‌شه به صورت روکار و توکار پیاده‌سازی کرد.\n'
+                      'از نظر فنی، کلیدها و پریزها انواع مختلفی دارن که بد نیست به صورت اجمالی با اسمشون آشنا بشیم. از انواع مختلف کلید می‌تونیم کلیدهای تک پل، دو پل، سه پل، چهار پل، تبدیل، دیمر و صلیبی رو اسم ببریم. پریزهای برق رو هم می‌تونیم به دو دسته‌ی ارت‌دار و بدون ارت تقسیم‌بندی کنیم. به‌جز پریزهای برق، یه سری پریز دیگه هم داریم؛ مثلا پریز تلفن، پریز شبکه، پریز آنتن و پریز UPS. بسته به سیم‌کشی ساختمون و کاری که قراره هرکدوم از پریزها و کلیدها انجام بدن، برق‌کار تصمیم می‌گیره که بهتره از کدوم نوع کلید یا پریز استفاده کنه.\n'
+                      'بد نیست بدونین به جز کلید و پریزهایی که به‌صورت سوییچی یا فشاری کار می‌کنن، انواع دیگه‌ای هم هستن که مدرن‌تر و پیشرفته‌ترن. مثلا کلیدهای لمسی که به جای فشار دادن کلید، پنلش رو لمس می‌کنین تا چراغ‌ها خاموش و روشن بشن. کلیدهای لمسی رو می‌شه از راه دور هم کنترل کرد. یه نوع دیگه، کلید فوتوالکتریکه که با استفاده از حسگر، کم شدن نور محیط یا تاریک شدن هوا رو تشخیص می‌ده و به‌صورت هوشمند، چراغ‌ها رو روشن می‌کنه. کلید برق حساس به صدا یا حساس به حرکت و کلید و پریز کارتی، از انواع دیگه‌ی کلیدها و پریزها هستن.\n'
+                      'اگه باوجود تمام این کلیدها و پریزهایی که اسم بردیم، گیج شدین و اصلا نمی‌دونین کدوم برای ساختمونتون بهتره، نگران نباشین. کارشناس‌های بسپارش به ما علاوه‌بر مشاوره و راهنمایی شما، توی نصب و تعویض انواع کلید و پریز مهارت کافی دارن و می‌تونن بهترین خدمات رو بهتون ارائه بدن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای کلید و پریز چه خدماتی ارائه می‌ده؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

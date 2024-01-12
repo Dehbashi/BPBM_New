@@ -101,242 +101,180 @@ class _SensorPageState extends State<SensorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس چراغ و سنسور',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/sensor.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'جانمایی، نصب و تعمیر انواع چراغ و سنسور رو بسپارش به ما\n'
-                        'اگه برای راه‌پله و مشاعات ساختمون خونه یا محل کارت نیاز به نصب سنسور چراغ یا چراغ تایمردار داری، می‌تونی روی کارشناس‌های حرفه‌ای بسپارش به ما حساب کنی.\n'
-                        'کارشناس‌های بسپارش به ما در اسرع وقت می‌تونن هر نوع چراغ و لوستری که برای خونه یا محل کارت تهیه کردی برات نصب کنن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس چراغ و سنسور',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'از سنسور چراغ توی کدوم بخش‌های ساختمون استفاده می‌شه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/sensor.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'سنسورها یا حسگرها جزو اون دسته از تجهیزاتی هستن که هم باعث راحتی کار ما می‌شن و هم جلوی اتلاف بی‌رویه‌ی انرژی رو می‌گیرن. سنسورهایی که توی برق ساختمون به کار می‌رن عموما برای مشاعات مثل پارکینگ، راه‌پله و طبقات استفاده می‌شن. توی خیلی از ساختمون‌ها دیدیم که بعد از وارد شدن به پارکینگ، چراغ مربوط به همون بخشی که ازش رد شدیم روشن می‌شه. این کار رو سنسور انجام می‌ده و بعد از اینکه حرکت ما رو تشخیص داد به چراغ فرمان می‌ده که روشن بشه.\n'
-                        'سنسورها رو می‌شه دوجور نصب کرد، همراه با چراغ‌ها یا به‌صورت جدا. وقتی سنسور به‌صورت جدا قرار می‌گیره، باید با سیم‌کشی به چراغ‌های مدنظر وصل بشه. تعداد چراغ‌هایی که می‌شه به هر سنسور وصل کرد براساس ظرفیت جریانی یا عدد آمپر اون سنسور مشخص می‌شه، بنابراین اینطوری نیست که بشه هرتعداد چراغی که دلمون خواست به یه سنسور وصل کنیم.\n'
-                        'سنسورهایی که در حاضر توی ساختمون‌ها به کار می‌رن عموما از نوع حرکتی هستن و بر اساس زاویه‌ی دیدی که ارائه می‌کنن برای استفاده توی راهرو، راه‌پله یا محوطه پارکینگ ازشون استفاده می‌شه. مثلا سنسورهای ۱۴۰ و ۳۶۰ درجه عموما برای راه‌پله‌ها استفاده می‌شن و سنسورهای ۱۸۰ درجه هم برای روی دیوار انتخاب می‌شن. توی بعضی کاربردها هم به‌جای سنسورهای حرکتی، از سنسورهای فتوسل که به نور حساسن استفاده می‌شه. مثلا برای محوطه‌ی حیات ساختمون‌ها، می‌شه از سنسورهای فتوسل استفاده کرد تا وقتی نور محیط از یه حدی کمتر شد، روشن بشن.\n'
-                        'بعضی وقت‌ها هم توی ساختمون‌ها به جای سنسور، از چراغ‌های تایمردار استفاده می‌شه. عملکرد چراغ‌های تایمردار اینطوریه که تا چند دقیقه بعد از اینکه شما کلید مربوط به چراغ رو فشار دادین، چراغ روشن می‌شه و بعدش خودش خاموش می‌شه. توی بعضی از ساختمون‌ها، برای راه‌پله چراغ تایمردار درنظر گرفته می‌شه تا وقتی اشخاص دارن از پله‌ها تردد می‌کنن، کلید برق رو بزنن و چراغ‌های راه‌پله تا چند دقیقه روشن بمونن. عیب چراغ‌های تایمردار اینه که شما توی تاریکی باید دنبال کلید بگردین تا بتونین چراغ رو روشن کنین.\n'
-                        'برای هرنوع خدماتی که در مورد انواع چراغ، لوستر سنسور و چراغ‌های سنسوردار داشته باشین، می‌تونین از خدمات کارشناس‌های بسپارش به ما استفاده کنین.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای چراغ و سنسور چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'جانمایی، نصب و تعمیر انواع چراغ و سنسور رو بسپارش به ما\n'
+                      'اگه برای راه‌پله و مشاعات ساختمون خونه یا محل کارت نیاز به نصب سنسور چراغ یا چراغ تایمردار داری، می‌تونی روی کارشناس‌های حرفه‌ای بسپارش به ما حساب کنی.\n'
+                      'کارشناس‌های بسپارش به ما در اسرع وقت می‌تونن هر نوع چراغ و لوستری که برای خونه یا محل کارت تهیه کردی برات نصب کنن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'از سنسور چراغ توی کدوم بخش‌های ساختمون استفاده می‌شه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'سنسورها یا حسگرها جزو اون دسته از تجهیزاتی هستن که هم باعث راحتی کار ما می‌شن و هم جلوی اتلاف بی‌رویه‌ی انرژی رو می‌گیرن. سنسورهایی که توی برق ساختمون به کار می‌رن عموما برای مشاعات مثل پارکینگ، راه‌پله و طبقات استفاده می‌شن. توی خیلی از ساختمون‌ها دیدیم که بعد از وارد شدن به پارکینگ، چراغ مربوط به همون بخشی که ازش رد شدیم روشن می‌شه. این کار رو سنسور انجام می‌ده و بعد از اینکه حرکت ما رو تشخیص داد به چراغ فرمان می‌ده که روشن بشه.\n'
+                      'سنسورها رو می‌شه دوجور نصب کرد، همراه با چراغ‌ها یا به‌صورت جدا. وقتی سنسور به‌صورت جدا قرار می‌گیره، باید با سیم‌کشی به چراغ‌های مدنظر وصل بشه. تعداد چراغ‌هایی که می‌شه به هر سنسور وصل کرد براساس ظرفیت جریانی یا عدد آمپر اون سنسور مشخص می‌شه، بنابراین اینطوری نیست که بشه هرتعداد چراغی که دلمون خواست به یه سنسور وصل کنیم.\n'
+                      'سنسورهایی که در حاضر توی ساختمون‌ها به کار می‌رن عموما از نوع حرکتی هستن و بر اساس زاویه‌ی دیدی که ارائه می‌کنن برای استفاده توی راهرو، راه‌پله یا محوطه پارکینگ ازشون استفاده می‌شه. مثلا سنسورهای ۱۴۰ و ۳۶۰ درجه عموما برای راه‌پله‌ها استفاده می‌شن و سنسورهای ۱۸۰ درجه هم برای روی دیوار انتخاب می‌شن. توی بعضی کاربردها هم به‌جای سنسورهای حرکتی، از سنسورهای فتوسل که به نور حساسن استفاده می‌شه. مثلا برای محوطه‌ی حیات ساختمون‌ها، می‌شه از سنسورهای فتوسل استفاده کرد تا وقتی نور محیط از یه حدی کمتر شد، روشن بشن.\n'
+                      'بعضی وقت‌ها هم توی ساختمون‌ها به جای سنسور، از چراغ‌های تایمردار استفاده می‌شه. عملکرد چراغ‌های تایمردار اینطوریه که تا چند دقیقه بعد از اینکه شما کلید مربوط به چراغ رو فشار دادین، چراغ روشن می‌شه و بعدش خودش خاموش می‌شه. توی بعضی از ساختمون‌ها، برای راه‌پله چراغ تایمردار درنظر گرفته می‌شه تا وقتی اشخاص دارن از پله‌ها تردد می‌کنن، کلید برق رو بزنن و چراغ‌های راه‌پله تا چند دقیقه روشن بمونن. عیب چراغ‌های تایمردار اینه که شما توی تاریکی باید دنبال کلید بگردین تا بتونین چراغ رو روشن کنین.\n'
+                      'برای هرنوع خدماتی که در مورد انواع چراغ، لوستر سنسور و چراغ‌های سنسوردار داشته باشین، می‌تونین از خدمات کارشناس‌های بسپارش به ما استفاده کنین.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای چراغ و سنسور چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

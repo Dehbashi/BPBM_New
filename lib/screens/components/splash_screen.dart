@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'dart:async';
-import 'package:bpbm2/screens/home.dart';
+import 'package:bpbm2/screens/home2.dart';
 import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/components/header.dart';
 

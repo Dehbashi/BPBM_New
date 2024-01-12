@@ -107,239 +107,180 @@ class _CctvPageState extends State<CctvPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس دوربین مدار بسته',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/cctv.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب، راه‌اندازی و تعمیر دوربین مداربسته رو بسپارش به ما\n'
-                        'برای تأمین امنیت خونه یا محل کارت نیاز به نصب و راه‌اندازی دوربین مداربسته داری؟ همه‌ی کارها رو بسپارش به ما.\n'
-                        'سیستم دوربین مداربسته نیاز به جابه‌جایی و تغییر سیم‌کشی داره؟ بسپارش به ما کل کارها رو برات انجام می‌ده.\n'
-                        'اگه سیستم دوربین مداربسته درست کار نمی‌کنه و نیاز به تعمیر یا تعویض داره، می‌تونی روی بسپارش به ما حساب کنی.\n'
-                        'هر نوع خدماتی که برای دوربین مداربسته بخوای، کارشناس‌های بسپارش به ما آماده هستن تا کارت رو به بهترین و باکیفیت‌ترین شکل انجام بدن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس دوربین مدار بسته',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'دوربین مداربسته چه انواعی داره و چطور کار می‌کنه؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/cctv.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'به‌صورت کلی دوربین‌های مداربسته رو می‌تونیم به دو دسته‌ی دوربین‌های آنالوگ و دوربین‌های دیجیتال یا تحت شبکه تقسیم کنیم. تفاوت اصلی دوربین‌های مداربسته آنالوگ و دیجیتال، به بستری که برای انتقال تصویر و اطلاعات ازش استفاده می‌کنن برمی‌گرده. مثلا اینکه اطلاعات در مقصد چطور دریافت می‌شن یا سرعت انتقالشون چقدره، توی دوربین‌های آنالوگ و دیجیتال با هم متفاوته.\n'
-                        'توی دوربین آنالوگ، سیگنال از طریق کابل کواکسیال به دستگاه DVR منتقل می‌شه. دستگاه DVR هم کارش اینه که تصاویر دوربین مداربسته رو ضبط کنه و به‌خاطر مشخصه‌های مختلفی که داره، بسته به کاربرد و استفاده، باید توی انتخابش با یه کارشناس زبده مشورت بشه. DVR-ها یه مشخصه‌ای به‌نام تعداد کانال دارن که ارتباط مستقیمی با تعداد دوربین‌های موجود توی سیستم داره. مثلا اگه بین یک تا چهار دوربین توی سیستم وجود داره، باید از دی‌وی‌آر چهار کانالی استفاده بشه. شاید بد نباشه بدونین که خود DVR فضایی برای ذخیره کردن اطلاعات نداره و باید یه هارد خارجی هم همراهش درنظر گرفت که دیتا توش ذخیره بشه.\n'
-                        ' دوربین‌های آنالوگ انواع مختلفی دارن و می‌شه گفت بهترین و متداول‌ترین نوعشون دوربین‌های HD-TVI هستن که کیفیت تصویربرداری خیلی بالاتری رو نسبت به دوربین‌های آنالوگ قدیمی ارائه می‌کنن. توی دوربین‌های HD-TVI، سیگنال تصویر قبل از منتقل شدن به DVR، با کمک یک تراشه کد یا رمزگذاری می‌شه و بعد به دستگاه DVR ارسال و همونجا دیکد یا رمزگشایی می‌شه. دوربین‌های HD-CVI، دوربین‌های AHD و دوربین‌های HD-SDI از انواع دیگه‌ی دوربین‌های مداربسته‌ی آنالوگ هستن که هرکدوم توی نحوه‌ی کارشون تفاوت‌هایی با هم دارن.\n'
-                        'بریم سراغ دوربین‌های دیجیتال یا تحت شبکه (IP). دوربین شبکه بعد از ثبت تصاویر، فایل‌ها رو از طریق حسگر به اطلاعات دیجیتال تبدیل می‌کنه. بعد از دیجیتال شدن اطلاعات، نوبت دستگاه NVR هست که ویدیوها رو ضبط کنه. همون‌طور که از اسم NVR هم مشخصه، نقش DVR رو برای دوربین‌های تحت شبکه بازی می‌کنه. درواقع با NVR می‌شه ویدیوها رو ذخیره کرد تا بشه بعدا هم بهشون دسترسی داشت.\n'
-                        'بسته به نوع کاربرد شما، کارشناس‌های بسپارش به ما بهتون مشاوره می‌دن که بهتره کدوم یکی از انواع دوربین‌های مداربسته رو انتخاب کنین و در مورد جانمایی هم بهتون مشاوره می‌دن. بعد از مشاوره نوبت به اجرا می‌رسه و کارشناس‌های بسپارش به ما کار رو با بهترین کیفیت بهتون تحویل می‌دن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای دوربین مداربسته چه خدماتی ارائه می‌ده؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب، راه‌اندازی و تعمیر دوربین مداربسته رو بسپارش به ما\n'
+                      'برای تأمین امنیت خونه یا محل کارت نیاز به نصب و راه‌اندازی دوربین مداربسته داری؟ همه‌ی کارها رو بسپارش به ما.\n'
+                      'سیستم دوربین مداربسته نیاز به جابه‌جایی و تغییر سیم‌کشی داره؟ بسپارش به ما کل کارها رو برات انجام می‌ده.\n'
+                      'اگه سیستم دوربین مداربسته درست کار نمی‌کنه و نیاز به تعمیر یا تعویض داره، می‌تونی روی بسپارش به ما حساب کنی.\n'
+                      'هر نوع خدماتی که برای دوربین مداربسته بخوای، کارشناس‌های بسپارش به ما آماده هستن تا کارت رو به بهترین و باکیفیت‌ترین شکل انجام بدن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'دوربین مداربسته چه انواعی داره و چطور کار می‌کنه؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'به‌صورت کلی دوربین‌های مداربسته رو می‌تونیم به دو دسته‌ی دوربین‌های آنالوگ و دوربین‌های دیجیتال یا تحت شبکه تقسیم کنیم. تفاوت اصلی دوربین‌های مداربسته آنالوگ و دیجیتال، به بستری که برای انتقال تصویر و اطلاعات ازش استفاده می‌کنن برمی‌گرده. مثلا اینکه اطلاعات در مقصد چطور دریافت می‌شن یا سرعت انتقالشون چقدره، توی دوربین‌های آنالوگ و دیجیتال با هم متفاوته.\n'
+                      'توی دوربین آنالوگ، سیگنال از طریق کابل کواکسیال به دستگاه DVR منتقل می‌شه. دستگاه DVR هم کارش اینه که تصاویر دوربین مداربسته رو ضبط کنه و به‌خاطر مشخصه‌های مختلفی که داره، بسته به کاربرد و استفاده، باید توی انتخابش با یه کارشناس زبده مشورت بشه. DVR-ها یه مشخصه‌ای به‌نام تعداد کانال دارن که ارتباط مستقیمی با تعداد دوربین‌های موجود توی سیستم داره. مثلا اگه بین یک تا چهار دوربین توی سیستم وجود داره، باید از دی‌وی‌آر چهار کانالی استفاده بشه. شاید بد نباشه بدونین که خود DVR فضایی برای ذخیره کردن اطلاعات نداره و باید یه هارد خارجی هم همراهش درنظر گرفت که دیتا توش ذخیره بشه.\n'
+                      ' دوربین‌های آنالوگ انواع مختلفی دارن و می‌شه گفت بهترین و متداول‌ترین نوعشون دوربین‌های HD-TVI هستن که کیفیت تصویربرداری خیلی بالاتری رو نسبت به دوربین‌های آنالوگ قدیمی ارائه می‌کنن. توی دوربین‌های HD-TVI، سیگنال تصویر قبل از منتقل شدن به DVR، با کمک یک تراشه کد یا رمزگذاری می‌شه و بعد به دستگاه DVR ارسال و همونجا دیکد یا رمزگشایی می‌شه. دوربین‌های HD-CVI، دوربین‌های AHD و دوربین‌های HD-SDI از انواع دیگه‌ی دوربین‌های مداربسته‌ی آنالوگ هستن که هرکدوم توی نحوه‌ی کارشون تفاوت‌هایی با هم دارن.\n'
+                      'بریم سراغ دوربین‌های دیجیتال یا تحت شبکه (IP). دوربین شبکه بعد از ثبت تصاویر، فایل‌ها رو از طریق حسگر به اطلاعات دیجیتال تبدیل می‌کنه. بعد از دیجیتال شدن اطلاعات، نوبت دستگاه NVR هست که ویدیوها رو ضبط کنه. همون‌طور که از اسم NVR هم مشخصه، نقش DVR رو برای دوربین‌های تحت شبکه بازی می‌کنه. درواقع با NVR می‌شه ویدیوها رو ذخیره کرد تا بشه بعدا هم بهشون دسترسی داشت.\n'
+                      'بسته به نوع کاربرد شما، کارشناس‌های بسپارش به ما بهتون مشاوره می‌دن که بهتره کدوم یکی از انواع دوربین‌های مداربسته رو انتخاب کنین و در مورد جانمایی هم بهتون مشاوره می‌دن. بعد از مشاوره نوبت به اجرا می‌رسه و کارشناس‌های بسپارش به ما کار رو با بهترین کیفیت بهتون تحویل می‌دن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای دوربین مداربسته چه خدماتی ارائه می‌ده؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

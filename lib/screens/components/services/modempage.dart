@@ -96,242 +96,180 @@ class _ModemPageState extends State<ModemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس نصب وای فای',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/modem.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'راه‌اندازی، نصب و عیب‌یابی وای‌فای رو بسپارش به ما.\n'
-                        'نیاز به متخصصی داری که وای‌فای خونه یا محل کارت رو راه بندازه؟ کارشناس‌های بسپارش به ما رو صدا کن.\n'
-                        'مودم وای‌فای روشن می‌شه اما اینترنت نداری؟ کارشناس‌های بسپارش به ما کار عیب‌یابی رو برات انجام می‌دن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس نصب وای فای',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'برای راه‌اندازی اینترنت وای‌فای چه کارهایی لازمه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/modem.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'خیلی از ماها روزایی که با اینترنت دایال آپ به اینترنت وصل می‌شدیم رو کامل یادمونه. سرعت لاک‌پشتی دایال آپ، سروصدای مودم کامپیوترها، کارت‌های شارژی اینترنت و اعتراض پدرومادرهامون به اینکه خط تلفن چرا همیشه اشغاله، اولین خاطره‌های ما از وصل شدن به اینترنته. اما این‌روزها دیگه اوضاع عوض شده و اینترنت پرسرعت تجربه‌مون از ارتباطات رو کاملا تغییر داده. باوجود شبکه‌های اینترنت پرسرعت، خیلی بعیده که کسی به فکر راه‌اندازی شبکه‌ی وای‌فای یا اینترنت بی‌سیم برای خونه و محل کارش نیفتاده باشه. شبکه‌های بی‌سیم می‌تونن توی محل‌های مختلف گزینه‌ی ایده‌آلی برای وصل شدن به اینترنت باشن و کاربرها و دستگاه‌های زیادی رو همزمان به اینترنت وصل کنن.\n'
-                        'شاید بد نباشه بدونین که اینترنت پرسرعت رو می‌شه هم روی خطوط تلفن ثابت و هم به‌صورت بی‌سیم دریافت کرد. اینترنت ثابت که روی خط تلفنتون دریافت می‌شه، از نظر هزینه به‌صرفه‌تر از اینترنت موبایل درمیاد و برای همین گزینه‌ی جذاب‌تری برای خیلی‌هاست.\n'
-                        'برای اینکه بشه به اینترنت ثابت وصل شد، نیاز به دستگاهی به اسم مودم داریم که کار اتصال ما به اینترنت رو انجام می‌ده. مودم مثل یه واسطه عمل می‌کنه و کار تبدیل سیگنال آلوگ به دیجیتال و دیجیتال به آنالوگ رو انجام می‌ده. یعنی سیگنال ارتباطی آنالوگ رو از طریق خط تلفن یا امواج دریافت می‌کنه و اون‌ها رو برای استفاده‌ی دستگاه‌های الکترونیکی به سیگنال دیجیتال تبدیل می‌کنه و بالعکس.\n'
-                        'مودم‌ها انواع مختلفی دارن و بسته به بستری که روی اون دارن اینترنت رو برای ما فراهم می‌کنن، با اسم‌های خاصی شناخته می‌شن. مودم‌های ADSL اینترنت رو از طریق خط تلفن ثابت به ما ارائه می‌کنن. مودم‌های 4G و TD-LTE هم اینترنت پرسرعت رو بدون نیاز به خط تلفن ثابت و به صورت بی‌سیم در اختیار ما قرار می‌دن. این نوع مودم‌ها اتصال به اینترنت رو از طریق ایستگاه‌های فرستنده امواج یا همون BTS و با استفاده از سیم‌کارت برای کاربرها تأمین می‌کنن.\n'
-                        'اگه می‌خواین برای محل کار یا خونه‌تون اینترنت بی‌سیم یا وای‌فای ADSL راه‌اندازی کنین باید درنظر داشته باشین که قبل از خبر کردن کارشناس شبکه برای نصب مودم، اول باید خط تلفنی که می‌خواین روش اینترنت داشته باشین آماده باشه. یعنی اول با شرکت سرویس‌دهنده‌ای که می‌خواین از خدمات اینترنت پرسرعتش استفاده کنین صحبت می‌کنین و اونا مراحل لازم برای آماده کردن خط تلفنتون که بهش رانژه کردن خط می‌گن رو پیگیری می‌کنن. بعد از آماده‌سازی خط تلفنتون، نوبت خبر کردن کارشناس شبکه یا نصاب برای راه‌اندازی اینترنت پرسرعته. کارشناس تنظیمات مودم رو براتون انجام می‌ده و چک می‌کنه که تمام اتصالات درست وصل بشن تا بتونین اینترنت رو با بهترین کیفیت دریافت کنین.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای اینترنت وای‌فای چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'راه‌اندازی، نصب و عیب‌یابی وای‌فای رو بسپارش به ما.\n'
+                      'نیاز به متخصصی داری که وای‌فای خونه یا محل کارت رو راه بندازه؟ کارشناس‌های بسپارش به ما رو صدا کن.\n'
+                      'مودم وای‌فای روشن می‌شه اما اینترنت نداری؟ کارشناس‌های بسپارش به ما کار عیب‌یابی رو برات انجام می‌دن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'برای راه‌اندازی اینترنت وای‌فای چه کارهایی لازمه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'خیلی از ماها روزایی که با اینترنت دایال آپ به اینترنت وصل می‌شدیم رو کامل یادمونه. سرعت لاک‌پشتی دایال آپ، سروصدای مودم کامپیوترها، کارت‌های شارژی اینترنت و اعتراض پدرومادرهامون به اینکه خط تلفن چرا همیشه اشغاله، اولین خاطره‌های ما از وصل شدن به اینترنته. اما این‌روزها دیگه اوضاع عوض شده و اینترنت پرسرعت تجربه‌مون از ارتباطات رو کاملا تغییر داده. باوجود شبکه‌های اینترنت پرسرعت، خیلی بعیده که کسی به فکر راه‌اندازی شبکه‌ی وای‌فای یا اینترنت بی‌سیم برای خونه و محل کارش نیفتاده باشه. شبکه‌های بی‌سیم می‌تونن توی محل‌های مختلف گزینه‌ی ایده‌آلی برای وصل شدن به اینترنت باشن و کاربرها و دستگاه‌های زیادی رو همزمان به اینترنت وصل کنن.\n'
+                      'شاید بد نباشه بدونین که اینترنت پرسرعت رو می‌شه هم روی خطوط تلفن ثابت و هم به‌صورت بی‌سیم دریافت کرد. اینترنت ثابت که روی خط تلفنتون دریافت می‌شه، از نظر هزینه به‌صرفه‌تر از اینترنت موبایل درمیاد و برای همین گزینه‌ی جذاب‌تری برای خیلی‌هاست.\n'
+                      'برای اینکه بشه به اینترنت ثابت وصل شد، نیاز به دستگاهی به اسم مودم داریم که کار اتصال ما به اینترنت رو انجام می‌ده. مودم مثل یه واسطه عمل می‌کنه و کار تبدیل سیگنال آلوگ به دیجیتال و دیجیتال به آنالوگ رو انجام می‌ده. یعنی سیگنال ارتباطی آنالوگ رو از طریق خط تلفن یا امواج دریافت می‌کنه و اون‌ها رو برای استفاده‌ی دستگاه‌های الکترونیکی به سیگنال دیجیتال تبدیل می‌کنه و بالعکس.\n'
+                      'مودم‌ها انواع مختلفی دارن و بسته به بستری که روی اون دارن اینترنت رو برای ما فراهم می‌کنن، با اسم‌های خاصی شناخته می‌شن. مودم‌های ADSL اینترنت رو از طریق خط تلفن ثابت به ما ارائه می‌کنن. مودم‌های 4G و TD-LTE هم اینترنت پرسرعت رو بدون نیاز به خط تلفن ثابت و به صورت بی‌سیم در اختیار ما قرار می‌دن. این نوع مودم‌ها اتصال به اینترنت رو از طریق ایستگاه‌های فرستنده امواج یا همون BTS و با استفاده از سیم‌کارت برای کاربرها تأمین می‌کنن.\n'
+                      'اگه می‌خواین برای محل کار یا خونه‌تون اینترنت بی‌سیم یا وای‌فای ADSL راه‌اندازی کنین باید درنظر داشته باشین که قبل از خبر کردن کارشناس شبکه برای نصب مودم، اول باید خط تلفنی که می‌خواین روش اینترنت داشته باشین آماده باشه. یعنی اول با شرکت سرویس‌دهنده‌ای که می‌خواین از خدمات اینترنت پرسرعتش استفاده کنین صحبت می‌کنین و اونا مراحل لازم برای آماده کردن خط تلفنتون که بهش رانژه کردن خط می‌گن رو پیگیری می‌کنن. بعد از آماده‌سازی خط تلفنتون، نوبت خبر کردن کارشناس شبکه یا نصاب برای راه‌اندازی اینترنت پرسرعته. کارشناس تنظیمات مودم رو براتون انجام می‌ده و چک می‌کنه که تمام اتصالات درست وصل بشن تا بتونین اینترنت رو با بهترین کیفیت دریافت کنین.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای اینترنت وای‌فای چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

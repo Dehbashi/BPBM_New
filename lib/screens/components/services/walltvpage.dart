@@ -80,242 +80,180 @@ class _WallTvPageState extends State<WallTvPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس نصب تلویزیون',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/walltv.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب تلویزیون دیواری رو بسپارش به ما\n'
-                        'اگه برای نصب تلویزیون روی دیوار نیاز به کمک داری، بسپارش به ما رو خبر کن.\n'
-                        'برای جابه‌جایی پایه‌ی دیواری تلویزیون کارشناس‌های بسپارش به ما می‌تونن بهت کمک کنن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس نصب تلویزیون',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'پایه‌ی دیواری برای تلویزیون بهتره یا پایه‌ی زمینی؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/walltv.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'اینکه پایه‌ی دیواری برای تلویزیون شما بهتره یا پایه‌ی زمینی، کاملا به محیطی که می‌خواین توش تلویزیون رو قرار بدین، کاربری‌تون و البته سلیقه‌ی خودتون بستگی داره. پایه‌های دیواری می‌تونن مزایای خاص خودشون رو نسبت به پایه‌های زمینی داشته باشن و تجربه‌ی شما از تلویزیون دیدن رو لذت‌بخش‌تر کنن. مثلا اگه فضاتون کوچیکه و نمی‌تونین برای تلویزیون، میز درنظر بگیرین بهترین کاری که می‌تونین بکنین استفاده از پایه‌ی دیواری برای تلویزیونه.\n'
-                        'خوبی پایه‌های دیواری اینه که انواع مختلفی دارن و بسته به نیازتون می‌تونین کاربردی‌ترینش رو برای خودتون انتخاب کنین: پایه‌ی دیواری ثابت و پایه‌ی دیواری متحرک دو نوع از پایه‌های پرکاربرد هستن. پایه دیواری ثابت، متداول‌ترین نوع پایه‌ی دیواریه که تلویزیون رو روی دیوار ثابت نگه می‌داره. پایه‌ی ثابت از دو بخش تشکیل شده، یک بخش که به دیوار ثابت می‌شه و دو بازو که به این قسمت ثابت وصل می‌شن و تلویزیون رو روی خودشون نگه می‌دارن. این بازوها هرکدوم یه پیچ چرخان دارن که بهتون امکان تغییر زاویه‌ی صفحه‌ی تلویزیون به سمت بالا یا پایین رو می‌دن. بعلاوه بازوها با سوراخ‌هایی که روشون تعبیه شده بهتون اجازه می‌دن که ارتفاع تلویزیون رو هم توی یه محدوده‌ای بالا و پایین ببرین.\n'
-                        'با پایه‌های دیواری متحرک، می‌تونین تلویزیون رو توی جهت‌های مختلفی حرکت بدین. مثلا تغییر زاویه‌ی بالا و پایین (Tilt)، چپ و راست (Swivel)، تغییر جهت به صورت گردشی (Rotate) و جلو و عقب بردن تلویزیون کارهاییه که باوجود پایه‌ی متحرک می‌تونین انجام بدین.\n'
-                        'برای نصب پایه‌ی دیواری باید به نوع دیوار و وزن تلویزیون هم توجه بشه. مثلا اگه دیوار از نوع کاذبه، توصیه می‌شه که به‌هیچ‌وجه از پایه‌های دیواری استفاده نشه و در صورتی که نمی‌خواین یا نمی‌تونین تلویزیون رو روی زمین بذارین، حتما از پایه‌های سقفی استفاده کنین. در صورتی که تلویزیونتون بزرگه و وزنش زیاده، بهتره که حتما به جنس پایه‌ی دیواری توجه داشته باشین. پایه‌ها می‌تونن استیل، فلزی یا آهنی باشن که باید با توجه به وزن تلویزیون، مناسب‌ترینش انتخاب بشه.\n'
-                        'موقع نصب پایه‌ی دیواری برای تلویزیون، نصاب تمام این موارد رو بررسی می‌کنه و براساسشون تصمیم می‌گیره که چه نوع پایه‌ای برای تلویزیون شما بهتره.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای نصب تلویزیون دیواری چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب تلویزیون دیواری رو بسپارش به ما\n'
+                      'اگه برای نصب تلویزیون روی دیوار نیاز به کمک داری، بسپارش به ما رو خبر کن.\n'
+                      'برای جابه‌جایی پایه‌ی دیواری تلویزیون کارشناس‌های بسپارش به ما می‌تونن بهت کمک کنن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'پایه‌ی دیواری برای تلویزیون بهتره یا پایه‌ی زمینی؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'اینکه پایه‌ی دیواری برای تلویزیون شما بهتره یا پایه‌ی زمینی، کاملا به محیطی که می‌خواین توش تلویزیون رو قرار بدین، کاربری‌تون و البته سلیقه‌ی خودتون بستگی داره. پایه‌های دیواری می‌تونن مزایای خاص خودشون رو نسبت به پایه‌های زمینی داشته باشن و تجربه‌ی شما از تلویزیون دیدن رو لذت‌بخش‌تر کنن. مثلا اگه فضاتون کوچیکه و نمی‌تونین برای تلویزیون، میز درنظر بگیرین بهترین کاری که می‌تونین بکنین استفاده از پایه‌ی دیواری برای تلویزیونه.\n'
+                      'خوبی پایه‌های دیواری اینه که انواع مختلفی دارن و بسته به نیازتون می‌تونین کاربردی‌ترینش رو برای خودتون انتخاب کنین: پایه‌ی دیواری ثابت و پایه‌ی دیواری متحرک دو نوع از پایه‌های پرکاربرد هستن. پایه دیواری ثابت، متداول‌ترین نوع پایه‌ی دیواریه که تلویزیون رو روی دیوار ثابت نگه می‌داره. پایه‌ی ثابت از دو بخش تشکیل شده، یک بخش که به دیوار ثابت می‌شه و دو بازو که به این قسمت ثابت وصل می‌شن و تلویزیون رو روی خودشون نگه می‌دارن. این بازوها هرکدوم یه پیچ چرخان دارن که بهتون امکان تغییر زاویه‌ی صفحه‌ی تلویزیون به سمت بالا یا پایین رو می‌دن. بعلاوه بازوها با سوراخ‌هایی که روشون تعبیه شده بهتون اجازه می‌دن که ارتفاع تلویزیون رو هم توی یه محدوده‌ای بالا و پایین ببرین.\n'
+                      'با پایه‌های دیواری متحرک، می‌تونین تلویزیون رو توی جهت‌های مختلفی حرکت بدین. مثلا تغییر زاویه‌ی بالا و پایین (Tilt)، چپ و راست (Swivel)، تغییر جهت به صورت گردشی (Rotate) و جلو و عقب بردن تلویزیون کارهاییه که باوجود پایه‌ی متحرک می‌تونین انجام بدین.\n'
+                      'برای نصب پایه‌ی دیواری باید به نوع دیوار و وزن تلویزیون هم توجه بشه. مثلا اگه دیوار از نوع کاذبه، توصیه می‌شه که به‌هیچ‌وجه از پایه‌های دیواری استفاده نشه و در صورتی که نمی‌خواین یا نمی‌تونین تلویزیون رو روی زمین بذارین، حتما از پایه‌های سقفی استفاده کنین. در صورتی که تلویزیونتون بزرگه و وزنش زیاده، بهتره که حتما به جنس پایه‌ی دیواری توجه داشته باشین. پایه‌ها می‌تونن استیل، فلزی یا آهنی باشن که باید با توجه به وزن تلویزیون، مناسب‌ترینش انتخاب بشه.\n'
+                      'موقع نصب پایه‌ی دیواری برای تلویزیون، نصاب تمام این موارد رو بررسی می‌کنه و براساسشون تصمیم می‌گیره که چه نوع پایه‌ای برای تلویزیون شما بهتره.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای نصب تلویزیون دیواری چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

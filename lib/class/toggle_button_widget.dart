@@ -30,7 +30,7 @@ class _ToggleButtonWidgetState extends State<ToggleButtonWidget> {
         Expanded(
           child: Center(
             child: ToggleButtons(
-              highlightColor: Colors.transparent,
+              highlightColor: const Color.fromARGB(0, 122, 116, 116),
               splashColor: Colors.transparent,
               isSelected: isSelected,
               selectedColor: Colors.white,

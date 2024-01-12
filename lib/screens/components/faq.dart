@@ -62,7 +62,6 @@ class FAQ extends StatelessWidget {
                           // overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Color(0xFF025459),
-                            fontFamily: 'iransans',
                             fontSize: textsize,
                             // fontWeight: FontWeight.bold,
                           ),
@@ -81,7 +80,6 @@ class FAQ extends StatelessWidget {
                               faq.answer,
                               style: TextStyle(
                                 color: Color(0xFF025459),
-                                fontFamily: 'iransans',
                                 fontSize: textsize,
                               ),
                               textAlign: TextAlign.justify,

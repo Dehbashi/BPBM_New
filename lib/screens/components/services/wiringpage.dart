@@ -105,238 +105,179 @@ class _WiringPageState extends State<WiringPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس سیم کشی و کابل کشی',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/wiring.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'خدمات سیم‌کشی برق ساختمان رو بسپارش به ما\n'
-                        'می‌خوای برای ساختمون خونه یا محل کارت سیم‌کشی انجام بدی و نیاز به مشاوره و اجرا داری؟ با بسپارش به ما از صفر تا صد کار خیالت راحته.\n'
-                        'برق‌کشی خونه یا محل کارت دچار مشکل شده و قطعی داری؟ کارشناس‌های برق‌کار بسپارش به ما آماده‌ن تا کار عیب‌یابی و تعمیر رو برات انجام بدن.\n'
-                        'اگه سیم‌کشی خونه یا محل کارت فرسوده شده و نیاز به تعمیر و تعویض تجهیزات داری، کار رو بسپارش به ما.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس سیم کشی و کابل کشی',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سیم‌کشی ساختمان چیه و شامل چه مواردی می‌شه؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/wiring.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'سیم‌کشی ساختمون تمام مواردی که برای رسوندن برق به نقاط مختلف ساختمون لازمه رو شامل می‌شه؛ مواردی مثل سیم‌ها و کابل‌ها، فیوزها، جعبه تقسیم، جعبه کلید و کنتور برق. از اونجایی که سیم‌کشی، تمام بخش‌های ساختمون رو دربر می‌گیره بنابراین رعایت ایمنی و استانداردهای لازم توی تمام مراحل از نقشه‌کشی تا اجرا و تعمیر و تعویض، خیلی خیلی مهمه، وگرنه می‌تونه خسارت‌های جانی و مالی زیادی به بار بیاره. به همین دلیل هم هست که برای کارهای سیم‌کشی ساختمون حتما باید از کارشناس متخصص و قابل اعتماد کمک گرفت تا بتونه خدمات مدنظر رو با کیفیت و امنیت لازم ارائه کنه.\n'
-                        'سیم‌کشی ساختمون به دو روش توکار (داخل دیوارها یا کف) و روکار (روی دیوارها) انجام می‌شه. سیم‌کشی توکار زمان ساخت‌وساز ساختمون‌ها انجام می‌شه که بشه کابل‌کشی‌ها و اتصالات رو توی دیوارها و کف جاسازی کرد. خوبی سیم‌کشی توکار اینه که چون هیچ سیم و کابلی روی دیوارها دیده نمی‌شه، هم به زیبایی بصری ساختمون کمک می‌کنه و هم به‌خاطر در دسترس نبودن اتصالات، احتمال قطعی و خرابی در اثر ضربه و برخورد اجسام وجود نداره.\n'
-                        'سیم‌کشی توکار پیچیدگی‌های خاص خودش رو داره و کارشناس برق‌کار این وظیفه رو داره که براساس استانداردها و موارد امنیتی، بهترین و بهینه‌ترین راه رو برای اجرای سیم‌کشی ساختمون پیاده‌سازی کنه. سیم‌کشی توکار به چند روش متداول انجام می‌شه: سیم‌کشی توکار با جعبه تقسیم، سیم‌کشی توکار با جعبه کلید و پریز و سیم‌کشی توکار با جعبه فیوز. از بین این روش‌ها، روش جعبه تقسیم قدیمیه و تقریبا دیگه منسوخ شده و کمتر اجرا می‌شه، اما دو روش دیگه هر دو خوب جواب می‌دن و بسته به صلاحدید کارشناس، می‌شه از هرکدوم توی سیم‌کشی توکار استفاده کرد.\n'
-                        'توی سیم‌کشی روکار، سیم‌ها از روی دیوار یا کف عبور می‌کنن و باید برای پوشوندنشون از داکت استفاده کرد تا هم ایمنی بیشتری داشته باشن هم از لحاظ بصری مرتب‌تر باشن، اما بالاخره هرچی باشه بیرون دیوار هستن و بیشتر در معرض رطوبت و ضربه هستن، بنابراین باید بیشتر حواستون بهشون باشه. البته عیب‌یابی و تعمیر سیم‌کشی روکار هم راحت‌تر از حالت توکاره.\n'
-                        'بسته به کاربرد و نیاز شما، سیم‌کشی ساختمون می‌تونه به صورت توکار، روکار یا ترکیبی از این دوتا انجام بشه. کارشناس‌های بسپارش به ما، توی تمام کارهای مرتبط با سیم‌کشی ساختمون تخصص دارن. کافیه هر خدماتی که مدنظرتونه توی بسپارش به ما ثبت کنین تا در اسرع وقت کار رو براتون انجام بدیم.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای سیم کشی ساختمان چه خدماتی ارائه می کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'خدمات سیم‌کشی برق ساختمان رو بسپارش به ما\n'
+                      'می‌خوای برای ساختمون خونه یا محل کارت سیم‌کشی انجام بدی و نیاز به مشاوره و اجرا داری؟ با بسپارش به ما از صفر تا صد کار خیالت راحته.\n'
+                      'برق‌کشی خونه یا محل کارت دچار مشکل شده و قطعی داری؟ کارشناس‌های برق‌کار بسپارش به ما آماده‌ن تا کار عیب‌یابی و تعمیر رو برات انجام بدن.\n'
+                      'اگه سیم‌کشی خونه یا محل کارت فرسوده شده و نیاز به تعمیر و تعویض تجهیزات داری، کار رو بسپارش به ما.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'سیم‌کشی ساختمان چیه و شامل چه مواردی می‌شه؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'سیم‌کشی ساختمون تمام مواردی که برای رسوندن برق به نقاط مختلف ساختمون لازمه رو شامل می‌شه؛ مواردی مثل سیم‌ها و کابل‌ها، فیوزها، جعبه تقسیم، جعبه کلید و کنتور برق. از اونجایی که سیم‌کشی، تمام بخش‌های ساختمون رو دربر می‌گیره بنابراین رعایت ایمنی و استانداردهای لازم توی تمام مراحل از نقشه‌کشی تا اجرا و تعمیر و تعویض، خیلی خیلی مهمه، وگرنه می‌تونه خسارت‌های جانی و مالی زیادی به بار بیاره. به همین دلیل هم هست که برای کارهای سیم‌کشی ساختمون حتما باید از کارشناس متخصص و قابل اعتماد کمک گرفت تا بتونه خدمات مدنظر رو با کیفیت و امنیت لازم ارائه کنه.\n'
+                      'سیم‌کشی ساختمون به دو روش توکار (داخل دیوارها یا کف) و روکار (روی دیوارها) انجام می‌شه. سیم‌کشی توکار زمان ساخت‌وساز ساختمون‌ها انجام می‌شه که بشه کابل‌کشی‌ها و اتصالات رو توی دیوارها و کف جاسازی کرد. خوبی سیم‌کشی توکار اینه که چون هیچ سیم و کابلی روی دیوارها دیده نمی‌شه، هم به زیبایی بصری ساختمون کمک می‌کنه و هم به‌خاطر در دسترس نبودن اتصالات، احتمال قطعی و خرابی در اثر ضربه و برخورد اجسام وجود نداره.\n'
+                      'سیم‌کشی توکار پیچیدگی‌های خاص خودش رو داره و کارشناس برق‌کار این وظیفه رو داره که براساس استانداردها و موارد امنیتی، بهترین و بهینه‌ترین راه رو برای اجرای سیم‌کشی ساختمون پیاده‌سازی کنه. سیم‌کشی توکار به چند روش متداول انجام می‌شه: سیم‌کشی توکار با جعبه تقسیم، سیم‌کشی توکار با جعبه کلید و پریز و سیم‌کشی توکار با جعبه فیوز. از بین این روش‌ها، روش جعبه تقسیم قدیمیه و تقریبا دیگه منسوخ شده و کمتر اجرا می‌شه، اما دو روش دیگه هر دو خوب جواب می‌دن و بسته به صلاحدید کارشناس، می‌شه از هرکدوم توی سیم‌کشی توکار استفاده کرد.\n'
+                      'توی سیم‌کشی روکار، سیم‌ها از روی دیوار یا کف عبور می‌کنن و باید برای پوشوندنشون از داکت استفاده کرد تا هم ایمنی بیشتری داشته باشن هم از لحاظ بصری مرتب‌تر باشن، اما بالاخره هرچی باشه بیرون دیوار هستن و بیشتر در معرض رطوبت و ضربه هستن، بنابراین باید بیشتر حواستون بهشون باشه. البته عیب‌یابی و تعمیر سیم‌کشی روکار هم راحت‌تر از حالت توکاره.\n'
+                      'بسته به کاربرد و نیاز شما، سیم‌کشی ساختمون می‌تونه به صورت توکار، روکار یا ترکیبی از این دوتا انجام بشه. کارشناس‌های بسپارش به ما، توی تمام کارهای مرتبط با سیم‌کشی ساختمون تخصص دارن. کافیه هر خدماتی که مدنظرتونه توی بسپارش به ما ثبت کنین تا در اسرع وقت کار رو براتون انجام بدیم.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای سیم کشی ساختمان چه خدماتی ارائه می کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

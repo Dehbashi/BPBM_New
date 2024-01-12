@@ -22,7 +22,7 @@ class _FooterState extends State<Footer> {
       switch (index) {
         case 0:
           // Navigate to the home page
-          Navigator.push(
+          Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => HomePage()));
           break;
         case 1:

@@ -28,6 +28,7 @@ import 'package:bpbm2/screens/components/services/wiringpage.dart';
 import 'package:bpbm2/screens/components/services/modempage.dart';
 
 import 'package:bpbm2/screens/components/rules.dart';
+import '../components/function/fetch_service_list.dart';
 
 class DrawerPage extends StatefulWidget {
   const DrawerPage({Key? key}) : super(key: key);
@@ -42,17 +43,27 @@ class _DrawerPageState extends State<DrawerPage>
   // final double _iconspace = 40;
   final double _fontsize = 14;
   bool showAllItems = false;
+  List<dynamic> dataList = [];
 
   late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
+    fetchData();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       _animationController = AnimationController(
         duration: const Duration(milliseconds: 300),
         vsync: this,
       );
+    });
+  }
+
+  Future<void> fetchData() async {
+    final fetchServiceList = FetchServiceList();
+    final data = await fetchServiceList.fetchData();
+    setState(() {
+      dataList = data;
     });
   }
 
@@ -62,170 +73,127 @@ class _DrawerPageState extends State<DrawerPage>
     super.dispose();
   }
 
-  final Map<Image, String> images = {
-    Image.asset('assets/icons/homeicons/nasbeanten.png'):
-        'نصب آنتن و آنتن مرکزی',
-    Image.asset('assets/icons/homeicons/nasbeiphon.png'):
-        'نصب و تعمیر انواع آیفون',
-    Image.asset('assets/icons/homeicons/nasbekoolergazi.png'):
-        'نصب و سرویس کولر گازی',
-    Image.asset('assets/icons/homeicons/nasbekoolerabi.png'):
-        'نصب و سرویس کولر آبی',
-    Image.asset('assets/icons/homeicons/nasbeups.png'): 'نصب و تعمیر انواع UPS',
-    Image.asset('assets/icons/homeicons/nasbekelid.png'):
-        'نصب انواع کلید و پریز',
-    Image.asset('assets/icons/homeicons/simkeshi.png'): 'سیم کشی و کابل کشی',
-    Image.asset('assets/icons/homeicons/nasbedoorbin.png'):
-        'نصب دوربین مداربسته',
-    Image.asset('assets/icons/homeicons/santral.png'):
-        'خدمات سانترال و تلفن های وویپ',
-    Image.asset('assets/icons/homeicons/simtelephone.png'): 'سیم کشی تلفن ثابت',
-    Image.asset('assets/icons/homeicons/nasbeharigh.png'):
-        'نصب سیستم های اطفا حریق',
-    Image.asset('assets/icons/homeicons/nasbecheragh.png'):
-        'نصب انواع چراغ و سنسور',
-    Image.asset('assets/icons/homeicons/drill.png'): 'دریل کاری و سوراخکاری',
-    Image.asset('assets/icons/homeicons/earth.png'): 'نصب و تست سیستم ارت',
-    Image.asset('assets/icons/homeicons/lighting.png'):
-        'نورپردازی داخل و محوطه ساختمان',
-    Image.asset('assets/icons/homeicons/electricpanel.png'):
-        'تابلو برق صنعتی و ساختمانی',
-    Image.asset('assets/icons/homeicons/television.png'):
-        'نصب تلویزیون روی دیوار',
-    Image.asset('assets/icons/homeicons/fan.png'):
-        'نصب انواع پنکه سقفی و دیواری',
-    Image.asset('assets/icons/homeicons/remote.png'):
-        'نصب ریموت لوستر و روشنایی',
-    Image.asset('assets/icons/homeicons/aramband.png'):
-        'نصب و تعمیر انواع آرام بند',
-    Image.asset('assets/icons/homeicons/airconditioner.png'):
-        'نصب انواع تهویه و هواکش',
-    Image.asset('assets/icons/homeicons/burglar.png'): 'نصب سیستم های ضدسرقت',
-    Image.asset('assets/icons/homeicons/modem.png'):
-        'نصب و راه اندازی مودم WiFi',
-  };
-
-  void _navigateToPage(String title) {
-    setState(() {
-      switch (title) {
-        case 'نصب آنتن و آنتن مرکزی':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AntennaPage()));
-          break;
-        case 'نصب و تعمیر انواع آیفون':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IphonePage()));
-          break;
-        case 'نصب و سرویس کولر گازی':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => GasCoolerPage()));
-          break;
-        case 'نصب و سرویس کولر آبی':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WaterCoolerPage()));
-          break;
-        case 'نصب و تعمیر انواع UPS':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => UpsPage()));
-          break;
-        case 'نصب انواع کلید و پریز':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => OutletPage()));
-          break;
-        case 'سیم کشی و کابل کشی':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WiringPage()));
-          break;
-        case 'نصب دوربین مداربسته':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CctvPage()));
-          break;
-        case 'خدمات سانترال و تلفن های وویپ':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CentralPage()));
-          break;
-        case 'سیم کشی تلفن ثابت':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TelephonePage()));
-          break;
-        case 'نصب سیستم های اطفا حریق':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FireAlarmPage()));
-          break;
-        case 'نصب انواع چراغ و سنسور':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SensorPage()));
-          break;
-        case 'دریل کاری و سوراخکاری':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DrillPage()));
-          break;
-        case 'نصب و تست سیستم ارت':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EarthPage()));
-          break;
-        case 'نورپردازی داخل و محوطه ساختمان':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LightingPage()));
-          break;
-        case 'تابلو برق صنعتی و ساختمانی':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IndPowerPage()));
-          break;
-        case 'نصب تلویزیون روی دیوار':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WallTvPage()));
-          break;
-        case 'نصب انواع پنکه سقفی و دیواری':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CeilingFanPage()));
-          break;
-        case 'نصب ریموت لوستر و روشنایی':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => LightRemotePage()));
-          break;
-        case 'نصب و تعمیر انواع آرام بند':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DamperPage()));
-          break;
-        case 'نصب انواع تهویه و هواکش':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AirConditioningPage()));
-          break;
-        case 'نصب سیستم های ضدسرقت':
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
-          break;
-        case 'نصب و راه اندازی مودم WiFi':
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ModemPage()));
-          break;
-      }
-    });
-  }
+  // void _navigateToPage(String title) {
+  //   setState(() {
+  //     switch (title) {
+  //       case 'نصب آنتن و آنتن مرکزی':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => AntennaPage()));
+  //         break;
+  //       case 'نصب و تعمیر انواع آیفون':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => IphonePage()));
+  //         break;
+  //       case 'نصب و سرویس کولر گازی':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => GasCoolerPage()));
+  //         break;
+  //       case 'نصب و سرویس کولر آبی':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => WaterCoolerPage()));
+  //         break;
+  //       case 'نصب و تعمیر انواع UPS':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => UpsPage()));
+  //         break;
+  //       case 'نصب انواع کلید و پریز':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => OutletPage()));
+  //         break;
+  //       case 'سیم کشی و کابل کشی':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => WiringPage()));
+  //         break;
+  //       case 'نصب دوربین مداربسته':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => CctvPage()));
+  //         break;
+  //       case 'خدمات سانترال و تلفن های ویپ':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => CentralPage()));
+  //         break;
+  //       case 'سیم کشی تلفن ثابت':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => TelephonePage()));
+  //         break;
+  //       case 'نصب سیستم های اطفا حریق':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => FireAlarmPage()));
+  //         break;
+  //       case 'نصب انواع چراغ و سنسور':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => SensorPage()));
+  //         break;
+  //       case 'دریل کاری و سوراخکاری':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => DrillPage()));
+  //         break;
+  //       case 'نصب و تست سیستم ارت':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => EarthPage()));
+  //         break;
+  //       case 'نورپردازی داخل و محوطه ساختمان':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => LightingPage()));
+  //         break;
+  //       case 'تابلو برق صنعتی و ساختمانی':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => IndPowerPage()));
+  //         break;
+  //       case 'نصب تلویزیون روی دیوار':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => WallTvPage()));
+  //         break;
+  //       case 'نصب انواع پنکه سقفی و دیواری':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => CeilingFanPage()));
+  //         break;
+  //       case 'نصب ریموت لوستر و روشنایی':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => LightRemotePage()));
+  //         break;
+  //       case 'نصب و تعمیر انواع آرام بند':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => DamperPage()));
+  //         break;
+  //       case 'نصب انواع تهویه و هواکش':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => AirConditioningPage()));
+  //         break;
+  //       case 'نصب سیستم های ضدسرقت':
+  //         // Navigate to the home page
+  //         Navigator.push(context,
+  //             MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
+  //         break;
+  //       case 'نصب و راه اندازی مودم WiFi':
+  //         // Navigate to the home page
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => ModemPage()));
+  //         break;
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -301,14 +269,16 @@ class _DrawerPageState extends State<DrawerPage>
                 child: AnimatedSize(
                   duration: Duration(microseconds: 300),
                   child: Column(
-                    children: List<Widget>.generate(images.length, (index) {
-                      final image = images.keys.toList()[index];
-                      final title = images[image]!;
+                    children: List<Widget>.generate(dataList.length, (index) {
+                      final item = dataList[index];
+                      final itemId = item['id'];
+                      final imagePath = 'assets/icons/homeicons/$itemId.webp';
+
                       if (index <= 6 || showAllItems) {
                         return GestureDetector(
                           onTap: () {
                             // Perform navigation based on the tapped item
-                            _navigateToPage(title);
+                            // _navigateToPage(title);
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 8),
@@ -324,14 +294,18 @@ class _DrawerPageState extends State<DrawerPage>
                                 SizedBox(
                                   width: _iconsize,
                                   height: _iconsize,
-                                  child: image,
+                                  child: Image.asset(
+                                    imagePath,
+                                    // height: 20,
+                                    // width: 20,
+                                  ),
                                 ),
                                 SizedBox(width: 20),
                                 SizedBox(
                                   width: 200,
-                                  height: 20,
+                                  height: 25,
                                   child: Text(
-                                    images[image]!,
+                                    item['title'],
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                       fontSize: _fontsize,

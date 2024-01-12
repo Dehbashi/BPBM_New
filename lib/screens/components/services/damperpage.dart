@@ -91,241 +91,179 @@ class _DamperPageState extends State<DamperPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس نصب آرام بند',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/damper.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب و تعمیر آرام‌بند درب رو بسپارش به ما\n'
-                        'می‌خوای برای در ورودی ساختمون خونه یا محل کارت آرام‌بند نصب کنی؟ صفر تا صد کار رو بسپارش به ما.\n'
-                        'آرام بند پارکینگ یا ساختمونت نیاز به تعمیر یا تعویض داره؟ کارشناس‌های بسپارش به ما عیب‌یابی و تعمیر رو برات انجام می‌ده.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس نصب آرام بند',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'آرام‌بند چیه و چطوری کار می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/damper.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'حتی اگه اسم آرام‌بند رو نشنیده باشین، حتما باهاش برخورد داشتین. آرام‌بند یه بازوی هیدرولیکی یا مکانیکیه که پشت درها نصب می‌شه و بعد از باز شدن در، اون رو به صورت اتومات و خیلی آروم می‌بنده. بسته شدن در بعد از باز کردن اون برای خیلی از مکان‌ها ضروریه و باعث می‌شه از ورود ناخواسته حیوانات یا اجسام سرگردان و همین‌طور ورود و خروج هوای سرد یا گرم به داخل یا بیرون محیط جلوگیری بشه. بعلاوه، اینکه در محکم بسته نشه و سروصدای مداوم تولید نکنه هم مهمه که آرام‌بند این ویژگی رو هم تأمین می‌کنه.\n'
-                        'آرام‌بندها رو می‌شه به دو صورت آشکار و پنهان نصب کرد. آرام‌بند اجزای مختلفی داره شامل: پیچ تنظیم، بازو، پاشنه یا کفشک بازویی و ساعد بازویی. با پیچ تنظیم، سرعت بسته شدن در تعیین می‌شه. پاشنه یکی از اجزای اصلی آرام‌بنده که باز و بسته شدن در رو به عهده داره و وزن در رو تحمل می‌کنه. داخل پاشنه دوتا فنر تعبیه شده که به یک پیستون شیاردار وصلن و کنترل این پیستون رو هم یه چرخ‌دنده‌ی عمودی به عهده داره. بازوی اصلی درواقع مرکز ثقل چرخش فنره و کار باز و بسته کردن در رو انجام می‌ده، یعنی تنظیماتی که روی پیچ تنظیم اعمال شده، از طریق بازو روی در اعمال می‌شه. در نهایت هم ساعد بازویی اون بخشیه که آرام‌بند رو به چارچوب وصل می‌کنه و موقع باز و بسته شدن سریع در، جلوی برخورد شدید در با چارچوب رو می‌گیره تا به اجزای آرام بند و در آسیبی وارد نشه.\n'
-                        'حالا بد نیست یه کم در مورد نحوه‌ی کار آرام‌بند هم توضیح بدیم. همون‌طور که گفتیم داخل آرام‌بندها یه پیستونی تعبیه شده که به فنر آرام‌بند متصله و با باز شدن در، پیستون حرکت می‌کنه و فنر رو فشرده می‌کنه. وقتی در رها می‌شه، انرژی ذخیره شده‌ی توی پیستون به فنر برمی‌گرده. این جریان انرژی به عملکرد آرام‌بند و کنترل سرعتش کمک می‌کنه.\n'
-                        'آرام‌بند انواع مختلفی داره که برای انتخاب بینشون، باید به کاربرد و نوع در توجه کرد. آرام‌بند سبک برای استفاده روی درهای معمولی و سبک بهترین گزینه‌ست و می‌شه اون رو برای خونه‌ها که کم رفت‌و‌آمدتر هستن استفاده کرد. آرام‌بند سنگین برای درهای نسبتا بزرگ‌تر و جاهایی که پررفت‌وآمدتر هستن استفاده می‌شه. آرام‌بند سنگین می‌تونه درهای بزرگ رو خیلی خوب کنترل کنه و از بسته شدن یهویی و شدید اون‌ها جلوگیری کنه. آرام‌بند دوزمانه، همون‌طور که از اسمش پیداست با دو حرکت کوتاه، در رو متوقف می‌کنه و می‌بنده، یعنی در توی دوتا زاویه‌ی مختلف توقف می‌کنه و سرعت در اینطوری کنترل می‌شه.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای آرام‌بند چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب و تعمیر آرام‌بند درب رو بسپارش به ما\n'
+                      'می‌خوای برای در ورودی ساختمون خونه یا محل کارت آرام‌بند نصب کنی؟ صفر تا صد کار رو بسپارش به ما.\n'
+                      'آرام بند پارکینگ یا ساختمونت نیاز به تعمیر یا تعویض داره؟ کارشناس‌های بسپارش به ما عیب‌یابی و تعمیر رو برات انجام می‌ده.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'آرام‌بند چیه و چطوری کار می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'حتی اگه اسم آرام‌بند رو نشنیده باشین، حتما باهاش برخورد داشتین. آرام‌بند یه بازوی هیدرولیکی یا مکانیکیه که پشت درها نصب می‌شه و بعد از باز شدن در، اون رو به صورت اتومات و خیلی آروم می‌بنده. بسته شدن در بعد از باز کردن اون برای خیلی از مکان‌ها ضروریه و باعث می‌شه از ورود ناخواسته حیوانات یا اجسام سرگردان و همین‌طور ورود و خروج هوای سرد یا گرم به داخل یا بیرون محیط جلوگیری بشه. بعلاوه، اینکه در محکم بسته نشه و سروصدای مداوم تولید نکنه هم مهمه که آرام‌بند این ویژگی رو هم تأمین می‌کنه.\n'
+                      'آرام‌بندها رو می‌شه به دو صورت آشکار و پنهان نصب کرد. آرام‌بند اجزای مختلفی داره شامل: پیچ تنظیم، بازو، پاشنه یا کفشک بازویی و ساعد بازویی. با پیچ تنظیم، سرعت بسته شدن در تعیین می‌شه. پاشنه یکی از اجزای اصلی آرام‌بنده که باز و بسته شدن در رو به عهده داره و وزن در رو تحمل می‌کنه. داخل پاشنه دوتا فنر تعبیه شده که به یک پیستون شیاردار وصلن و کنترل این پیستون رو هم یه چرخ‌دنده‌ی عمودی به عهده داره. بازوی اصلی درواقع مرکز ثقل چرخش فنره و کار باز و بسته کردن در رو انجام می‌ده، یعنی تنظیماتی که روی پیچ تنظیم اعمال شده، از طریق بازو روی در اعمال می‌شه. در نهایت هم ساعد بازویی اون بخشیه که آرام‌بند رو به چارچوب وصل می‌کنه و موقع باز و بسته شدن سریع در، جلوی برخورد شدید در با چارچوب رو می‌گیره تا به اجزای آرام بند و در آسیبی وارد نشه.\n'
+                      'حالا بد نیست یه کم در مورد نحوه‌ی کار آرام‌بند هم توضیح بدیم. همون‌طور که گفتیم داخل آرام‌بندها یه پیستونی تعبیه شده که به فنر آرام‌بند متصله و با باز شدن در، پیستون حرکت می‌کنه و فنر رو فشرده می‌کنه. وقتی در رها می‌شه، انرژی ذخیره شده‌ی توی پیستون به فنر برمی‌گرده. این جریان انرژی به عملکرد آرام‌بند و کنترل سرعتش کمک می‌کنه.\n'
+                      'آرام‌بند انواع مختلفی داره که برای انتخاب بینشون، باید به کاربرد و نوع در توجه کرد. آرام‌بند سبک برای استفاده روی درهای معمولی و سبک بهترین گزینه‌ست و می‌شه اون رو برای خونه‌ها که کم رفت‌و‌آمدتر هستن استفاده کرد. آرام‌بند سنگین برای درهای نسبتا بزرگ‌تر و جاهایی که پررفت‌وآمدتر هستن استفاده می‌شه. آرام‌بند سنگین می‌تونه درهای بزرگ رو خیلی خوب کنترل کنه و از بسته شدن یهویی و شدید اون‌ها جلوگیری کنه. آرام‌بند دوزمانه، همون‌طور که از اسمش پیداست با دو حرکت کوتاه، در رو متوقف می‌کنه و می‌بنده، یعنی در توی دوتا زاویه‌ی مختلف توقف می‌کنه و سرعت در اینطوری کنترل می‌شه.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای آرام‌بند چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

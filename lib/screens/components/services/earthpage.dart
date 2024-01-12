@@ -83,244 +83,182 @@ class _EarthPageState extends State<EarthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس سیستم ارت',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/earth.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'سیم‌کشی ارت ساختمان رو بسپارش به ما\n'
-                        'برای طراحی، اجرا یا عیب‌یابی و رفع مشکل سیستم ارت ساختمون نیاز به نیروی متخصص داری؟\n'
-                        'کارشناس‌های بسپارش به ما آماده‌ن که حرفه‌ای‌ترین خدمات سیستم ارت رو بهت ارائه کنن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس سیستم ارت',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'سیم‌کشی ارت چیه و چطور انجام می‌شه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/earth.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'شاید در مورد مفهوم مقاومت الکتریکی یا رسانایی الکتریکی شنیده باشین. به زبون خیلی ساده، مقاومت الکتریکی یه مشخصه‌ایه که می‌شه اون رو برای تمام اجسام و مواد تعریف کرد و رسانایی اون ماده در مقابل جریان برق رو تعیین می‌کنه. به بیان دیگه، مقاومت یه مفهوم مخالف رسانایی الکتریکیه. بااین‌حساب، مقاومت الکتریکی جلوی عبور جریان رو می‌گیره و هرچی یه مسیر یا ماده‌ای مقاومت الکتریکی بیشتری داشته باشه، جریان هم کمتر تمایل داره که از اونجا عبور کنه.\n'
-                        'بدن انسان مقاومت الکتریکی خیلی کمی داره و رسانای خوبیه. به‌خاطر همین هم یکی از مسیرهای مورد علاقه‌ی جریان برقه! اگه به هر دلیلی، بدنه‌ی اجسام و وسایل الکتریکی برق‌دار بشه و ما بهشون دست بزنیم، جریان برق از بدن ما عبور می‌کنه و اگه شدت جریان زیاد باشه، باعث برق‌گرفتگی می‌شه.\n'
-                        'برای اینکه جلوی این اتفاق گرفته بشه، باید یه مسیری که مقاومت الکتریکی کمتری از بدن ما داره برای این جریان‌های نشتی در نظر گرفت تا جریان به جای عبور از بدن ما از اون مسیر عبور کنه. چنین مسیری رو بهش می‌گن ارت (Earth).\n'
-                        'کار سیم‌کشی ارت اینه که بدنه‌ی فلزی یا هادی دستگاه‌های الکتریکی رو به زمین وصل می‌کنه تا یه مسیر جایگزینی که مقاومتش از بدن انسان کمتره ایجاد بشه و جریان نشتی از اون مسیر تخلیه بشه. اینطوری اگر به اون‌وسیله‌ای که برق‌دار شده دست بزنیم، دیگه جریان از بدن ما عبور نمی‌کنه و ترجیح می‌ده از اون مسیر کم‌مقاومت سیم‌کشی ارت عبور کنه.\n'
-                        'سیم ارت توی لوازم الکتریکی مختلف مثل یخچال، لباسشویی، مایکوروویو و... کنار سیم‌های نول و فاز به‌کار می‌ره و به رنگ سبز و زرده. هادی سیم ارت از جنس مسه که رسانایی خیلی خوبی برای عبور جریان برق داره. با توجه به نوع سیم، هادی اون می‌تونه مفتولی یا افشان باشه.\n'
-                        'برای اینکه سیم ارت به اصطلاح بهتر زمین بشه و ضریب اطمینانش بالاتر بره، از چاه ارت استفاده می‌کنن. چاه ارت یه حفره‌ست که مشخصاتش براساس محل حفر متفاوته. مثلا عمق چاه ارت متناسب با مقدار رطوبت خاک تعیین می‌شه، یعنی ممکنه توی یه منطقه‌ای نیاز باشه نیم‌متر حفر کنیم تا به رطوبت مناسب برسیم و توی یه منطقه‌ی دیگه که خشک‌تره نیاز به سه متر حفاری داشته باشیم. چاه ارت رو با خاک، ذغال و آهک پر می‌کنن و داخلش هم یه صفحه‌ی مسی بزرگ عمودی قرار می‌دن. این کار باعث می‌شه که رسانایی اون قسمت زمین خیلی بیشتر بشه و ضریب اطمینان سیم ارت بالاتر بره.\n'
-                        'سیم‌کشی ارت و چاه ارت توی فضاهای صنعتی اهمیت خیلی زیادی داره و باید به‌صورت استاندارد و با ضریب اطمینان بالا پیاده‌سازی بشه. توی خونه‌ها هم سیم‌کشی ارت لازمه و باعث می‌شه خطر برق‌گرفتگی موقع کار با وسایل الکتریکی شما رو تهدید نکنه. تقریبا تمام وسایل الکتریکی و الکترونیکی نیاز به سیم ارت دارن اما می‌شه از وسایلی که بدنه‌شون عایقه و هادی برق نیست چشم‌پوشی کرد. یعنی بهتره وسایلی که بدنه‌ی فلزی یا هادی دارن، حتما و حتما سیم ارت داشته باشن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای سیم ارت چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'سیم‌کشی ارت ساختمان رو بسپارش به ما\n'
+                      'برای طراحی، اجرا یا عیب‌یابی و رفع مشکل سیستم ارت ساختمون نیاز به نیروی متخصص داری؟\n'
+                      'کارشناس‌های بسپارش به ما آماده‌ن که حرفه‌ای‌ترین خدمات سیستم ارت رو بهت ارائه کنن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'سیم‌کشی ارت چیه و چطور انجام می‌شه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'شاید در مورد مفهوم مقاومت الکتریکی یا رسانایی الکتریکی شنیده باشین. به زبون خیلی ساده، مقاومت الکتریکی یه مشخصه‌ایه که می‌شه اون رو برای تمام اجسام و مواد تعریف کرد و رسانایی اون ماده در مقابل جریان برق رو تعیین می‌کنه. به بیان دیگه، مقاومت یه مفهوم مخالف رسانایی الکتریکیه. بااین‌حساب، مقاومت الکتریکی جلوی عبور جریان رو می‌گیره و هرچی یه مسیر یا ماده‌ای مقاومت الکتریکی بیشتری داشته باشه، جریان هم کمتر تمایل داره که از اونجا عبور کنه.\n'
+                      'بدن انسان مقاومت الکتریکی خیلی کمی داره و رسانای خوبیه. به‌خاطر همین هم یکی از مسیرهای مورد علاقه‌ی جریان برقه! اگه به هر دلیلی، بدنه‌ی اجسام و وسایل الکتریکی برق‌دار بشه و ما بهشون دست بزنیم، جریان برق از بدن ما عبور می‌کنه و اگه شدت جریان زیاد باشه، باعث برق‌گرفتگی می‌شه.\n'
+                      'برای اینکه جلوی این اتفاق گرفته بشه، باید یه مسیری که مقاومت الکتریکی کمتری از بدن ما داره برای این جریان‌های نشتی در نظر گرفت تا جریان به جای عبور از بدن ما از اون مسیر عبور کنه. چنین مسیری رو بهش می‌گن ارت (Earth).\n'
+                      'کار سیم‌کشی ارت اینه که بدنه‌ی فلزی یا هادی دستگاه‌های الکتریکی رو به زمین وصل می‌کنه تا یه مسیر جایگزینی که مقاومتش از بدن انسان کمتره ایجاد بشه و جریان نشتی از اون مسیر تخلیه بشه. اینطوری اگر به اون‌وسیله‌ای که برق‌دار شده دست بزنیم، دیگه جریان از بدن ما عبور نمی‌کنه و ترجیح می‌ده از اون مسیر کم‌مقاومت سیم‌کشی ارت عبور کنه.\n'
+                      'سیم ارت توی لوازم الکتریکی مختلف مثل یخچال، لباسشویی، مایکوروویو و... کنار سیم‌های نول و فاز به‌کار می‌ره و به رنگ سبز و زرده. هادی سیم ارت از جنس مسه که رسانایی خیلی خوبی برای عبور جریان برق داره. با توجه به نوع سیم، هادی اون می‌تونه مفتولی یا افشان باشه.\n'
+                      'برای اینکه سیم ارت به اصطلاح بهتر زمین بشه و ضریب اطمینانش بالاتر بره، از چاه ارت استفاده می‌کنن. چاه ارت یه حفره‌ست که مشخصاتش براساس محل حفر متفاوته. مثلا عمق چاه ارت متناسب با مقدار رطوبت خاک تعیین می‌شه، یعنی ممکنه توی یه منطقه‌ای نیاز باشه نیم‌متر حفر کنیم تا به رطوبت مناسب برسیم و توی یه منطقه‌ی دیگه که خشک‌تره نیاز به سه متر حفاری داشته باشیم. چاه ارت رو با خاک، ذغال و آهک پر می‌کنن و داخلش هم یه صفحه‌ی مسی بزرگ عمودی قرار می‌دن. این کار باعث می‌شه که رسانایی اون قسمت زمین خیلی بیشتر بشه و ضریب اطمینان سیم ارت بالاتر بره.\n'
+                      'سیم‌کشی ارت و چاه ارت توی فضاهای صنعتی اهمیت خیلی زیادی داره و باید به‌صورت استاندارد و با ضریب اطمینان بالا پیاده‌سازی بشه. توی خونه‌ها هم سیم‌کشی ارت لازمه و باعث می‌شه خطر برق‌گرفتگی موقع کار با وسایل الکتریکی شما رو تهدید نکنه. تقریبا تمام وسایل الکتریکی و الکترونیکی نیاز به سیم ارت دارن اما می‌شه از وسایلی که بدنه‌شون عایقه و هادی برق نیست چشم‌پوشی کرد. یعنی بهتره وسایلی که بدنه‌ی فلزی یا هادی دارن، حتما و حتما سیم ارت داشته باشن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای سیم ارت چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

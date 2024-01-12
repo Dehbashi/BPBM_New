@@ -114,235 +114,182 @@ class _AntennaPageState extends State<AntennaPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس آنتن',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/antenna.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 225,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'نصب، تنظیم و تعمیر انواع آنتن تلویزیون و ستاپ باکس رو بسپارش به ما\n'
-                        'اگه می‌خوای برای مجتمع مسکونی یا محل کارت آنتن نصب کنی، با خیال راحت صفر تا صدش رو بسپارش به ما.\n'
-                        'کانال‌های تلویزیون خونه‌ت به هم ریخته و نمی‌دونی چطوری باید تنظیمشون کنی؟ نگران نباش، بسپارش به ما.\n'
-                        'آنتن دیجیتال داری ولی همه‌ش بهت پیغام قطع سیگنال می‌ده؟ بسپارش به ما کنارته تا برات درستش کنه.\n'
-                        'با کارشناس‌های حرفه‌ای بسپارش به ما، دیگه نگرانی بابت نصب، تنظیم یا تعمیر آنتن مرکزی و دیجیتال خونه و محل کارت نداری. کافیه خبرمون کنی تا بهترین خدمات رو بهت ارائه بدیم.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس آنتن',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آنتن‌های تلویزیون چه انواعی دارن و چطوری کار می‌کنن؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/antenna.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 225,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'احتمالا شما هم تا حالا آنتن‌های مختلفی بالای خونه‌ها به چشمتون خورده و از خودتون پرسیدین اصلا چرا این همه آنتن مختلف داریم؟ با اینکه توی نگاه اول، آنتن ابزار خیلی ساده‌ای به نظر می‌رسه که حتی طراحیش هم به ظاهر پیچیدگی خاصی نداره اما عملکردش اونقدرها هم ساده نیست. کار آنتن اینه که سیگنال صدا و تصویر رو که به صورت الکترومغناطیسی و از طریق هوا توسط فرستنده فرستاده شده، دریافت و تقویت کنه و بعد از اینکه اون رو به سیگنال الکتریکی تبدیل کرد، به یه دستگاه مبدل یا مستقیما به تلویزیون شما تحویل بده.\n'
-                        'نوع آنتن باید با توجه به شرایط محل نصب، قدرت سیگنال مخابره شده، باند فرکانسی و طول موج سیگنال دریافتی و شرایط دیگه تعیین بشه. بررسی این شرایط هم از عهده‌ی کارشناس متخصص برمیاد و اونه که می‌تونه مشاوره‌ی لازم برای انتخاب آنتن مناسب رو ارائه کنه. حالا که دلیل وجود این همه آنتن جورواجور رو دونستیم، بد نیست با چند نوع آنتن که استفاده ازشون رایج‌تره آشنا بشیم: آنتن‌های مونوپل یا تک‌ قطبی، آنتن دو قطبی یا دو شاخه، آنتن هورن یا شیپوری، آنتن بشقابی، آنتن شاخه‌ای و آنتن رومیزی.\n'
-                        'خیلی‌ها که توی مجتمع‌های بزرگ با تعداد واحد زیاد زندگی می‌کنن، احتمالا با آنتن مرکزی هم آشنایی دارن. آنتن مرکزی همون‌طور که از اسمش هم مشخصه، وظیفه‌ی دریافت سیگنال صوت و تصویر برای تمام واحدهای یه مجتمع رو به‌عهده داره. یعنی به جای اینکه هرواحد برای خودش یه آنتن جدا نصب کنه و پشت بوم و بالکن واحدها پر کابل و آنتن بشه و زیبایی ساختمون رو کلا از بین ببره، یه آنتن برای کل مجتمع در نظر گرفته می‌شه که می‌تونه به همه‌ی واحدها خروجی بده.\n'
-                        'قدیم‌ترها، صدا و تصویر به صورت آنالوگ مخابره می‌شد و برای همین، داشتن یه آنتن و یه تلویزیون برای گرفتن تصویر و صدا کافی بود. اما بعدا با پیشرفت تکنولوژی، فهمیدن که اگه سیگنال صدا و تصویر رو به صورت دیجیتال مخابره کنن هم خطای کمتری توی ارسال و دریافتش به‌وجود میاد و هم بازیابی کردنش توی گیرنده راحت‌تر می‌شه. اینجا بود که دستگاه‌هایی به اسم ستاپ باکس یا گیرنده دیجیتال به‌وجود اومدن تا کار دریافت و تبدیل سیگنال دیجیتال به صدا و تصویر رو انجام بدن.\n'
-                        'این روزها همه‌ی ما برای دیدن شبکه‌های دیجیتال، یه ستاپ باکس توی خونه‌هامون داریم که از آنتن ورودی رو می‌گیره و خروجی رو خیلی تمیز و با کیفیت، روی تلویزیون نمایش می‌ده. البته درست کار کردنش مشروط به اینه که هم آنتن درست تنظیم شده باشه و هم کابل‌کشی آنتن اصولی انجام شده باشه.\n'
-                        'شما برای نصب، تنظیم یا تعمیر هر نوع آنتنی که توی خونه یا محل کارتون ازش استفاده می‌کنین، یا برای نصب، تنظیم و تعمیر ستاپ باکس، می‌تونین با بسپارش به ما تماس بگیرین.\n'
-                        'کارشناس‌های ما تمام شرایط رو بررسی می‌کنن و بهترین انتخاب رو به شما پیشنهاد می‌دن و براتون اجرا می‌کنن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'بسپارش به ما برای آنتن چه خدماتی ارائه می‌ده؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 300,
-                                    height: 30,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'نصب، تنظیم و تعمیر انواع آنتن تلویزیون و ستاپ باکس رو بسپارش به ما\n'
+                      'اگه می‌خوای برای مجتمع مسکونی یا محل کارت آنتن نصب کنی، با خیال راحت صفر تا صدش رو بسپارش به ما.\n'
+                      'کانال‌های تلویزیون خونه‌ت به هم ریخته و نمی‌دونی چطوری باید تنظیمشون کنی؟ نگران نباش، بسپارش به ما.\n'
+                      'آنتن دیجیتال داری ولی همه‌ش بهت پیغام قطع سیگنال می‌ده؟ بسپارش به ما کنارته تا برات درستش کنه.\n'
+                      'با کارشناس‌های حرفه‌ای بسپارش به ما، دیگه نگرانی بابت نصب، تنظیم یا تعمیر آنتن مرکزی و دیجیتال خونه و محل کارت نداری. کافیه خبرمون کنی تا بهترین خدمات رو بهت ارائه بدیم.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'آنتن‌های تلویزیون چه انواعی دارن و چطوری کار می‌کنن؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'احتمالا شما هم تا حالا آنتن‌های مختلفی بالای خونه‌ها به چشمتون خورده و از خودتون پرسیدین اصلا چرا این همه آنتن مختلف داریم؟ با اینکه توی نگاه اول، آنتن ابزار خیلی ساده‌ای به نظر می‌رسه که حتی طراحیش هم به ظاهر پیچیدگی خاصی نداره اما عملکردش اونقدرها هم ساده نیست. کار آنتن اینه که سیگنال صدا و تصویر رو که به صورت الکترومغناطیسی و از طریق هوا توسط فرستنده فرستاده شده، دریافت و تقویت کنه و بعد از اینکه اون رو به سیگنال الکتریکی تبدیل کرد، به یه دستگاه مبدل یا مستقیما به تلویزیون شما تحویل بده.\n'
+                      'نوع آنتن باید با توجه به شرایط محل نصب، قدرت سیگنال مخابره شده، باند فرکانسی و طول موج سیگنال دریافتی و شرایط دیگه تعیین بشه. بررسی این شرایط هم از عهده‌ی کارشناس متخصص برمیاد و اونه که می‌تونه مشاوره‌ی لازم برای انتخاب آنتن مناسب رو ارائه کنه. حالا که دلیل وجود این همه آنتن جورواجور رو دونستیم، بد نیست با چند نوع آنتن که استفاده ازشون رایج‌تره آشنا بشیم: آنتن‌های مونوپل یا تک‌ قطبی، آنتن دو قطبی یا دو شاخه، آنتن هورن یا شیپوری، آنتن بشقابی، آنتن شاخه‌ای و آنتن رومیزی.\n'
+                      'خیلی‌ها که توی مجتمع‌های بزرگ با تعداد واحد زیاد زندگی می‌کنن، احتمالا با آنتن مرکزی هم آشنایی دارن. آنتن مرکزی همون‌طور که از اسمش هم مشخصه، وظیفه‌ی دریافت سیگنال صوت و تصویر برای تمام واحدهای یه مجتمع رو به‌عهده داره. یعنی به جای اینکه هرواحد برای خودش یه آنتن جدا نصب کنه و پشت بوم و بالکن واحدها پر کابل و آنتن بشه و زیبایی ساختمون رو کلا از بین ببره، یه آنتن برای کل مجتمع در نظر گرفته می‌شه که می‌تونه به همه‌ی واحدها خروجی بده.\n'
+                      'قدیم‌ترها، صدا و تصویر به صورت آنالوگ مخابره می‌شد و برای همین، داشتن یه آنتن و یه تلویزیون برای گرفتن تصویر و صدا کافی بود. اما بعدا با پیشرفت تکنولوژی، فهمیدن که اگه سیگنال صدا و تصویر رو به صورت دیجیتال مخابره کنن هم خطای کمتری توی ارسال و دریافتش به‌وجود میاد و هم بازیابی کردنش توی گیرنده راحت‌تر می‌شه. اینجا بود که دستگاه‌هایی به اسم ستاپ باکس یا گیرنده دیجیتال به‌وجود اومدن تا کار دریافت و تبدیل سیگنال دیجیتال به صدا و تصویر رو انجام بدن.\n'
+                      'این روزها همه‌ی ما برای دیدن شبکه‌های دیجیتال، یه ستاپ باکس توی خونه‌هامون داریم که از آنتن ورودی رو می‌گیره و خروجی رو خیلی تمیز و با کیفیت، روی تلویزیون نمایش می‌ده. البته درست کار کردنش مشروط به اینه که هم آنتن درست تنظیم شده باشه و هم کابل‌کشی آنتن اصولی انجام شده باشه.\n'
+                      'شما برای نصب، تنظیم یا تعمیر هر نوع آنتنی که توی خونه یا محل کارتون ازش استفاده می‌کنین، یا برای نصب، تنظیم و تعمیر ستاپ باکس، می‌تونین با بسپارش به ما تماس بگیرین.\n'
+                      'کارشناس‌های ما تمام شرایط رو بررسی می‌کنن و بهترین انتخاب رو به شما پیشنهاد می‌دن و براتون اجرا می‌کنن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'بسپارش به ما برای آنتن چه خدماتی ارائه می‌ده؟',
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 55,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                      fontSize: _fontsize,
+                                      color: Color(0xFF025459),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

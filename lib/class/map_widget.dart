@@ -5,7 +5,10 @@ import 'package:latlong2/latlong.dart' as latLng;
 import 'package:location_picker_flutter_map/location_picker_flutter_map.dart';
 
 class MapWidget extends StatefulWidget {
-  const MapWidget({super.key});
+  // const MapWidget({super.key});
+  final void Function(double latitude, double longitude) onLocationPicked;
+
+  const MapWidget({Key? key, required this.onLocationPicked}) : super(key: key);
 
   @override
   State<MapWidget> createState() => _MapWidgetState();
@@ -55,12 +58,20 @@ class _MapWidgetState extends State<MapWidget> {
               onError: (e) => print(e),
               selectLocationButtonLeadingIcon: const Icon(Icons.check),
               onPicked: (pickedData) {
+                widget.onLocationPicked(
+                  pickedData.latLong.latitude,
+                  pickedData.latLong.longitude,
+                );
                 print(pickedData.latLong.latitude);
                 print(pickedData.latLong.longitude);
                 print(pickedData.address);
                 print(pickedData.addressData);
               },
               onChanged: (pickedData) {
+                widget.onLocationPicked(
+                  pickedData.latLong.latitude,
+                  pickedData.latLong.longitude,
+                );
                 print(pickedData.latLong.latitude);
                 print(pickedData.latLong.longitude);
                 print(pickedData.address);

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../components/screen/name_page.dart';
+import '../screens/components/name_page.dart';
 
 Future<void> verifyOtpCode(
   BuildContext context,
@@ -43,6 +43,7 @@ Future<void> verifyOtpCode(
     prefs.setString('userAgent', userAgent);
 
     print('your data is $data');
+    Navigator.of(context).pop();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -81,10 +82,21 @@ Future<void> verifyOtpCode(
                                 NamePage(),
                                 SizedBox(height: 16),
                                 ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                      Color(0xFF04A8B2),
+                                    ),
+                                  ),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('برگشت به صفحه قبل'),
+                                  child: Text(
+                                    'برگشت به صفحه قبل',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -103,13 +115,6 @@ Future<void> verifyOtpCode(
         );
       },
     );
-    // Navigator.of(context).pop();
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => AdminPage(),
-    //   ),
-    // );
   } else {
     showDialog(
       context: context,

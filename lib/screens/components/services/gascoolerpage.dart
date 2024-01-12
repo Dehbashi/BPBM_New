@@ -99,279 +99,219 @@ class _GasCoolerPageState extends State<GasCoolerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس کولر گازی',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/gascooler.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 225,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'از نصب و راه‌اندازی تا سرویس و تعمیر کولر گازی و اسپلیت رو بسپارش به ما\n'
-                        'قبل از شروع گرمای تابستون به فکر خنک نگه داشتن خونه یا محل کارت هستی؟\n'
-                        'اگه به فکر نصب و راه‌اندازی کولر گازی برای خونه یا محل کارت هستی و دنبال یه متخصص می‌گردی که همه کارها رو از صفر تا صد برات انجام بده، بسپارش به ما.\n'
-                        'کولر گازی یا اسپلیت داری و می‌خوای قبل از شروع گرما کامل سرویس یا تعمیرش کنی؟ همه‌ی کارها رو بسپارش به ما.\n'
-                        'بسپارش به ما همیشه آماده‌ست تا بهترین کارشناس‌های متخصص رو برای نصب، راه‌اندازی، سرویس و تعمیر کولر گازی خونه یا محل کارت در نظر بگیره. کافیه سفارشت رو توی بسپارش به ما ثبت کنی.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس کولر گازی',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'کولر گازی یا اسپلیت چه اجزایی داره و چجوری کار می‌کنه؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/gascooler.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 225,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'فرق اصلی کولر گازی یا اسپلیت با کولر آبی اینه که به جای دمیدن هوای خنک به داخل فضا، هوای گرمی رو که توی محیط وجود داره خنک می‌کنه؛ یعنی گرمای هوای محیط رو می‌گیره.\n'
-                        'قسمت اصلی کولر گازی یا اسپلیت هم مثل کولر آبی موتورشه. موتور هوای گرمی رو که توی ساختمون وجود داره روی یه شبکه‌ی آلومینیومی به جریان می‌ندازه. زیر شبکه‌ی آلومینیومی، یه نوع سیستم لوله‌ای از جنس مس  تعبیه شده و توی لوله هم مایع سرمازا (مبرد) جریان داره. به مجموعه‌ی لوله‌های مسی و شبکه‌ی آلومینیومی اواپراتور (Evaporator) می‌گن.\n'
-                        'حالا که قسمت خنک‌کننده توی کولر گازی یا اسپلیت‌ها رو شناختیم می‌تونیم بهتر بفهمیم که هوا روی چطوری خنک می‌کنه. هوای گرمی که توی محیط وجود داره، از شبکه‌ی آلومینیومی رد می‌شه و به‌خاطر تماس با مایع سرمازا خنک می‌شه، بعدش دوباره به داخل فضا برمی‌گرده.\n'
-                        'بعد از اینکه ماده‌ی سرمازا هوا رو خنک کرد، خودش هم گرم می‌شه و باید دوباره خنک بشه.\n'
-                        'اینجاست که یه جزء دیگه به نام کمپرسور باید وظیفه‌ش رو انجام بده. کمپرسور همون بخشیه که بیرون از محیط و توی فضای آزاد نصب می‌شه. سرمازا توی این مرحله وارد کمپرسور می‌شه، فشرده می‌شه و دماش باز هم بالاتر می‌ره. حالا سرمازا به‌صورت گازه و باید اول خنک بشه و بعد به‌صورت مایع دربیاد. توی مرحله‌ی اول بخشی به اسم کندانسور دمای گاز رو پایین میاره و بعد شیر انبساط، با فرایند چگالش، گاز رو به مایع تبدیل می‌کنه.\n'
-                        'تمام مراحلی که در موردشون صحبت کردیم انقد تکرار می‌شن تا دمای هوای محیط به مقدار دلخواهی که شما تنظیم کردین برسه. بااین‌حساب، اگه کولرتون خنک نمی‌کنه، ممکنه هرکدوم از این مراحل درست انجام نشن و اجزای مختلف توی این چرخه، نیاز به سرویس، تعمیر یا حتی تعویض داشته باشن.\n',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 0),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'بهترین زمان سرویس کولر گازی یا اسپلیت کیه؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'بد نیست بدونین که کولر گازی یا اسپلیت سرویس‌های دوره‌ای مختلفی داره. مثلا سرویس کامل که بهتره حدودا هر پنج سال یه بار برای کولرتون انجامش بدین. سرویس سالیانه هم از اسمش مشخصه، قبل از شروع فصل گرما خوبه که یه متخصص برای سرویس سالیانه صدا کنین تا توی گرمای تابستون به مشکل برنخورین و خیالتون از بابت درست کار کردن و آسیب ندیدن کولر راحت باشه. اگر توی زمستون هم از اسپلیت برای گرمایش محیط استفاده می‌کنین، بد نیست قبل از شروع سرما هم یه سرویس زمستونی انجام بدین.\n'
-                        'فرقی نمی‌کنه که کولرتون نیاز به سرویس سالیانه داشته باشه یا بخواین سرویس کامل براش انجام بشه. کافیه نوع درخواستتون رو توی سایت یا اپلیکیشن بسپارش به ما ثبت کنین و بقیه‌ی کارها رو بسپارین به متخصص‌های حرفه‌ای و کاربلد بسپارش به ما.\n'
-                        'اگر هم نمی‌دونین کولرتون چه نوع سرویسی نیاز داره یا چرا خوب خنک نمی‌کنه، نگران نباشین. با بسپارش به ما تماس بگیرین تا بخش پشتیبانی و نیروهای متخصص‌مون راهنمایی‌تون کنن.\n',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'بسپارش به ما برای آنتن چه خدماتی ارائه می‌ده؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 30,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'از نصب و راه‌اندازی تا سرویس و تعمیر کولر گازی و اسپلیت رو بسپارش به ما\n'
+                      'قبل از شروع گرمای تابستون به فکر خنک نگه داشتن خونه یا محل کارت هستی؟\n'
+                      'اگه به فکر نصب و راه‌اندازی کولر گازی برای خونه یا محل کارت هستی و دنبال یه متخصص می‌گردی که همه کارها رو از صفر تا صد برات انجام بده، بسپارش به ما.\n'
+                      'کولر گازی یا اسپلیت داری و می‌خوای قبل از شروع گرما کامل سرویس یا تعمیرش کنی؟ همه‌ی کارها رو بسپارش به ما.\n'
+                      'بسپارش به ما همیشه آماده‌ست تا بهترین کارشناس‌های متخصص رو برای نصب، راه‌اندازی، سرویس و تعمیر کولر گازی خونه یا محل کارت در نظر بگیره. کافیه سفارشت رو توی بسپارش به ما ثبت کنی.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'کولر گازی یا اسپلیت چه اجزایی داره و چجوری کار می‌کنه؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'فرق اصلی کولر گازی یا اسپلیت با کولر آبی اینه که به جای دمیدن هوای خنک به داخل فضا، هوای گرمی رو که توی محیط وجود داره خنک می‌کنه؛ یعنی گرمای هوای محیط رو می‌گیره.\n'
+                      'قسمت اصلی کولر گازی یا اسپلیت هم مثل کولر آبی موتورشه. موتور هوای گرمی رو که توی ساختمون وجود داره روی یه شبکه‌ی آلومینیومی به جریان می‌ندازه. زیر شبکه‌ی آلومینیومی، یه نوع سیستم لوله‌ای از جنس مس  تعبیه شده و توی لوله هم مایع سرمازا (مبرد) جریان داره. به مجموعه‌ی لوله‌های مسی و شبکه‌ی آلومینیومی اواپراتور (Evaporator) می‌گن.\n'
+                      'حالا که قسمت خنک‌کننده توی کولر گازی یا اسپلیت‌ها رو شناختیم می‌تونیم بهتر بفهمیم که هوا روی چطوری خنک می‌کنه. هوای گرمی که توی محیط وجود داره، از شبکه‌ی آلومینیومی رد می‌شه و به‌خاطر تماس با مایع سرمازا خنک می‌شه، بعدش دوباره به داخل فضا برمی‌گرده.\n'
+                      'بعد از اینکه ماده‌ی سرمازا هوا رو خنک کرد، خودش هم گرم می‌شه و باید دوباره خنک بشه.\n'
+                      'اینجاست که یه جزء دیگه به نام کمپرسور باید وظیفه‌ش رو انجام بده. کمپرسور همون بخشیه که بیرون از محیط و توی فضای آزاد نصب می‌شه. سرمازا توی این مرحله وارد کمپرسور می‌شه، فشرده می‌شه و دماش باز هم بالاتر می‌ره. حالا سرمازا به‌صورت گازه و باید اول خنک بشه و بعد به‌صورت مایع دربیاد. توی مرحله‌ی اول بخشی به اسم کندانسور دمای گاز رو پایین میاره و بعد شیر انبساط، با فرایند چگالش، گاز رو به مایع تبدیل می‌کنه.\n'
+                      'تمام مراحلی که در موردشون صحبت کردیم انقد تکرار می‌شن تا دمای هوای محیط به مقدار دلخواهی که شما تنظیم کردین برسه. بااین‌حساب، اگه کولرتون خنک نمی‌کنه، ممکنه هرکدوم از این مراحل درست انجام نشن و اجزای مختلف توی این چرخه، نیاز به سرویس، تعمیر یا حتی تعویض داشته باشن.\n',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 0),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'بهترین زمان سرویس کولر گازی یا اسپلیت کیه؟',
+                        style: theme.textTheme.bodyLarge,
+                        textDirection: TextDirection.rtl,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  // decoration: BoxDecoration(
+                  //   border: Border(
+                  //     bottom: BorderSide(
+                  //       color: Color(0xFF04A8B2),
+                  //     ),
+                  //   ),
+                  // ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'بد نیست بدونین که کولر گازی یا اسپلیت سرویس‌های دوره‌ای مختلفی داره. مثلا سرویس کامل که بهتره حدودا هر پنج سال یه بار برای کولرتون انجامش بدین. سرویس سالیانه هم از اسمش مشخصه، قبل از شروع فصل گرما خوبه که یه متخصص برای سرویس سالیانه صدا کنین تا توی گرمای تابستون به مشکل برنخورین و خیالتون از بابت درست کار کردن و آسیب ندیدن کولر راحت باشه. اگر توی زمستون هم از اسپلیت برای گرمایش محیط استفاده می‌کنین، بد نیست قبل از شروع سرما هم یه سرویس زمستونی انجام بدین.\n'
+                      'فرقی نمی‌کنه که کولرتون نیاز به سرویس سالیانه داشته باشه یا بخواین سرویس کامل براش انجام بشه. کافیه نوع درخواستتون رو توی سایت یا اپلیکیشن بسپارش به ما ثبت کنین و بقیه‌ی کارها رو بسپارین به متخصص‌های حرفه‌ای و کاربلد بسپارش به ما.\n'
+                      'اگر هم نمی‌دونین کولرتون چه نوع سرویسی نیاز داره یا چرا خوب خنک نمی‌کنه، نگران نباشین. با بسپارش به ما تماس بگیرین تا بخش پشتیبانی و نیروهای متخصص‌مون راهنمایی‌تون کنن.\n',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'بسپارش به ما برای آنتن چه خدماتی ارائه می‌ده؟',
+                          style: theme.textTheme.bodyLarge,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 30,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                      fontSize: _fontsize,
+                                      color: Color(0xFF025459),
+                                      fontFamily: 'iransans',
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

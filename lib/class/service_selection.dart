@@ -5,7 +5,7 @@ import '../components/questions/question_nasbeanten.dart';
 class ServiceSelection {
   static dynamic getQuestionService(String serviceTitle) {
     switch (serviceTitle) {
-      case 'نصب و سرویس کولر آبی':
+      case 'کولر آبی':
         return QuestionKoolerAbi();
       case 'نصب آنتن و آنتن مرکزی':
         return QuestionNasbeAnten();

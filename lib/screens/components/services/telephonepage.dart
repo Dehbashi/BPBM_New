@@ -100,240 +100,178 @@ class _TelephonePageState extends State<TelephonePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس تلفن ثابت',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/telephone.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'سیم‌کشی و راه‌اندازی تلفن ثابت خونه یا محل کارت رو بسپارش به ما\n'
-                        'می‌خوای خط تلفن ثابت خونه یا محل کارت رو راه‌اندازی کنی؟ بسپارش به ما تمام کارهای فنی داخل ساختمون رو برات انجام می‌ده.\n'
-                        'اگه سیم‌کشی داخلی تلفن دچار مشکل شده و تلفن ثابتت درست کار نمی‌کنه، عیب‌یابی و برطرف کردن مشکلت رو بسپارش به ما.\n'
-                        'تلفن ثابتت نویز داره یا خش‌خش می‌کنه و مشکل از سیم‌کشی داخلی ساختمونه؟ کارشناس‌های بسپارش به ما رو برای عیب‌یابی و رفع خرابی خبر کن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس تلفن ثابت',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سیم‌کشی تلفن ثابت چه انواعی داره؟',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/telephone.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'بااینکه شاید تلفن ثابت دیگه اولویت اول خیلی‌ها برای تماس تلفنی نباشه، اما به‌هرحال نمی‌تونیم نقش مهمی که برای برقراری تماس و اتصال به اینترنت ADSLداره، نادیده بگیریم. توی ادارات و شرکت‌ها، تلفن ثابت همچنان راه ارتباطی اصلی به‌حساب میاد و اهمیت دوچندانی داره، پس اگه مشکلی توی خطوط تلفن پیش بیاد، کارهای زیادی لنگ می‌مونن و راه اصلی ارتباط با اون شرکت یا اداره اختلال پیدا می‌کنه.\n'
-                        'سیم‌کشی تلفن دو بخش داره که یه بخشش رو مخابرات انجام می‌ده که بهش می‌گن سیم‌کشی خارجی و کابل تلفن رو تا بیرون ساختمون میاره. بعدش هم سیم‌کشی داخلی ساختمون، بوق تلفن رو به داخل واحدها و خونه‌ها می‌رسونه. سیم‌های مخابراتی که به در منزل می‌رسن سه نوع دارن؛ سیم مسی، فیبر نوری و سیم PCM متداول‌ترین نوع سیم‌کشی که همین الان توی بیشتر مناطق وجود داره، خطوط تمام‌مسی هست. توی سیم‌کشی مسی یک زوج سیم از مرکز مخابرات منطقه تا کافو (باکس‌های خاکستری رنگ مخابرات) محله کشیده می‌شه. بعدش هم از باکس مخابراتی تا منزل‌ها همون زوج سیم مسی ادامه پیدا می‌کنه.\n'
-                        'توی سال‌های اخیر، اسم کابل‌های فیبر نوری رو زیاد شنیدیم که دارن جایگزین سیم‌های مسی می‌شن. فیبر نوری، ارتباط اینترنتی پرسرعت یا همون ADSL رو نسبت به سیم مسی خیلی بهبود می‌ده. سیم‌کشی فیبرنوری اینطوریه که از مرکز مخابرات تا کافوی محله فیبر نوریه اما از کافو تا خونه‌ها و ساختمون‌ها زوج‌سیم مسی کشیده می‌شه.\n'
-                        'سومین نوع سیم‌کشی که PCM هست از نظر نوع سیم، فرقی با سیم‌کشی مسی نداره و تفاوتش اینه که وقتی زوج سیم‌مسی به در منازل می‌رسه وارد یه باکس سفید می‌شه و اونجا از یک زوج سیم مسی تبدیل به ۴ یا ۸ یا ۱۶ زوج سیم می‌شه. اینطوری مخابرات می‌تونه با یه زوج سیم مسی، ۴ یا ۸ یا ۱۶ خط و شماره تلفن ثابت ارائه کنه.\n'
-                        'سیم‌کشی تلفن هم مثل سیم‌کشی ساختمون پیچیدگی‌های خودش رو داره و باید بر اساس نیازمندی‌ها و کاربرد، یه نقشه‌ی مناسب براش تهیه بشه و بعد هم به‌صورت اصولی و درست پیاده‌سازی بشه. برای سیم‌کشی تلفن ثابت باید محل قرارگیری تلفن‌ها مشخص بشه. توی خونه‌ها، روند کار اینطوریه که توی تمام اتاق‌ها پریز تلفن ثابت درنظر گرفته می‌شه و باید دسترسی بهشون هم راحت باشه؛ یعنی پریز تلفن پشت وسایل دیگه مثل بخاری و شوفاژ قرار نگیره.\n'
-                        'سیم‌کشی تلفن توی ساختمون‌ها به صورت توکار یا روکار انجام می‌شه. عموما ساختمون‌های قدیمی‌تر از سیم‌کشی روکار استفاده می‌کردن اما الان موقع ساخت سازه‌ی ساختمون‌ها، سیم‌کشی تلفن رو به‌صورت توکار انجام می‌دن. البته هرزمانی که نیاز بشه یا مشکلی به‌وجود بیاد، امکانش هست که رفع مشکل با سیم‌کشی روکار انجام بشه.\n'
-                        'از اونجایی که سیم‌کشی تلفن به دو قسمت خارجی و داخلی تقسیم می‌شه، برای همین هم موقع خرابی، باید اول تشخیص داد که مشکل از سیم‌کشی داخل ساختمونه، یا کابل‌های مخابرات دچار مشکل شدن. عیب‌یابی و رفع مشکل سیم‌کشی خارجی به‌عهده‌ی مخابراته، اما برای رفع خرابی سیم‌کشی داخلی ساختمون باید به متخصص برقکار مراجعه بشه. کارشناس‌های بسپارش به ما آماده هستن تا تمام خدمات مرتبط با سیم‌کشی داخلی تلفن ثابت رو به شما ارائه کنن.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای تلفن ثابت چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'سیم‌کشی و راه‌اندازی تلفن ثابت خونه یا محل کارت رو بسپارش به ما\n'
+                      'می‌خوای خط تلفن ثابت خونه یا محل کارت رو راه‌اندازی کنی؟ بسپارش به ما تمام کارهای فنی داخل ساختمون رو برات انجام می‌ده.\n'
+                      'اگه سیم‌کشی داخلی تلفن دچار مشکل شده و تلفن ثابتت درست کار نمی‌کنه، عیب‌یابی و برطرف کردن مشکلت رو بسپارش به ما.\n'
+                      'تلفن ثابتت نویز داره یا خش‌خش می‌کنه و مشکل از سیم‌کشی داخلی ساختمونه؟ کارشناس‌های بسپارش به ما رو برای عیب‌یابی و رفع خرابی خبر کن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سیم‌کشی تلفن ثابت چه انواعی داره؟',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'بااینکه شاید تلفن ثابت دیگه اولویت اول خیلی‌ها برای تماس تلفنی نباشه، اما به‌هرحال نمی‌تونیم نقش مهمی که برای برقراری تماس و اتصال به اینترنت ADSLداره، نادیده بگیریم. توی ادارات و شرکت‌ها، تلفن ثابت همچنان راه ارتباطی اصلی به‌حساب میاد و اهمیت دوچندانی داره، پس اگه مشکلی توی خطوط تلفن پیش بیاد، کارهای زیادی لنگ می‌مونن و راه اصلی ارتباط با اون شرکت یا اداره اختلال پیدا می‌کنه.\n'
+                      'سیم‌کشی تلفن دو بخش داره که یه بخشش رو مخابرات انجام می‌ده که بهش می‌گن سیم‌کشی خارجی و کابل تلفن رو تا بیرون ساختمون میاره. بعدش هم سیم‌کشی داخلی ساختمون، بوق تلفن رو به داخل واحدها و خونه‌ها می‌رسونه. سیم‌های مخابراتی که به در منزل می‌رسن سه نوع دارن؛ سیم مسی، فیبر نوری و سیم PCM متداول‌ترین نوع سیم‌کشی که همین الان توی بیشتر مناطق وجود داره، خطوط تمام‌مسی هست. توی سیم‌کشی مسی یک زوج سیم از مرکز مخابرات منطقه تا کافو (باکس‌های خاکستری رنگ مخابرات) محله کشیده می‌شه. بعدش هم از باکس مخابراتی تا منزل‌ها همون زوج سیم مسی ادامه پیدا می‌کنه.\n'
+                      'توی سال‌های اخیر، اسم کابل‌های فیبر نوری رو زیاد شنیدیم که دارن جایگزین سیم‌های مسی می‌شن. فیبر نوری، ارتباط اینترنتی پرسرعت یا همون ADSL رو نسبت به سیم مسی خیلی بهبود می‌ده. سیم‌کشی فیبرنوری اینطوریه که از مرکز مخابرات تا کافوی محله فیبر نوریه اما از کافو تا خونه‌ها و ساختمون‌ها زوج‌سیم مسی کشیده می‌شه.\n'
+                      'سومین نوع سیم‌کشی که PCM هست از نظر نوع سیم، فرقی با سیم‌کشی مسی نداره و تفاوتش اینه که وقتی زوج سیم‌مسی به در منازل می‌رسه وارد یه باکس سفید می‌شه و اونجا از یک زوج سیم مسی تبدیل به ۴ یا ۸ یا ۱۶ زوج سیم می‌شه. اینطوری مخابرات می‌تونه با یه زوج سیم مسی، ۴ یا ۸ یا ۱۶ خط و شماره تلفن ثابت ارائه کنه.\n'
+                      'سیم‌کشی تلفن هم مثل سیم‌کشی ساختمون پیچیدگی‌های خودش رو داره و باید بر اساس نیازمندی‌ها و کاربرد، یه نقشه‌ی مناسب براش تهیه بشه و بعد هم به‌صورت اصولی و درست پیاده‌سازی بشه. برای سیم‌کشی تلفن ثابت باید محل قرارگیری تلفن‌ها مشخص بشه. توی خونه‌ها، روند کار اینطوریه که توی تمام اتاق‌ها پریز تلفن ثابت درنظر گرفته می‌شه و باید دسترسی بهشون هم راحت باشه؛ یعنی پریز تلفن پشت وسایل دیگه مثل بخاری و شوفاژ قرار نگیره.\n'
+                      'سیم‌کشی تلفن توی ساختمون‌ها به صورت توکار یا روکار انجام می‌شه. عموما ساختمون‌های قدیمی‌تر از سیم‌کشی روکار استفاده می‌کردن اما الان موقع ساخت سازه‌ی ساختمون‌ها، سیم‌کشی تلفن رو به‌صورت توکار انجام می‌دن. البته هرزمانی که نیاز بشه یا مشکلی به‌وجود بیاد، امکانش هست که رفع مشکل با سیم‌کشی روکار انجام بشه.\n'
+                      'از اونجایی که سیم‌کشی تلفن به دو قسمت خارجی و داخلی تقسیم می‌شه، برای همین هم موقع خرابی، باید اول تشخیص داد که مشکل از سیم‌کشی داخل ساختمونه، یا کابل‌های مخابرات دچار مشکل شدن. عیب‌یابی و رفع مشکل سیم‌کشی خارجی به‌عهده‌ی مخابراته، اما برای رفع خرابی سیم‌کشی داخلی ساختمون باید به متخصص برقکار مراجعه بشه. کارشناس‌های بسپارش به ما آماده هستن تا تمام خدمات مرتبط با سیم‌کشی داخلی تلفن ثابت رو به شما ارائه کنن.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای تلفن ثابت چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }

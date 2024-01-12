@@ -113,244 +113,182 @@ class _CentralPageState extends State<CentralPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 20),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'آشنایی با سرویس سانترال',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'assets/images/services/central.png',
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
-                      height: 220,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'خدمات سانترال محل کارت رو بسپارش به ما\n'
-                        'شرکت محل کارت نیاز به نصب و راه‌اندازی سانترال داره؟ صفر تا صدش رو بسپارش به ما.\n'
-                        'خطوط داخلی تلفن شرکت دچار مشکل شده و نیاز به عیب‌یابی و رفع مشکل داره؟ کارشناس‌های بسپارش به ما مشکل رو پیدا و برطرف می‌کنن.\n'
-                        'شرکت محل کارت سانترال داره، اما باید ارتقا پیدا کنه یا برنامه‌ریزی بشه؟ بسپارش به ما تمام کارهای مورد نیاز رو انجام می‌ده.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 20),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'آشنایی با سرویس سانترال',
+                        style: theme.textTheme.bodyLarge,
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'سانترال چیه و چه انواعی داره؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/services/central.png',
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    height: 220,
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: Color(0xFF04A8B2),
-                    //     ),
-                    //   ),
-                    // ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: textpadding)
-                          .add(EdgeInsets.only(bottom: 5)),
-                      child: Text(
-                        'توی شرکت‌ها، ادارات و سازمان‌ها، یکی از بهترین و بهینه‌ترین راه‌های ارتباطی بخش‌ها و کارمندها با هم، خطوط تلفن داخلی سازمان هستن. در واقع به هر کارمند، یه شماره تلفن داخلی تعلق می‌گیره و برای ارتباط باهاش،‌ دیگران هم از همون شماره تلفن استفاده می‌کنن. اما برای راه‌اندازی خطوط داخلی تلفن، یه بخش مرکزی لازمه که تمام شماره‌ها بهش متصل باشن. برای راه‌اندازی چنین سیستمی به مرکز تلفن و سانترال نیازه.\n'
-                        'مرکز تلفنی که توی سازمان‌ها راه‌اندازی می‌شه، از یک دستگاه سانترال به‌عنوان هسته‌ی اصلی استفاده می‌کنه. تمام خطوط تلفن داخلی سازمان از سانترال خارج می‌شه و به کارمندها می‌رسه. درواقع خطوط تلفن شهری وارد سانترال می‌شن و از اون سمت خطوط داخلی خارج می‌شن.\n'
-                        'سانترال رو از نظر طرز کار و عملکردش می‌شه به دو دسته‌ی سانترال آنالوگ و سانترال‌های تحت شبکه ( (VOIPتقسیم‌بندی کرد. سانترال آنالوگ از خطوط شهری و معمولی پشتیبانی می‌کنه، روی بستر زوج‌سیم‌های مخابراتی پیاده‌سازی می‌شه و با پست تلفن به باکس و کارت‌های سانترال ارتباط پیدا می‌کنه. اما سانترال تحت شبکه بر اساس IP و روی بستر شبکه پیاده‌سازی می‌شه.\n'
-                        'یعنی با سانترال آنالوگ از طریق کابل مخابراتی و سیستم رادیویی ارتباط تلفنی برقرار می‌کنین اما توی سانترال‌های VOIP از پروتکل صدا روی اینترنت ارتباط می‌گیرین.\n'
-                        'به جز نوع کار، سانترال‌ها از نظر ظرفیت هم به دو دسته‌ی پرظرفیت و کم‌ظرفیت تقسیم می‌شن. سانترال پرظرفیت برای سازمان‌هایی که می‌خوان تعداد خطوط داخلی بالایی داشته باشن مناسبه و می‌تونه تا ۹۶۰ خط داخلی رو پشتیبانی بکنه. سانترال کم‌ظرفیت هم برای سازمان‌هایی که تعداد خطوط داخلی کمتری نیاز دارن، گزینه‌ی بهتریه و تا ۲۴ خط داخلی ارائه می‌کنه.\n'
-                        'سانترال هم مثل خیلی از وسایل الکترونیکی دیگه‌ای که باهاشون سروکار داریم، یه بخش سخت‌افزاری و یه بخش نرم‌افزاری دارن. برای انجام تنظیمات سانترال باید کدهای مورد نیاز وارد سیستم سانترال بشه و ارتباط معناداری بین بخش‌های مختلف سیستم برقرار بشه. یعنی کار شخصی که داره سانترال رو راه‌اندازی می‌کنه اینه که هم کابل‌ها و سیم‌کشی‌ها رو نصب و راه‌اندازی بکنه و هم بخش تنظیمات نرم‌افزاری سانترال رو انجام بده.',
-                        style: TextStyle(
-                          color: Color(0xFF025459),
-                          fontFamily: 'iransans',
-                          height: 1.8,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.justify,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: EdgeInsets.only(right: headingpadding, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text(
-                          'سوالات متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  FAQ(faqItems: faqList),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.only(right: 40, top: 0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Flexible(
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              'بسپارش به ما برای سانترال چه خدماتی ارائه می‌کنه؟',
-                              style: TextStyle(
-                                fontSize: 16,
-                                height: 2,
-                                color: Color(0xFF037E85),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'iransans',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Padding(
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: textpadding)
                         .add(EdgeInsets.only(bottom: 5)),
-                    child: AnimatedSize(
-                      duration: Duration(microseconds: 300),
-                      child: Column(
-                        children: List<Widget>.generate(antennaimages.length,
-                            (index) {
-                          final image = antennaimages.keys.toList()[index];
-                          final title = antennaimages[image]!;
-                          return Container(
-                            padding: EdgeInsets.only(bottom: 15),
-                            // width: _iconspace,
-                            width: double.infinity,
-                            // height: 20,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: _iconsize,
-                                    height: _iconsize,
-                                    child: image,
-                                  ),
-                                  SizedBox(width: 30),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    width: 310,
-                                    height: 45,
-                                    child: Text(
-                                      antennaimages[image]!,
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                        fontSize: _fontsize,
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
+                    child: Text(
+                      'خدمات سانترال محل کارت رو بسپارش به ما\n'
+                      'شرکت محل کارت نیاز به نصب و راه‌اندازی سانترال داره؟ صفر تا صدش رو بسپارش به ما.\n'
+                      'خطوط داخلی تلفن شرکت دچار مشکل شده و نیاز به عیب‌یابی و رفع مشکل داره؟ کارشناس‌های بسپارش به ما مشکل رو پیدا و برطرف می‌کنن.\n'
+                      'شرکت محل کارت سانترال داره، اما باید ارتقا پیدا کنه یا برنامه‌ریزی بشه؟ بسپارش به ما تمام کارهای مورد نیاز رو انجام می‌ده.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'سانترال چیه و چه انواعی داره؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: textpadding)
+                        .add(EdgeInsets.only(bottom: 5)),
+                    child: Text(
+                      'توی شرکت‌ها، ادارات و سازمان‌ها، یکی از بهترین و بهینه‌ترین راه‌های ارتباطی بخش‌ها و کارمندها با هم، خطوط تلفن داخلی سازمان هستن. در واقع به هر کارمند، یه شماره تلفن داخلی تعلق می‌گیره و برای ارتباط باهاش،‌ دیگران هم از همون شماره تلفن استفاده می‌کنن. اما برای راه‌اندازی خطوط داخلی تلفن، یه بخش مرکزی لازمه که تمام شماره‌ها بهش متصل باشن. برای راه‌اندازی چنین سیستمی به مرکز تلفن و سانترال نیازه.\n'
+                      'مرکز تلفنی که توی سازمان‌ها راه‌اندازی می‌شه، از یک دستگاه سانترال به‌عنوان هسته‌ی اصلی استفاده می‌کنه. تمام خطوط تلفن داخلی سازمان از سانترال خارج می‌شه و به کارمندها می‌رسه. درواقع خطوط تلفن شهری وارد سانترال می‌شن و از اون سمت خطوط داخلی خارج می‌شن.\n'
+                      'سانترال رو از نظر طرز کار و عملکردش می‌شه به دو دسته‌ی سانترال آنالوگ و سانترال‌های تحت شبکه ( (VOIPتقسیم‌بندی کرد. سانترال آنالوگ از خطوط شهری و معمولی پشتیبانی می‌کنه، روی بستر زوج‌سیم‌های مخابراتی پیاده‌سازی می‌شه و با پست تلفن به باکس و کارت‌های سانترال ارتباط پیدا می‌کنه. اما سانترال تحت شبکه بر اساس IP و روی بستر شبکه پیاده‌سازی می‌شه.\n'
+                      'یعنی با سانترال آنالوگ از طریق کابل مخابراتی و سیستم رادیویی ارتباط تلفنی برقرار می‌کنین اما توی سانترال‌های VOIP از پروتکل صدا روی اینترنت ارتباط می‌گیرین.\n'
+                      'به جز نوع کار، سانترال‌ها از نظر ظرفیت هم به دو دسته‌ی پرظرفیت و کم‌ظرفیت تقسیم می‌شن. سانترال پرظرفیت برای سازمان‌هایی که می‌خوان تعداد خطوط داخلی بالایی داشته باشن مناسبه و می‌تونه تا ۹۶۰ خط داخلی رو پشتیبانی بکنه. سانترال کم‌ظرفیت هم برای سازمان‌هایی که تعداد خطوط داخلی کمتری نیاز دارن، گزینه‌ی بهتریه و تا ۲۴ خط داخلی ارائه می‌کنه.\n'
+                      'سانترال هم مثل خیلی از وسایل الکترونیکی دیگه‌ای که باهاشون سروکار داریم، یه بخش سخت‌افزاری و یه بخش نرم‌افزاری دارن. برای انجام تنظیمات سانترال باید کدهای مورد نیاز وارد سیستم سانترال بشه و ارتباط معناداری بین بخش‌های مختلف سیستم برقرار بشه. یعنی کار شخصی که داره سانترال رو راه‌اندازی می‌کنه اینه که هم کابل‌ها و سیم‌کشی‌ها رو نصب و راه‌اندازی بکنه و هم بخش تنظیمات نرم‌افزاری سانترال رو انجام بده.',
+                      style: theme.textTheme.bodyMedium,
+                      textAlign: TextAlign.justify,
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: headingpadding, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text(
+                        'سوالات متداول',
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                FAQ(faqItems: faqList),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(right: 40, top: 0),
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Flexible(
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            'بسپارش به ما برای سانترال چه خدماتی ارائه می‌کنه؟',
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: textpadding)
+                      .add(EdgeInsets.only(bottom: 5)),
+                  child: AnimatedSize(
+                    duration: Duration(microseconds: 300),
+                    child: Column(
+                      children:
+                          List<Widget>.generate(antennaimages.length, (index) {
+                        final image = antennaimages.keys.toList()[index];
+                        final title = antennaimages[image]!;
+                        return Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                          // width: _iconspace,
+                          width: double.infinity,
+                          // height: 20,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: _iconsize,
+                                  height: _iconsize,
+                                  child: image,
+                                ),
+                                SizedBox(width: 30),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  width: mediaQuery.size.width * 0.75,
+                                  // height: 45,
+                                  child: Text(
+                                    antennaimages[image]!,
+                                    textAlign: TextAlign.justify,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }
