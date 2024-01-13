@@ -1,8 +1,11 @@
 import 'package:intl/intl.dart';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:persian/persian.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../home.dart';
 
 class PriceBox extends StatefulWidget {
   final double price;
@@ -18,6 +21,7 @@ class _PriceBoxState extends State<PriceBox> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('questionPrice', 0);
     prefs.setDouble('transportationPrice', 0);
+    prefs.setDouble('totalPrice', 0);
   }
 
   @override
@@ -67,7 +71,43 @@ class _PriceBoxState extends State<PriceBox> {
                 color: Colors.white,
               ),
               onPressed: () {
-                clearData();
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Directionality(
+                          textDirection: ui.TextDirection.rtl,
+                          child: Text(
+                            'پاکسازی',
+                          ),
+                        ),
+                        content: Directionality(
+                          textDirection: ui.TextDirection.rtl,
+                          child: Text(
+                              'آیا از پاکسازی و بازگشت به صفحه اصلی روند مطمئن هستید؟'),
+                        ),
+                        actions: [
+                          ElevatedButton(
+                            child: Text('خیر'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          ElevatedButton(
+                            child: Text('بله'),
+                            onPressed: () {
+                              clearData();
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      );
+                    });
               },
             ),
           ],

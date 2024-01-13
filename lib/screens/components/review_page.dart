@@ -3,9 +3,11 @@ import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:persian/persian.dart';
 
-import '../../class/review_list.dart';
+import './discount_box.dart';
+import './review_question_container.dart';
+import './review_product_container.dart';
+import './review_note_box.dart';
 
 class ReviewPage extends StatefulWidget {
   // const ReviewPage({super.key});
@@ -21,8 +23,8 @@ class ReviewPage extends StatefulWidget {
 class _ReviewPageState extends State<ReviewPage> {
   List<Map<String, dynamic>> questionAnswers = [];
   List<double> answerPrice = [];
-  late String trPrice = '20000';
-  late String totPrice = '20000';
+  late String trPrice = '';
+  late String totPrice = '';
   late String? savedAddress = '';
   late String serviceTitle = widget.serviceTitle;
 
@@ -74,6 +76,8 @@ class _ReviewPageState extends State<ReviewPage> {
           'retrievedValues inside review page for answerprice is $retrievedValues');
       setState(() {
         answerPrice = retrievedValues;
+        trPrice = NumberFormat('#,###').format(transportationPrice);
+        totPrice = NumberFormat('#,###').format(totalPrice);
       });
     } else {
       setState(() {
@@ -101,115 +105,36 @@ class _ReviewPageState extends State<ReviewPage> {
             ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-              color: Color(0xFFCDEEF0),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Color(0xFF037E85),
-                width: 2,
-              )),
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xFF04A8B2),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                ),
-                padding: EdgeInsets.only(right: 30).add(
-                  EdgeInsets.symmetric(
-                    vertical: 15,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      serviceTitle,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          savedAddress ?? '',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                // height: MediaQuery.of(context).size.height * 0.8,
-                height: 300,
-                child: ListView.builder(
-                  itemCount: questionAnswers.length,
-                  itemBuilder: (context, index) {
-                    final question = questionAnswers[index]['question'];
-                    final answer = questionAnswers[index]['answer'];
-                    final price = answerPrice[index];
-
-                    return ReviewList(
-                      question: question,
-                      answer: answer,
-                      price: price,
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.only(left: 25, bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.airport_shuttle,
-                      color: Color(0xFF037E85),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      '${trPrice.withPersianNumbers()} ریال',
-                      style: TextStyle(
-                        color: Color(0xFF037E85),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  'جمع کل : ${totPrice.withPersianNumbers()} ریال',
-                  style: TextStyle(
-                    color: Color(0xFF049768),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
+        ReviewQuestionContainer(
+          answerPrice: answerPrice,
+          questionAnswers: questionAnswers,
+          savedAddress: savedAddress,
+          serviceTitle: serviceTitle,
+          totPrice: totPrice,
+          trPrice: trPrice,
         ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 0),
+          child: DiscountBox(),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        ReviewProductContainer(
+          answerPrice: answerPrice,
+          questionAnswers: questionAnswers,
+          savedAddress: savedAddress,
+          serviceTitle: serviceTitle,
+          totPrice: totPrice,
+          trPrice: trPrice,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        ReviewNoteBox(),
       ],
     );
   }

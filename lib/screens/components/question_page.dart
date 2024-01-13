@@ -84,6 +84,7 @@ class _QuestionPageState extends State<QuestionPage> {
   Future<void> clearQuestionPrice() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('questionPrice', 0);
+    prefs.setDouble('transportationPrice', 0);
   }
 
   Future<void> saveQuestionAnswers(

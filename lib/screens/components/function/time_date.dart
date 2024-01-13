@@ -1,9 +1,13 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 import 'package:persian/persian.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import './time_date_button_widget.dart';
+import '../../../class/date_response.dart';
 
 class TimeDate extends StatefulWidget {
   // const TimeDate({Key? key}) : super(key: key);
@@ -22,55 +26,38 @@ class _TimeDateState extends State<TimeDate> {
   late String savedDate = '';
 
   List<String> dates = [];
+  DateResponse? dateResponse;
 
   @override
   void initState() {
     super.initState();
-    generateDates();
+    // generateDates();
+    fetchDates();
   }
 
-  void generateDates() {
-    final jalaliNow = Jalali.now();
+  Future<void> fetchDates() async {
+    final headers = {
+      'Tokenpublic': 'bpbm',
+      'Content-Type': 'application/json',
+    };
 
-    for (var i = 0; i < 9; i++) {
-      final jalaliDate = jalaliNow.addDays(i);
-      final persianDate =
-          '${getPersianWeekdayName(jalaliDate.weekDay)} ${jalaliDate.year}/${jalaliDate.month}/${jalaliDate.day}';
+    final response = await http.get(
+      Uri.parse('https://s1.lianerp.com/api/public/calculation/date'),
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      final jsonBody = json.decode(response.body);
+      dateResponse =
+          DateResponse.fromJson(jsonBody); // Remove the 'final' keyword
 
-      if (i == 0) {
-        dates.add('امروز: ${persianDate.withPersianNumbers()}');
-      } else if (i == 1) {
-        dates.add('فردا: ${persianDate.withPersianNumbers()}');
-      } else {
-        dates.add(persianDate.withPersianNumbers());
-      }
-    }
-
-    // Set the default selected date to today's date
-    setState(() {
-      selectedDate = dates[0];
-      savedDate = selectedDate ?? '';
-    });
-  }
-
-  String getPersianWeekdayName(int weekday) {
-    switch (weekday % 7) {
-      case 0:
-        return 'شنبه';
-      case 1:
-        return 'یکشنبه';
-      case 2:
-        return 'دوشنبه';
-      case 3:
-        return 'سه‌شنبه';
-      case 4:
-        return 'چهارشنبه';
-      case 5:
-        return 'پنجشنبه';
-      case 6:
-        return 'جمعه';
-      default:
-        return '';
+      setState(() {
+        dates = dateResponse!.dates.map((date) => date.title).toList();
+        selectedDate = dates[0];
+        savedDate = selectedDate ?? '';
+      });
+    } else {
+      // Handle API error
+      print('Failed to fetch dates. Status code: ${response.statusCode}');
     }
   }
 
@@ -105,10 +92,15 @@ class _TimeDateState extends State<TimeDate> {
           });
         },
         items: dates.map((String date) {
+          final index = dates.indexOf(date);
+          final selectedDateItem =
+              dateResponse?.dates[index]; // Add a null check using `?`
+          final title = selectedDateItem?.title ?? '';
+          final text = selectedDateItem?.text ?? '';
           return DropdownMenuItem<String>(
             value: date,
             child: Text(
-              date,
+              '$title - $text',
               style: TextStyle(
                 color: Color(0xFF037E85),
                 fontSize: 16,

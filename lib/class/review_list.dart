@@ -85,13 +85,13 @@ class ReviewList extends StatelessWidget {
                     ),
                   ],
                 ),
-                // Text(
-                //   '${anPrice.withPersianNumbers()} ریال',
-                //   style: TextStyle(
-                //     color: Color(0xFF037E85),
-                //     fontWeight: FontWeight.normal,
-                //   ),
-                // ),
+                Text(
+                  '${anPrice.withPersianNumbers()} ریال',
+                  style: TextStyle(
+                    color: Color(0xFF037E85),
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
               ],
             ),
           ],

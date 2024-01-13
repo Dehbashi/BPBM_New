@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +22,33 @@ class _MapPageState extends State<MapPage> {
   late String districtNumber = '';
   late String formattedAddress = '';
   String desiredText = '';
+  List<Map<String, dynamic>> chosenAddresses = [];
+  List<Map<String, dynamic>> previousAddresses = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // void loadAddresses() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  //   String? chosenAddressesJson = prefs.getString('chosenAddresses');
+  //   if (chosenAddressesJson != null) {
+  //     List<dynamic> chosenAddressesList = jsonDecode(chosenAddressesJson);
+  //     setState(() {
+  //       chosenAddresses = chosenAddressesList.cast<Map<String, dynamic>>();
+  //     });
+  //   }
+
+  //   String? previousAddressesJson = prefs.getString('previousAddresses');
+  //   if (previousAddressesJson != null) {
+  //     List<dynamic> previousAddressesList = jsonDecode(previousAddressesJson);
+  //     setState(() {
+  //       previousAddresses = previousAddressesList.cast<Map<String, dynamic>>();
+  //     });
+  //   }
+  // }
 
   void updateLocation(double lat, double lng) {
     setState(() {
@@ -37,6 +66,7 @@ class _MapPageState extends State<MapPage> {
         districtNumber = addressData['municipality_zone'];
         formattedAddress = addressData['formatted_address'];
       });
+      print('formatted address inside AddressInfo is $formattedAddress');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('savedAddress', formattedAddress);
     } else {
@@ -50,11 +80,24 @@ class _MapPageState extends State<MapPage> {
     super.dispose();
   }
 
-  void updateTextField() {
+  void updateTextField() async {
     setState(() {
       desiredText = formattedAddress;
       _textEditingController.text = desiredText;
     });
+
+    chosenAddresses.add({
+      'lat': latitude,
+      'long': longitude,
+      'text': desiredText,
+    });
+
+    setState(() {
+      previousAddresses = [chosenAddresses.last];
+    });
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('previousAddresses', jsonEncode(previousAddresses));
   }
 
   @override
@@ -134,10 +177,17 @@ class _MapPageState extends State<MapPage> {
               height: 20,
             ),
             ElevatedButton(
-              child: Text('انتخاب آدرس'),
-              onPressed: () {
-                AddressInfo();
+              child: Text('انتخاب و ذخیره آدرس'),
+              onPressed: () async {
+                await AddressInfo();
+                print(
+                    'formatted text inside button after AddressInfo is $formattedAddress');
                 updateTextField();
+                print(
+                    'desired text inside button after update text field is $desiredText');
+                print(
+                    'addresses previously added to the list $previousAddresses');
+                print('chosenaddresses added to the list $chosenAddresses');
               },
             ),
             SizedBox(
