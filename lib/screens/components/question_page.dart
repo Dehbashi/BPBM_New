@@ -57,6 +57,20 @@ class _QuestionPageState extends State<QuestionPage> {
 
   Map<String, dynamic>? questionList;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchFirstQuestion(
+  //       widget.serviceTitle.isNotEmpty ? widget.serviceId : null);
+  //   scrollController.addListener(() {
+  //     scrollPosition = scrollController.position.pixels;
+  //   });
+  //   clearQuestionPrice();
+  //   WidgetsBinding.instance?.addPostFrameCallback((_) {
+  //     disableStep();
+  //   });
+  // }
+
   @override
   void initState() {
     super.initState();
@@ -66,6 +80,11 @@ class _QuestionPageState extends State<QuestionPage> {
       scrollPosition = scrollController.position.pixels;
     });
     clearQuestionPrice();
+    disableStep();
+  }
+
+  void disableStep() {
+    widget.onStepCompleted(false);
   }
 
   @override

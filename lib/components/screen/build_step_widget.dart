@@ -17,7 +17,7 @@ Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle, Funct
         onStepCompleted: onStepCompleted,
       );
     case 1:
-      return MapPage();
+      return MapPage(onStepCompleted: onStepCompleted,);
     case 2:
       return TimeDatePage();
     case 3:

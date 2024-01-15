@@ -28,7 +28,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   // late final serviceTitle = widget.dataList['service_title'];
 
   final ScrollController _scrollController = ScrollController();
-  bool steppingEnabled = true;
+  bool steppingEnabled = false;
   bool isStepCompleted = false;
   int selectedIndex = 0;
   int activeStep = 0;
@@ -44,10 +44,16 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   void handleStepCompleted(bool value) {
     isStepCompleted = value;
-    if (isStepCompleted = true) {
-      setState(() {
-        activeStep += 1;
-      });
+    if (isStepCompleted == true) {
+      if (activeStep == 0) {
+        setState(() {
+          activeStep += 1;
+        });
+      } else {
+        setState(() {
+          steppingEnabled = isStepCompleted;
+        });
+      }
     }
   }
 
@@ -108,6 +114,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
             //     ],
             //   ),
             // ),
+            if (activeStep < 4 && activeStep != 0)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5,
+                ),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: PriceBox(
+                    price: price,
+                  ),
+                ),
+              ),
             Directionality(
               textDirection: TextDirection.rtl,
               child: Container(
@@ -123,18 +141,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(
               height: 30,
             ),
-            if (activeStep < 4)
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: PriceBox(
-                  price: price,
+            if (activeStep < 4 && activeStep == 0)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 5,
+                ),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: PriceBox(
+                    price: price,
+                  ),
                 ),
               ),
-            ),
             SizedBox(
               height: 30,
             ),
@@ -146,6 +164,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   child: ButtonWidget(
                     steppingEnabled: steppingEnabled,
                     onPressedNext: () {
+                      print(
+                          'isStepCompleted inside $activeStep is $isStepCompleted');
                       if (steppingEnabled) {
                         setState(() {
                           activeStep += 1;
@@ -153,9 +173,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       }
                     },
                     onPressedPrevious: () {
+                      print('stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
                       if (activeStep > 0) {
                         setState(() {
                           activeStep -= 1;
+                          steppingEnabled= false;
                         });
                       }
                     },

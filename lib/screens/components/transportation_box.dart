@@ -82,7 +82,7 @@ class _TransportationBoxState extends State<TransportationBox> {
       //   color: Color(0xFFFFA14A),
       // ),
       width: double.infinity,
-      height: 100,
+      height: 70,
       // color: Color(0xFFFFA14A),
       child: Center(
         child: Row(

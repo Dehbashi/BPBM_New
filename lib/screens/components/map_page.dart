@@ -10,7 +10,10 @@ import '../components/function/fetch_address.dart';
 import './registered_addresses.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+  // const MapPage({super.key});
+  final Function(bool) onStepCompleted;
+
+  MapPage({required this.onStepCompleted});
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -29,6 +32,11 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
+    disableStep();
+  }
+
+  void disableStep() {
+    widget.onStepCompleted(false);
   }
 
   // void loadAddresses() async {
@@ -115,72 +123,73 @@ class _MapPageState extends State<MapPage> {
               height: 20,
             ),
             Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Color(0xFF04A8B2),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return Dialog(
-                          backgroundColor: Colors.white,
-                          insetPadding: EdgeInsets.all(10),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'انتخاب نشانی های قبلی',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+              width: double.infinity,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Color(0xFF04A8B2),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Dialog(
+                        backgroundColor: Colors.white,
+                        insetPadding: EdgeInsets.all(10),
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'انتخاب نشانی های قبلی',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                SizedBox(height: 16),
-                                Expanded(
-                                  child: RegisteredAddresses(),
-                                ),
-                                SizedBox(height: 16),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('بستن'),
-                                ),
-                              ],
-                            ),
+                              ),
+                              SizedBox(height: 16),
+                              Expanded(
+                                child: RegisteredAddresses(),
+                              ),
+                              SizedBox(height: 16),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('بستن'),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add_location,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'انتخاب نشانی های قبلی',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
                         ),
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add_location,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'انتخاب نشانی های قبلی',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                    ],
-                  ),
-                )),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -216,6 +225,7 @@ class _MapPageState extends State<MapPage> {
               child: Text('انتخاب و ذخیره آدرس'),
               onPressed: () async {
                 await AddressInfo();
+                widget.onStepCompleted(true);
                 print(
                     'formatted text inside button after AddressInfo is $formattedAddress');
                 updateTextField();
@@ -274,6 +284,12 @@ class _MapPageState extends State<MapPage> {
                           color: Color(0xFF037E85),
                         ),
                       ),
+                      onChanged: (text) {
+                        if (text.isNotEmpty) {
+                          print('text inside map page is not empty');
+                          // widget.onStepCompleted(true);
+                        }
+                      },
                     ),
                   ),
                   SizedBox(
