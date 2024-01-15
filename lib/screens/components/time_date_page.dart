@@ -6,7 +6,10 @@ import '../components/function/time_date.dart';
 import '../components/function/time_date_button_widget.dart';
 
 class TimeDatePage extends StatefulWidget {
-  const TimeDatePage({super.key});
+  // const TimeDatePage({super.key});
+  final Function(bool) onStepCompleted;
+
+  TimeDatePage({required this.onStepCompleted});
 
   @override
   State<TimeDatePage> createState() => _TimeDatePageState();
@@ -16,17 +19,37 @@ class _TimeDatePageState extends State<TimeDatePage> {
   late String? selectedTime = '';
   late String? selectedDate = '';
 
-  void handleTimeSelected(String time) {
-    setState(() {
-      selectedTime = time;
-    });
+   @override
+  void initState() {
+    super.initState();
+    disableStep();
   }
 
-  void handleDateSelected(String date) {
-    setState(() {
-      selectedDate = date;
-    });
+  void disableStep() {
+    widget.onStepCompleted(false);
   }
+
+  void handleTimeSelected(String time) {
+  setState(() {
+    selectedTime = time;
+    checkStepCompletion();
+  });
+}
+
+  void handleDateSelected(String date) {
+  setState(() {
+    selectedDate = date;
+    checkStepCompletion();
+  });
+}
+
+void checkStepCompletion() {
+  if (selectedDate != null && selectedTime != null && selectedDate!.isNotEmpty && selectedTime!.isNotEmpty) {
+    widget.onStepCompleted(true);
+  } else {
+    widget.onStepCompleted(false);
+  }
+}
 
   @override
   Widget build(BuildContext context) {

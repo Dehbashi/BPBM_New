@@ -9,7 +9,10 @@ import '../../class/send_phone_number.dart';
 import './otp_page.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({super.key});
+  // const UserPage({super.key});
+  final Function(bool) onStepCompleted;
+
+  UserPage({required this.onStepCompleted});
 
   @override
   State<UserPage> createState() => _UserPageState();

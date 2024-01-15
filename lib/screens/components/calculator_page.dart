@@ -35,6 +35,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   double price = 0;
   double questionPrice = 0;
   double transportationPrice = 0;
+  late String? _token = '';
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -75,9 +76,21 @@ class _CalculatorPageState extends State<CalculatorPage> {
     print('Question price from SharedPreferences: $questionPrice');
   }
 
+  void initState() {
+    super.initState();
+    fetchToken();
+  }
+
+  Future<void> fetchToken() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _token = _prefs.getString('token');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    updatePrice();
+    // updatePrice();
     print('your serviceTitle inside calculator page is ${widget.serviceTitle}');
     print('your active step inside calculator page is ${activeStep}');
     // String serviceTitle = widget.title;
@@ -169,15 +182,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       if (steppingEnabled) {
                         setState(() {
                           activeStep += 1;
+                          steppingEnabled = false;
                         });
                       }
                     },
                     onPressedPrevious: () {
-                      print('stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
+                      print(
+                          'stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
+
                       if (activeStep > 0) {
                         setState(() {
                           activeStep -= 1;
-                          steppingEnabled= false;
+                          steppingEnabled = false;
                         });
                       }
                     },
