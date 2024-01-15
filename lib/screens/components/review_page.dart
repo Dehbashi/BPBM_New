@@ -8,6 +8,7 @@ import './discount_box.dart';
 import './review_question_container.dart';
 import './review_product_container.dart';
 import './review_note_box.dart';
+import './total_price_box.dart';
 
 class ReviewPage extends StatefulWidget {
   // const ReviewPage({super.key});
@@ -110,7 +111,7 @@ class _ReviewPageState extends State<ReviewPage> {
           questionAnswers: questionAnswers,
           savedAddress: savedAddress,
           serviceTitle: serviceTitle,
-          totPrice: totPrice,
+          // totPrice: totPrice,
           trPrice: trPrice,
         ),
         SizedBox(
@@ -128,13 +129,16 @@ class _ReviewPageState extends State<ReviewPage> {
           questionAnswers: questionAnswers,
           savedAddress: savedAddress,
           serviceTitle: serviceTitle,
-          totPrice: totPrice,
+          // totPrice: totPrice,
           trPrice: trPrice,
         ),
+        SizedBox(height: 20,),
+        TotalPriceBox(finalPrice: totPrice),
         SizedBox(
           height: 20,
         ),
         ReviewNoteBox(),
+        
       ],
     );
   }

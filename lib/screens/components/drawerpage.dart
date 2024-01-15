@@ -73,127 +73,128 @@ class _DrawerPageState extends State<DrawerPage>
     super.dispose();
   }
 
-  // void _navigateToPage(String title) {
-  //   setState(() {
-  //     switch (title) {
-  //       case 'نصب آنتن و آنتن مرکزی':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => AntennaPage()));
-  //         break;
-  //       case 'نصب و تعمیر انواع آیفون':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => IphonePage()));
-  //         break;
-  //       case 'نصب و سرویس کولر گازی':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => GasCoolerPage()));
-  //         break;
-  //       case 'نصب و سرویس کولر آبی':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => WaterCoolerPage()));
-  //         break;
-  //       case 'نصب و تعمیر انواع UPS':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => UpsPage()));
-  //         break;
-  //       case 'نصب انواع کلید و پریز':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => OutletPage()));
-  //         break;
-  //       case 'سیم کشی و کابل کشی':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => WiringPage()));
-  //         break;
-  //       case 'نصب دوربین مداربسته':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => CctvPage()));
-  //         break;
-  //       case 'خدمات سانترال و تلفن های ویپ':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => CentralPage()));
-  //         break;
-  //       case 'سیم کشی تلفن ثابت':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => TelephonePage()));
-  //         break;
-  //       case 'نصب سیستم های اطفا حریق':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => FireAlarmPage()));
-  //         break;
-  //       case 'نصب انواع چراغ و سنسور':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => SensorPage()));
-  //         break;
-  //       case 'دریل کاری و سوراخکاری':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => DrillPage()));
-  //         break;
-  //       case 'نصب و تست سیستم ارت':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => EarthPage()));
-  //         break;
-  //       case 'نورپردازی داخل و محوطه ساختمان':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => LightingPage()));
-  //         break;
-  //       case 'تابلو برق صنعتی و ساختمانی':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => IndPowerPage()));
-  //         break;
-  //       case 'نصب تلویزیون روی دیوار':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => WallTvPage()));
-  //         break;
-  //       case 'نصب انواع پنکه سقفی و دیواری':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => CeilingFanPage()));
-  //         break;
-  //       case 'نصب ریموت لوستر و روشنایی':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => LightRemotePage()));
-  //         break;
-  //       case 'نصب و تعمیر انواع آرام بند':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => DamperPage()));
-  //         break;
-  //       case 'نصب انواع تهویه و هواکش':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => AirConditioningPage()));
-  //         break;
-  //       case 'نصب سیستم های ضدسرقت':
-  //         // Navigate to the home page
-  //         Navigator.push(context,
-  //             MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
-  //         break;
-  //       case 'نصب و راه اندازی مودم WiFi':
-  //         // Navigate to the home page
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => ModemPage()));
-  //         break;
-  //     }
-  //   });
-  // }
+
+  void _navigateToPage(dynamic id) {
+    setState(() {
+      switch (id) {
+        case 4:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AntennaPage()));
+          break;
+        case 3:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IphonePage()));
+          break;
+        case 2:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => GasCoolerPage()));
+          break;
+        case 1:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => WaterCoolerPage()));
+          break;
+        case 8:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => UpsPage()));
+          break;
+        case 7:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => OutletPage()));
+          break;
+        case 6:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => WiringPage()));
+          break;
+        case 5:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CctvPage()));
+          break;
+        case 13:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CentralPage()));
+          break;
+        case 12:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => TelephonePage()));
+          break;
+        case 11:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => FireAlarmPage()));
+          break;
+        case 10:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SensorPage()));
+          break;
+        case 17:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DrillPage()));
+          break;
+        case 16:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => EarthPage()));
+          break;
+        case 15:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LightingPage()));
+          break;
+        case 14:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IndPowerPage()));
+          break;
+        case 21:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => WallTvPage()));
+          break;
+        case 20:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CeilingFanPage()));
+          break;
+        case 19:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => LightRemotePage()));
+          break;
+        case 18:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DamperPage()));
+          break;
+        case 22:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AirConditioningPage()));
+          break;
+        case 23:
+          // Navigate to the home page
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
+          break;
+        case 24:
+          // Navigate to the home page
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ModemPage()));
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +279,7 @@ class _DrawerPageState extends State<DrawerPage>
                         return GestureDetector(
                           onTap: () {
                             // Perform navigation based on the tapped item
-                            // _navigateToPage(title);
+                            _navigateToPage(itemId);
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 8),

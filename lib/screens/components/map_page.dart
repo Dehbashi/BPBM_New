@@ -7,6 +7,7 @@ import '../../class/map_widget.dart';
 import './transportation_box.dart';
 import '../components/function/price_box.dart';
 import '../components/function/fetch_address.dart';
+import './registered_addresses.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -114,37 +115,72 @@ class _MapPageState extends State<MapPage> {
               height: 20,
             ),
             Container(
-              width: double.infinity,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Color(0xFF04A8B2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextButton(
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.add_location,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'افزدون نشانی جدید',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Color(0xFF04A8B2),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-            ),
+                child: TextButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Dialog(
+                          backgroundColor: Colors.white,
+                          insetPadding: EdgeInsets.all(10),
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'انتخاب نشانی های قبلی',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 16),
+                                Expanded(
+                                  child: RegisteredAddresses(),
+                                ),
+                                SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('بستن'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add_location,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'انتخاب نشانی های قبلی',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
             SizedBox(
               height: 20,
             ),
@@ -160,7 +196,7 @@ class _MapPageState extends State<MapPage> {
                 horizontal: 10,
               ),
               child: Text(
-                'موقعیت مکانی نقشه  را مشخص کنید',
+                'موقعیت مکانی نقشه را مشخص کنید',
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFF037E85),

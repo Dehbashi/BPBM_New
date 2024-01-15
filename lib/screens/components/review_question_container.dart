@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'package:persian/persian.dart';
 
@@ -10,7 +12,7 @@ class ReviewQuestionContainer extends StatelessWidget {
   final questionAnswers;
   final answerPrice;
   final String trPrice;
-  final String totPrice;
+  // final String totPrice;
 
   ReviewQuestionContainer({
     required this.serviceTitle,
@@ -18,11 +20,28 @@ class ReviewQuestionContainer extends StatelessWidget {
     required this.questionAnswers,
     required this.answerPrice,
     required this.trPrice,
-    required this.totPrice,
+    // required this.totPrice,
   });
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = 0.0;
+
+    for (int i = 0; i < questionAnswers.length; i++) {
+      final sort = questionAnswers[i]['questionSort'];
+      final price = answerPrice[i];
+
+      if (sort == 'service') {
+        totalPrice += price;
+      }
+    }
+
+    final trPriceWithoutComma = trPrice.replaceAll(',', '');
+  final trPriceValue = double.parse(trPriceWithoutComma);
+  totalPrice += trPriceValue;
+
+    final totPrice = NumberFormat('#,###').format(totalPrice);
+
     return Container(
       decoration: BoxDecoration(
           color: Color(0xFFCDEEF0),
@@ -88,12 +107,17 @@ class ReviewQuestionContainer extends StatelessWidget {
                 final question = questionAnswers[index]['question'];
                 final answer = questionAnswers[index]['answer'];
                 final price = answerPrice[index];
+                final sort = questionAnswers[index]['questionSort'];
 
-                return ReviewList(
-                  question: question,
-                  answer: answer,
-                  price: price,
-                );
+                if (sort == 'service') {
+                  return ReviewList(
+                    question: question,
+                    answer: answer,
+                    price: price,
+                  );
+                } else {
+                  return Container();
+                }
               },
             ),
           ),

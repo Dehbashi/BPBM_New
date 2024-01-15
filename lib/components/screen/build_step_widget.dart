@@ -6,7 +6,7 @@ import '../../screens/components/time_date_page.dart';
 import '../../screens/components/user_page.dart';
 import '../../screens/components/review_page.dart';
 
-Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle) {
+Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle, Function(bool) onStepCompleted) {
   // late final serviceTitle = dataList['service_title'];
   switch (activeStep) {
     case 0:
@@ -14,6 +14,7 @@ Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle) {
         serviceId: serviceId,
         serviceTitle: serviceTitle,
         activeStep: activeStep,
+        onStepCompleted: onStepCompleted,
       );
     case 1:
       return MapPage();

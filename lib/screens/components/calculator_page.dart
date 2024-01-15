@@ -29,6 +29,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   final ScrollController _scrollController = ScrollController();
   bool steppingEnabled = true;
+  bool isStepCompleted = false;
   int selectedIndex = 0;
   int activeStep = 0;
   double price = 0;
@@ -39,6 +40,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   void handleMenuClicked() {
     _scaffoldKey.currentState?.openEndDrawer();
+  }
+
+  void handleStepCompleted(bool value) {
+    isStepCompleted = value;
+    if (isStepCompleted = true) {
+      setState(() {
+        activeStep += 1;
+      });
+    }
   }
 
   Future<void> updatePrice() async {
@@ -61,7 +71,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    // updatePrice();
+    updatePrice();
     print('your serviceTitle inside calculator page is ${widget.serviceTitle}');
     print('your active step inside calculator page is ${activeStep}');
     // String serviceTitle = widget.title;
@@ -106,12 +116,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   activeStep,
                   widget.serviceId,
                   widget.serviceTitle,
+                  handleStepCompleted,
                 ),
               ),
             ),
             SizedBox(
               height: 30,
             ),
+            if (activeStep < 4)
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 20,
@@ -126,29 +138,30 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(
               height: 30,
             ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: ButtonWidget(
-                  steppingEnabled: steppingEnabled,
-                  onPressedNext: () {
-                    if (steppingEnabled) {
-                      setState(() {
-                        activeStep += 1;
-                      });
-                    }
-                  },
-                  onPressedPrevious: () {
-                    if (activeStep > 0) {
-                      setState(() {
-                        activeStep -= 1;
-                      });
-                    }
-                  },
+            if (activeStep != 0)
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: ButtonWidget(
+                    steppingEnabled: steppingEnabled,
+                    onPressedNext: () {
+                      if (steppingEnabled) {
+                        setState(() {
+                          activeStep += 1;
+                        });
+                      }
+                    },
+                    onPressedPrevious: () {
+                      if (activeStep > 0) {
+                        setState(() {
+                          activeStep -= 1;
+                        });
+                      }
+                    },
+                  ),
                 ),
               ),
-            ),
             SizedBox(
               width: double.infinity,
               height: 350,

@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'package:persian/persian.dart';
 
@@ -10,7 +12,7 @@ class ReviewProductContainer extends StatelessWidget {
   final questionAnswers;
   final answerPrice;
   final String trPrice;
-  final String totPrice;
+  // final String totPrice;
 
   ReviewProductContainer({
     required this.serviceTitle,
@@ -18,11 +20,24 @@ class ReviewProductContainer extends StatelessWidget {
     required this.questionAnswers,
     required this.answerPrice,
     required this.trPrice,
-    required this.totPrice,
+    // required this.totPrice,
   });
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = 0.0;
+
+    for (int i = 0; i < questionAnswers.length; i++) {
+      final sort = questionAnswers[i]['questionSort'];
+      final price = answerPrice[i];
+
+      if (sort == 'product') {
+        totalPrice += price;
+      }
+    }
+
+    final totPrice = NumberFormat('#,###').format(totalPrice);
+
     return Container(
       decoration: BoxDecoration(
           color: Color(0xFFCDEEF0),
@@ -66,17 +81,21 @@ class ReviewProductContainer extends StatelessWidget {
                 final question = questionAnswers[index]['question'];
                 final answer = questionAnswers[index]['answer'];
                 final price = answerPrice[index];
+                final sort = questionAnswers[index]['questionSort'];
 
-                return ReviewList(
-                  question: question,
-                  answer: answer,
-                  price: price,
-                );
+                if (sort == 'product') {
+                  return ReviewList(
+                    question: question,
+                    answer: answer,
+                    price: price,
+                  );
+                } else {
+                  return Container();
+                }
               },
             ),
           ),
           SizedBox(height: 10),
-          
           Container(
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Text(

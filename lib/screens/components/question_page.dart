@@ -10,16 +10,19 @@ import '../components/function/radio_question.dart';
 import '../components/calculator_page.dart';
 import '../../components/screen/build_step_widget.dart';
 import '../components/function/service_selection.dart';
+import '../../class/user_input_data.dart';
 
 class QuestionPage extends StatefulWidget {
   late final int serviceId;
   final String serviceTitle;
   late int activeStep;
+  final Function(bool) onStepCompleted;
 
   QuestionPage({
     required this.serviceId,
     required this.serviceTitle,
     this.activeStep = 0,
+    required this.onStepCompleted,
   });
 
   @override
@@ -31,6 +34,7 @@ class _QuestionPageState extends State<QuestionPage> {
   int selectedAnswerId = -1;
   late var selectedAnswer;
   String userInput = '';
+  Map<String, Map<String, dynamic>?> userInputs = {};
   bool isNextQuestionButtonEnabled = true;
 
   // it's the variable for the last question for the back button
@@ -68,6 +72,7 @@ class _QuestionPageState extends State<QuestionPage> {
   void dispose() {
     textFormFieldFocusNode.dispose();
     scrollController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -85,6 +90,7 @@ class _QuestionPageState extends State<QuestionPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('questionPrice', 0);
     prefs.setDouble('transportationPrice', 0);
+    prefs.setDouble('totalPrice', 0);
   }
 
   Future<void> saveQuestionAnswers(
@@ -116,6 +122,7 @@ class _QuestionPageState extends State<QuestionPage> {
     late final currentQuestion = questionList!['question']['title'];
     late final questionitems = questionList!['question']['items'];
     late final questionType = questionList!['question']['type'];
+    // late final questionSort = questionList!['question']['list'];
     // late final questionId = widget.dataList['question']['id'];
 
     // print('service id is $serviceId');
@@ -206,21 +213,12 @@ class _QuestionPageState extends State<QuestionPage> {
                 },
               ),
             if (questionType == 'textbox')
-              //
               TextFormFieldWidget(
                 controller: _controller,
                 focusNode: textFormFieldFocusNode,
                 textFormFieldKey: textFormFieldKey,
                 questionItems: questionitems,
                 userInput: userInput,
-                onChanged: (value) {
-                  setState(() {
-                    userInput = value;
-                    selectedAnswer = value;
-                    // questionPrice +=
-                    //     double.parse(value) * questionitems[0]['price'];
-                  });
-                },
               ),
             SizedBox(
               height: 20,
@@ -238,13 +236,26 @@ class _QuestionPageState extends State<QuestionPage> {
                     onPressed: () {
                       if (questionHistory.isNotEmpty) {
                         final previousQuestion = questionHistory.removeLast();
-                        questionAnswers.removeLast();
-                        questionPriceList.removeLast();
-                        print(questionPriceList);
+                        final int textFieldNumber = questionitems.length;
+
+                        if (questionType == 'textbox') {
+                          for (int i = 0; i < textFieldNumber; i++) {
+                            questionPriceList.removeLast();
+                            questionAnswers.removeLast();
+                          }
+                        }
+
+                        if (questionType == 'radio') {
+                          questionAnswers.removeLast();
+                          questionPriceList.removeLast();
+                        }
+
                         setState(() {
                           questionList = previousQuestion['data'];
                           selectedAnswerId = -1;
                         });
+                        print(
+                            'question price list inside previous button is $questionPriceList');
                       }
                       setState(() {
                         isNextQuestionButtonEnabled = true;
@@ -267,6 +278,8 @@ class _QuestionPageState extends State<QuestionPage> {
                     onPressed: isNextQuestionButtonEnabled
                         ? () async {
                             if (questionType == 'radio') {
+                              final questionSort =
+                                  questionList!['question']['list'];
                               final nextRelationId = int.parse(
                                   questionList!['question']['items']
                                       [selectedAnswerId - 1]['next_relation']);
@@ -274,7 +287,6 @@ class _QuestionPageState extends State<QuestionPage> {
                                   nextRelationId != 0) {
                                 questionHistory.add({
                                   'data': questionList,
-                                  'selectedAnswerId': selectedAnswerId,
                                 });
                                 print(
                                     'question history inside question page is $questionHistory');
@@ -293,6 +305,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                   'question': currentQuestion,
                                   'answer': questionitems[selectedAnswer - 1]
                                       ['title'],
+                                  'questionSort': questionSort,
                                 });
                                 questionPriceList.add(
                                     questionitems[selectedAnswer - 1]['price']
@@ -302,6 +315,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                   'question': currentQuestion,
                                   'answer': questionitems[selectedAnswer - 1]
                                       ['title'],
+                                  'questionSort': questionSort,
                                 });
                                 questionPriceList.add(
                                     questionitems[selectedAnswer - 1]['price']
@@ -310,6 +324,8 @@ class _QuestionPageState extends State<QuestionPage> {
                                 setState(() {
                                   isNextQuestionButtonEnabled = false;
                                 });
+
+                                widget.onStepCompleted(true);
 
                                 // widget.activeStep += 1;
                                 // Navigator.pushReplacement(
@@ -326,13 +342,17 @@ class _QuestionPageState extends State<QuestionPage> {
                               print(
                                   'your list of questions is $questionAnswers');
                             } else if (questionType == 'textbox') {
+                              final int textFieldNumber = questionitems.length;
+                              print(
+                                  'userInputs inside question page button is ${UserInputData.userInputs}');
+                              final questionSort =
+                                  questionList!['question']['list'];
                               final nextRelationId = int.parse(
                                   questionList!['question']['items'][0]
                                       ['next_relation']);
                               if (nextRelationId != 0) {
                                 questionHistory.add({
                                   'data': questionList,
-                                  'selectedAnswerId': userInput,
                                 });
                                 Map<String, dynamic> nestedData =
                                     await fetchNextQuestion.nextQuestion(
@@ -342,27 +362,60 @@ class _QuestionPageState extends State<QuestionPage> {
                                 setState(() {
                                   questionList = nestedData;
                                 });
-                                questionAnswers.add({
-                                  'question': currentQuestion,
-                                  'answer': userInput,
-                                });
-                                questionPriceList.add(double.parse(userInput) *
-                                    double.parse(
-                                        questionitems[0]['price'].toString()));
+                                for (int i = 0; i < textFieldNumber; i++) {
+                                  final answer = questionitems[i];
+                                  final answerId = answer['id'].toString();
+                                  final answerTitle = answer['title'] as String;
+                                  final userInput = UserInputData
+                                          .userInputs[answerId]?['value'] ??
+                                      '';
+
+                                  double parsedUserInput = 0.0;
+
+                                  if (userInput.isNotEmpty) {
+                                    parsedUserInput = double.parse(userInput);
+                                  }
+
+                                  questionAnswers.add({
+                                    'question': currentQuestion,
+                                    'answer': '$answerTitle: $userInput',
+                                    'questionSort': questionSort,
+                                  });
+                                  questionPriceList.add(parsedUserInput *
+                                      double.parse(answer['price'].toString()));
+                                }
+
                                 print(
                                     'your list of questions is $questionAnswers');
                               } else if (nextRelationId == 0) {
-                                questionAnswers.add({
-                                  'question': currentQuestion,
-                                  'answer': userInput,
-                                });
-                                questionPriceList.add(double.parse(userInput) *
-                                    double.parse(
-                                        questionitems[0]['price'].toString()));
+                                for (int i = 0; i < textFieldNumber; i++) {
+                                  final answer = questionitems[i];
+                                  final answerId = answer['id'].toString();
+                                  final answerTitle = answer['title'] as String;
+                                  final userInput = UserInputData
+                                          .userInputs[answerId]?['value'] ??
+                                      '';
+
+                                  double parsedUserInput = 0.0;
+
+                                  if (userInput.isNotEmpty) {
+                                    parsedUserInput = double.parse(userInput);
+                                  }
+
+                                  questionAnswers.add({
+                                    'question': currentQuestion,
+                                    'answer': '$answerTitle: $userInput',
+                                    'questionSort': questionSort,
+                                  });
+                                  questionPriceList.add(parsedUserInput *
+                                      double.parse(answer['price'].toString()));
+                                }
 
                                 setState(() {
                                   isNextQuestionButtonEnabled = false;
                                 });
+
+                                widget.onStepCompleted(true);
 
                                 // widget.activeStep += 1;
                                 // Navigator.pushReplacement(
