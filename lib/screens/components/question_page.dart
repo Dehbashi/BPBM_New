@@ -48,7 +48,7 @@ class _QuestionPageState extends State<QuestionPage> {
       ValueKey<String>('textFormFieldKey');
   static final ValueKey<String> radioButtonKey =
       ValueKey<String>('radioButtonKey');
-      
+
   FocusNode textFormFieldFocusNode = FocusNode();
   ScrollController scrollController = ScrollController();
   double scrollPosition = 0.0;
@@ -258,9 +258,12 @@ class _QuestionPageState extends State<QuestionPage> {
                         final previousQuestion = questionHistory.removeLast();
                         final int textFieldNumber = questionitems.length;
 
+                        print(
+                            'userInputs inside question page button is ${UserInputData.userInputs}');
+
                         if (questionType == 'textbox') {
-                            questionPriceList.removeLast();
-                            questionAnswers.removeLast();
+                          questionPriceList.removeLast();
+                          questionAnswers.removeLast();
                         }
 
                         if (questionType == 'radio') {
@@ -272,7 +275,8 @@ class _QuestionPageState extends State<QuestionPage> {
                           questionList = previousQuestion['data'];
                           selectedAnswerId = -1;
                         });
-                        print('previous question inside previous button is $previousQuestion');
+                        print(
+                            'previous question inside previous button is $previousQuestion');
                         print(
                             'question price list inside previous button is $questionPriceList');
                       }
@@ -373,7 +377,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                 questionHistory.add({
                                   'data': questionList,
                                 });
-                                 print(
+                                print(
                                     'question history inside question page type textbox is $questionHistory');
                                 Map<String, dynamic> nestedData =
                                     await fetchNextQuestion.nextQuestion(
@@ -397,6 +401,9 @@ class _QuestionPageState extends State<QuestionPage> {
                                     parsedUserInput = double.parse(userInput);
                                   }
 
+                                  print(
+                                      'user Input inside question page is $userInput');
+
                                   questionAnswers.add({
                                     'question': currentQuestion,
                                     'answer': '$answerTitle: $userInput',
@@ -405,8 +412,6 @@ class _QuestionPageState extends State<QuestionPage> {
                                   questionPriceList.add(parsedUserInput *
                                       double.parse(answer['price'].toString()));
                                 }
-
-                               
 
                                 print(
                                     'your list of questions is $questionAnswers');

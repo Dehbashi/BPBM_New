@@ -31,14 +31,13 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
   @override
   void initState() {
     super.initState();
+    clearUserInputData();
     for (final answer in widget.questionItems) {
       final answerId = answer['id'].toString();
       textControllers[answerId] =
           TextEditingController(text: '0'); // Set default value to '0'
     }
   }
-
-
 
   @override
   void dispose() {
@@ -52,6 +51,10 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
     for (final controller in textControllers.values) {
       controller.text = ''; // Reset the text field value
     }
+  }
+
+  void clearUserInputData() {
+    UserInputData.userInputs.clear();
   }
 
   @override
