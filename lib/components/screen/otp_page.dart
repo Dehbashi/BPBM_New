@@ -148,7 +148,7 @@ class _OtpPageState extends State<OtpPage> {
             title: 'اعتبارسنجی کد فعالسازی',
             onPressed: () {
               print('Verification code is: $otpCode');
-              verifyOtpCode(context, ip, cellNumber, userAgent, otpCode);
+              // verifyOtpCode(context, ip, cellNumber, userAgent, otpCode);
             },
             formkey: _formKey,
           ),

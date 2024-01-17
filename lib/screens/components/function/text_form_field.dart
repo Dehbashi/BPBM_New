@@ -38,12 +38,20 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
     }
   }
 
+
+
   @override
   void dispose() {
     for (final controller in textControllers.values) {
       controller.dispose();
     }
     super.dispose();
+  }
+
+  void resetTextFields() {
+    for (final controller in textControllers.values) {
+      controller.text = ''; // Reset the text field value
+    }
   }
 
   @override
@@ -67,6 +75,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           width: MediaQuery.of(context).size.width * 0.7,
           child: TextFormField(
             // controller: textControllers[answerId],
+            // controller: widget.controller,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               border: UnderlineInputBorder(

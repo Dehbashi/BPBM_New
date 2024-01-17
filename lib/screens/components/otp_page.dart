@@ -13,11 +13,13 @@ class OtpPage extends StatefulWidget {
   final String cellNumber;
   final String ip;
   final String userAgent;
+  final Function(bool) onStepCompleted;
 
   OtpPage({
     required this.cellNumber,
     required this.ip,
     required this.userAgent,
+    required this.onStepCompleted
   });
 
   @override
@@ -148,7 +150,7 @@ class _OtpPageState extends State<OtpPage> {
             title: 'اعتبارسنجی کد فعالسازی',
             onPressed: () {
               print('Verification code is: $otpCode');
-              verifyOtpCode(context, ip, cellNumber, userAgent, otpCode);
+              verifyOtpCode(context, ip, cellNumber, userAgent, otpCode, widget.onStepCompleted,);
             },
             formkey: _formKey,
           ),

@@ -176,6 +176,7 @@ class _UserPageState extends State<UserPage> {
                                       cellNumber: cellNumber,
                                       ip: mainIpAddress,
                                       userAgent: userAgent,
+                                      onStepCompleted: widget.onStepCompleted,
                                     ),
                                     SizedBox(height: 16),
                                     ElevatedButton(

@@ -11,6 +11,7 @@ Future<void> verifyOtpCode(
   String cellNumber,
   String userAgent,
   String otpCode,
+  final Function(bool) onStepCompleted,
 ) async {
   final url = Uri.parse('https://s1.lianerp.com/api/public/auth/otp/verify');
 
@@ -79,7 +80,7 @@ Future<void> verifyOtpCode(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                NamePage(),
+                                NamePage(onStepCompleted: onStepCompleted,),
                                 SizedBox(height: 16),
                                 ElevatedButton(
                                   style: ButtonStyle(

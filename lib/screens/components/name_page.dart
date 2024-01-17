@@ -7,7 +7,10 @@ import 'dart:async';
 import '../../class/text_field_widget.dart';
 
 class NamePage extends StatefulWidget {
-  const NamePage({super.key});
+  // const NamePage({super.key});
+  final Function(bool) onStepCompleted;
+
+  NamePage({required this.onStepCompleted});
 
   @override
   State<NamePage> createState() => _NamePageState();
@@ -111,6 +114,7 @@ class _NamePageState extends State<NamePage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
+                        widget.onStepCompleted(true);
                         SaveName();
                         Navigator.of(context).pop();
                         showDialog(
