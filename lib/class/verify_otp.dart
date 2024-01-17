@@ -50,6 +50,7 @@ Future<void> verifyOtpCode(
       builder: (BuildContext context) {
         return Center(
           child: AlertDialog(
+            insetPadding: EdgeInsets.all(10),
             title: Icon(
               Icons.verified_user,
               size: 80,
@@ -73,14 +74,18 @@ Future<void> verifyOtpCode(
                     context: context,
                     builder: (BuildContext context) {
                       return Dialog(
+                        backgroundColor: Colors.white,
+                        insetPadding: EdgeInsets.all(10),
                         child: Container(
-                          width: 400, // Set the desired width
+                          // width: 600, // Set the desired width
                           // padding: EdgeInsets.all(16),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                NamePage(onStepCompleted: onStepCompleted,),
+                                NamePage(
+                                  onStepCompleted: onStepCompleted,
+                                ),
                                 SizedBox(height: 16),
                                 ElevatedButton(
                                   style: ButtonStyle(

@@ -15,12 +15,11 @@ class OtpPage extends StatefulWidget {
   final String userAgent;
   final Function(bool) onStepCompleted;
 
-  OtpPage({
-    required this.cellNumber,
-    required this.ip,
-    required this.userAgent,
-    required this.onStepCompleted
-  });
+  OtpPage(
+      {required this.cellNumber,
+      required this.ip,
+      required this.userAgent,
+      required this.onStepCompleted});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -72,8 +71,8 @@ class _OtpPageState extends State<OtpPage> {
     return Container(
       // margin: EdgeInsets.all(10),
       width: double.infinity,
-      // height: MediaQuery.of(context).size.height,
-      height: 650,
+      height: MediaQuery.of(context).size.height * 0.8,
+      // height: 650,
       decoration: BoxDecoration(
         color: Color(0xFFCDEEF0),
         borderRadius: BorderRadius.circular(10),
@@ -150,7 +149,14 @@ class _OtpPageState extends State<OtpPage> {
             title: 'اعتبارسنجی کد فعالسازی',
             onPressed: () {
               print('Verification code is: $otpCode');
-              verifyOtpCode(context, ip, cellNumber, userAgent, otpCode, widget.onStepCompleted,);
+              verifyOtpCode(
+                context,
+                ip,
+                cellNumber,
+                userAgent,
+                otpCode,
+                widget.onStepCompleted,
+              );
             },
             formkey: _formKey,
           ),

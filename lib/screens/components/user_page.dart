@@ -165,9 +165,11 @@ class _UserPageState extends State<UserPage> {
                         context: context,
                         builder: (BuildContext context) {
                           return Dialog(
+                            backgroundColor: Colors.white,
+                            insetPadding: EdgeInsets.all(10),
                             child: Container(
-                              width: 400,
-                              // padding: EdgeInsets.all(16),
+                              // width: 400,a
+                              padding: EdgeInsets.all(10),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,

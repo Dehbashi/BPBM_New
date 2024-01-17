@@ -79,6 +79,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
   void initState() {
     super.initState();
     fetchToken();
+    // clearToken();
+  }
+
+  Future<void> clearToken() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.clear();
   }
 
   Future<void> fetchToken() async {
@@ -176,7 +182,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: ButtonWidget(
                     steppingEnabled: steppingEnabled,
+                    // steppingEnabled: true,
                     onPressedNext: () {
+                      // setState(() {
+                      //   activeStep += 1;
+                      // });
                       print(
                           'isStepCompleted inside $activeStep is $isStepCompleted');
                       if (steppingEnabled) {
@@ -197,10 +207,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           'stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
 
                       if (activeStep > 0) {
-                        setState(() {
-                          activeStep -= 1;
-                          steppingEnabled = false;
-                        });
+                        if (activeStep == 4 && _token != '') {
+                          setState(() {
+                            activeStep -= 2;
+                          });
+                        } else
+                          setState(() {
+                            activeStep -= 1;
+                            steppingEnabled = false;
+                          });
                       }
                     },
                   ),

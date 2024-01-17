@@ -91,55 +91,60 @@ class _ReviewPageState extends State<ReviewPage> {
   Widget build(BuildContext context) {
     print('question answers inside review page is $questionAnswers');
     print('price inside review page is $answerPrice');
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 20),
-          alignment: Alignment.center,
-          child: Text(
-            'بررسی و تأیید سفارش',
-            style: TextStyle(
-              color: Color(0xFF037E85),
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+    if (answerPrice.isEmpty) {
+      return CircularProgressIndicator();
+    } else {
+      return Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 20),
+            alignment: Alignment.center,
+            child: Text(
+              'بررسی و تأیید سفارش',
+              style: TextStyle(
+                color: Color(0xFF037E85),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
-        ReviewQuestionContainer(
-          answerPrice: answerPrice,
-          questionAnswers: questionAnswers,
-          savedAddress: savedAddress,
-          serviceTitle: serviceTitle,
-          // totPrice: totPrice,
-          trPrice: trPrice,
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 0),
-          child: DiscountBox(),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        ReviewProductContainer(
-          answerPrice: answerPrice,
-          questionAnswers: questionAnswers,
-          savedAddress: savedAddress,
-          serviceTitle: serviceTitle,
-          // totPrice: totPrice,
-          trPrice: trPrice,
-        ),
-        SizedBox(height: 20,),
-        TotalPriceBox(finalPrice: totPrice),
-        SizedBox(
-          height: 20,
-        ),
-        ReviewNoteBox(),
-        
-      ],
-    );
+          ReviewQuestionContainer(
+            answerPrice: answerPrice,
+            questionAnswers: questionAnswers,
+            savedAddress: savedAddress,
+            serviceTitle: serviceTitle,
+            // totPrice: totPrice,
+            trPrice: trPrice,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 0),
+            child: DiscountBox(),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ReviewProductContainer(
+            answerPrice: answerPrice,
+            questionAnswers: questionAnswers,
+            savedAddress: savedAddress,
+            serviceTitle: serviceTitle,
+            // totPrice: totPrice,
+            trPrice: trPrice,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TotalPriceBox(finalPrice: totPrice),
+          SizedBox(
+            height: 20,
+          ),
+          ReviewNoteBox(),
+        ],
+      );
+    }
   }
 }

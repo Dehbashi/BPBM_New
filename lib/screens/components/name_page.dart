@@ -37,7 +37,8 @@ class _NamePageState extends State<NamePage> {
       // margin: EdgeInsets.all(10),
       width: double.infinity,
       // height: MediaQuery.of(context).size.height,
-      height: 650,
+      height: MediaQuery.of(context).size.height * 0.8,
+      // height: 650,
       decoration: BoxDecoration(
         color: Color(0xFFCDEEF0),
         borderRadius: BorderRadius.circular(10),
