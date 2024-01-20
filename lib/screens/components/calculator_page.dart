@@ -96,7 +96,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    updatePrice();
+    // updatePrice();
     print('your serviceTitle inside calculator page is ${widget.serviceTitle}');
     print('your active step inside calculator page is ${activeStep}');
     // String serviceTitle = widget.title;

@@ -35,6 +35,10 @@ class _HomePageState extends State<HomePage> {
     _scaffoldKey.currentState?.openEndDrawer();
   }
 
+  void handleProfileClicked() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,6 +71,11 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
             color: Color(0xFF037E85),
           ),
+          titleLarge: TextStyle(
+            fontSize: 24,
+            color: Color(0xFF037E85),
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       home: Scaffold(
@@ -78,6 +87,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         endDrawer: DrawerPage(),
+        // drawer: DrawerPage(),
         body: Container(
           padding: EdgeInsets.all(8),
           child: Column(

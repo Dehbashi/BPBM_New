@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:bpbm2/screens/components/footer.dart';
-import 'package:bpbm2/screens/components/contactus.dart';
-import 'package:bpbm2/screens/components/drawerpage.dart';
-import 'package:bpbm2/screens/components/faq.dart';
-import 'package:bpbm2/screens/components/header.dart';
+
+import './footer.dart';
+import './contactus.dart';
+import './drawerpage.dart';
+import './faq.dart';
+import './header.dart';
+import '../../class/app_elevated_button.dart';
+import '../../class/app_title_container.dart';
 // import 'package:bpbm2/customexpansiontile.dart';
 
 List<FAQItem> faqList = [
@@ -112,175 +115,116 @@ class FrequentlyAskedQs2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xFF037E85),
-            unselectedItemColor: Color(0xFF037E85),
-            selectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            unselectedLabelStyle: TextStyle(
-              fontFamily: 'iransans',
-            ),
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-          )),
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: Header(
-            onMenuClicked: handleMenuClicked, // Pass the callback function
-          ),
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Header(
+          onMenuClicked: handleMenuClicked, // Pass the callback function
         ),
-        endDrawer: DrawerPage(),
-        body: Container(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            children: [
-              Flexible(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 16),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: headingpadding),
-                              child: Row(
-                                textDirection: TextDirection.rtl,
-                                children: [
-                                  Text(
-                                    'سوالات پر تکرار',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xFF037E85),
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'iransans',
-                                    ),
-                                  ),
-                                ],
-                              ),
+      ),
+      endDrawer: DrawerPage(),
+      body: Container(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 16),
+                          AppTitleContainer(text: 'سوالات پر تکرار'),
+                          SizedBox(height: 16),
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.only(bottom: 20),
+                            // height: 593,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFCDEEF0),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            SizedBox(height: 16),
-                            Container(
-                              width: double.infinity,
-                              height: 593,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFCDEEF0),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.circular(imageradius),
-                                    child: Image.asset(
-                                      'assets/images/frequent.png',
-                                      fit: BoxFit.fitWidth,
-                                      width: double.infinity,
-                                      height: 220,
-                                    ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.circular(imageradius),
+                                  child: Image.asset(
+                                    'assets/images/frequent.png',
+                                    fit: BoxFit.fitWidth,
+                                    width: double.infinity,
+                                    height: 220,
                                   ),
-                                  SizedBox(height: 25),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: textpadding),
-                                    child: Text(
-                                      'کاربر گرامی  ما در این صفحه سعی کردیم به تمامی پرسشهایی که تا به حال از ما پرسیده شده و ممکنه برای شما هم سوال پیش اومده باشه پاسخ بدیم ، در صورتی که پاسخ سوالات خودتون رو تو این بخش پیدا نکردید می تونید از طریق تکمیل  فرم تماس در صفحه تماس با ما یا تماس با شماره های بخش پشتیبانی، پاسخ پرسشهای خودتون رو دریافت کنید ، همکاران ما پاسخگوی شما هستند.',
-                                      style: TextStyle(
-                                        color: Color(0xFF025459),
-                                        fontFamily: 'iransans',
-                                        height: linespacing,
-                                        fontSize: textsize,
-                                      ),
-                                      textAlign: TextAlign.justify,
-                                      textDirection: TextDirection.rtl,
-                                    ),
+                                ),
+                                SizedBox(height: 25),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: textpadding),
+                                  child: Text(
+                                    'کاربر گرامی  ما در این صفحه سعی کردیم به تمامی پرسشهایی که تا به حال از ما پرسیده شده و ممکنه برای شما هم سوال پیش اومده باشه پاسخ بدیم ، در صورتی که پاسخ سوالات خودتون رو تو این بخش پیدا نکردید می تونید از طریق تکمیل  فرم تماس در صفحه تماس با ما یا تماس با شماره های بخش پشتیبانی، پاسخ پرسشهای خودتون رو دریافت کنید، همکاران ما پاسخگوی شما هستند.',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                    textAlign: TextAlign.justify,
+                                    textDirection: TextDirection.rtl,
                                   ),
-                                  SizedBox(height: 20),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: SizedBox(
-                                        height: 40,
-                                        width: 210, // Set the desired width
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xFF04A8B2),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
+                                ),
+                                SizedBox(height: 20),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 8),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: SizedBox(
+                                      height: 40,
+                                      width: 210, // Set the desired width
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xFF04A8B2),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
                                           ),
-                                          onPressed: () {
-                                            // Handle button press
-                                            Navigator.push(
-                                              context,
-                                              PageRouteBuilder(
-                                                transitionDuration:
-                                                    Duration(milliseconds: 300),
-                                                transitionsBuilder:
-                                                    (BuildContext context,
-                                                        Animation<double>
-                                                            animation,
-                                                        Animation<double>
-                                                            secondaryAnimation,
-                                                        Widget child) {
-                                                  return SlideTransition(
-                                                    position: Tween<Offset>(
-                                                      begin: Offset(1.0, 0.0),
-                                                      end: Offset.zero,
-                                                    ).animate(animation),
-                                                    child: child,
-                                                  );
-                                                },
-                                                pageBuilder: (BuildContext
-                                                        context,
-                                                    Animation<double> animation,
-                                                    Animation<double>
-                                                        secondaryAnimation) {
-                                                  return ContactUs();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          child: Text(
-                                            'تماس با ما',
-                                            style: TextStyle(
-                                              fontFamily: 'iransans',
-                                              fontSize: 15,
+                                        ),
+                                        onPressed: () {
+                                          // Handle button press
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => ContactUs(),
                                             ),
+                                          );
+                                        },
+                                        child: Text(
+                                          'تماس با ما',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 60),
-                            FAQ(faqItems: faqList),
-                          ],
-                        ),
+                          ),
+                          SizedBox(height: 60),
+                          FAQ(faqItems: faqList),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        bottomNavigationBar: Footer(),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }
