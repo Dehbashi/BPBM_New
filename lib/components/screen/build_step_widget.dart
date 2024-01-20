@@ -5,8 +5,10 @@ import '../../screens/components/map_page.dart';
 import '../../screens/components/time_date_page.dart';
 import '../../screens/components/user_page.dart';
 import '../../screens/components/review_page.dart';
+import '../../screens/components/final_order_page.dart';
 
-Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle, Function(bool) onStepCompleted) {
+Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle,
+    Function(bool) onStepCompleted) {
   // late final serviceTitle = dataList['service_title'];
   switch (activeStep) {
     case 0:
@@ -17,15 +19,23 @@ Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle, Funct
         onStepCompleted: onStepCompleted,
       );
     case 1:
-      return MapPage(onStepCompleted: onStepCompleted,);
+      return MapPage(
+        onStepCompleted: onStepCompleted,
+      );
     case 2:
-      return TimeDatePage(onStepCompleted: onStepCompleted,);
+      return TimeDatePage(
+        onStepCompleted: onStepCompleted,
+      );
     case 3:
-      return UserPage(onStepCompleted: onStepCompleted,);
+      return UserPage(
+        onStepCompleted: onStepCompleted,
+      );
     case 4:
       return ReviewPage(
         serviceTitle: serviceTitle,
       );
+    case 5:
+      return FinalOrderPage();
     default:
       return Container();
   }

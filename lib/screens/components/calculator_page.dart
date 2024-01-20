@@ -175,12 +175,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
             SizedBox(
               height: 30,
             ),
-            if (activeStep != 0)
+            if (activeStep != 0 && activeStep != 5)
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: ButtonWidget(
+                    activeStep: activeStep,
                     steppingEnabled: steppingEnabled,
                     // steppingEnabled: true,
                     onPressedNext: () {
@@ -189,7 +190,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       // });
                       print(
                           'isStepCompleted inside $activeStep is $isStepCompleted');
-                      if (steppingEnabled) {
+                      if (activeStep == 4) {
+                        print('you can send the info to the API');
+                        setState(() {
+                          activeStep += 1;
+                        });
+                      } else if (steppingEnabled) {
                         if (activeStep == 2 && _token != '') {
                           setState(() {
                             activeStep += 2;
@@ -210,6 +216,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         if (activeStep == 4 && _token != '') {
                           setState(() {
                             activeStep -= 2;
+                            steppingEnabled = false;
                           });
                         } else
                           setState(() {

@@ -6,15 +6,25 @@ class ButtonWidget extends StatelessWidget {
   final void Function()? onPressedNext;
   final void Function()? onPressedPrevious;
   final bool steppingEnabled;
+  final int activeStep;
+  late String text = '';
 
   ButtonWidget(
       {required this.onPressedNext,
       required this.onPressedPrevious,
-      required this.steppingEnabled
+      required this.steppingEnabled,
+      required this.activeStep,
       });
+
 
   @override
   Widget build(BuildContext context) {
+    if (activeStep == 4) {
+      text = 'ثبت نهایی';
+    } else {
+      text = 'رفتن به مرحله بعد';
+    }
+
     return Row(
       children: [
         Expanded(
@@ -53,7 +63,7 @@ class ButtonWidget extends StatelessWidget {
               onPressed: steppingEnabled ? onPressedNext : null,
               // onPressed:onPressedNext,
               child: Text(
-                'رفتن به مرحله بعد',
+                text,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
