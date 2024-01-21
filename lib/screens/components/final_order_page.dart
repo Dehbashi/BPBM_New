@@ -34,6 +34,7 @@ class _FinalOrderPageState extends State<FinalOrderPage> {
     return Column(
       children: [
         Container(
+          margin: EdgeInsets.only(top: 10),
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 40),
           decoration: BoxDecoration(

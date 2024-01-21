@@ -1,34 +1,14 @@
-import 'package:bpbm2/screens/components/services/airconditioningpage.dart';
-import 'package:bpbm2/screens/components/services/burglaralarmpage.dart';
-import 'package:bpbm2/screens/components/services/ceilingfanpage.dart';
-import 'package:bpbm2/screens/components/services/centralpage.dart';
-import 'package:bpbm2/screens/components/services/damperpage.dart';
-import 'package:bpbm2/screens/components/services/drillpage.dart';
-import 'package:bpbm2/screens/components/services/earthpage.dart';
-import 'package:bpbm2/screens/components/services/firealarmpage.dart';
-import 'package:bpbm2/screens/components/services/indpowerpage.dart';
-import 'package:bpbm2/screens/components/services/lightingpage.dart';
-import 'package:bpbm2/screens/components/services/lightremotepage.dart';
-import 'package:bpbm2/screens/components/services/sensorpage.dart';
-import 'package:bpbm2/screens/components/services/telephonepage.dart';
-import 'package:bpbm2/screens/components/services/upspage.dart';
-import 'package:bpbm2/screens/components/services/walltvpage.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:bpbm2/screens/components/animationcontroller.dart';
-import 'package:bpbm2/screens/components/frequentlyaskedpage.dart';
-import 'package:bpbm2/screens/components/services/antennapage.dart';
-import 'package:bpbm2/screens/components/services/gascoolerpage.dart';
-import 'package:bpbm2/screens/components/services/watercoolerpage.dart';
-import 'package:bpbm2/screens/components/services/iphonepage.dart';
-import 'package:bpbm2/screens/components/services/cctvpage.dart';
-import 'package:bpbm2/screens/components/services/outletpage.dart';
-import 'package:bpbm2/screens/components/services/wiringpage.dart';
-import 'package:bpbm2/screens/components/services/modempage.dart';
 
-import 'package:bpbm2/screens/components/rules.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import './rules.dart';
+import './frequentlyaskedpage.dart';
+import './technicians_guide.dart';
 import '../components/function/fetch_service_list.dart';
+import '../../class/drawer_page_quick_link.dart';
+import '../../class/drawer_page_navigation.dart';
 
 class DrawerPage extends StatefulWidget {
   const DrawerPage({Key? key}) : super(key: key);
@@ -73,126 +53,9 @@ class _DrawerPageState extends State<DrawerPage>
     super.dispose();
   }
 
-
   void _navigateToPage(dynamic id) {
     setState(() {
-      switch (id) {
-        case 4:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AntennaPage()));
-          break;
-        case 3:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IphonePage()));
-          break;
-        case 2:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => GasCoolerPage()));
-          break;
-        case 1:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WaterCoolerPage()));
-          break;
-        case 8:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => UpsPage()));
-          break;
-        case 7:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => OutletPage()));
-          break;
-        case 6:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WiringPage()));
-          break;
-        case 5:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CctvPage()));
-          break;
-        case 13:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CentralPage()));
-          break;
-        case 12:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TelephonePage()));
-          break;
-        case 11:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => FireAlarmPage()));
-          break;
-        case 10:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SensorPage()));
-          break;
-        case 17:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DrillPage()));
-          break;
-        case 16:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EarthPage()));
-          break;
-        case 15:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LightingPage()));
-          break;
-        case 14:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IndPowerPage()));
-          break;
-        case 21:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => WallTvPage()));
-          break;
-        case 20:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CeilingFanPage()));
-          break;
-        case 19:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => LightRemotePage()));
-          break;
-        case 18:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DamperPage()));
-          break;
-        case 22:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AirConditioningPage()));
-          break;
-        case 23:
-          // Navigate to the home page
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BurglarAlarmPage()));
-          break;
-        case 24:
-          // Navigate to the home page
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ModemPage()));
-          break;
-      }
+      navigateToPage(context, id);
     });
   }
 
@@ -255,8 +118,7 @@ class _DrawerPageState extends State<DrawerPage>
                             style: TextStyle(
                               fontSize: 16,
                               color: Color(0xFF037E85),
-                              // fontWeight: FontWeight.bold,
-                              fontFamily: 'iransans',
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -364,102 +226,51 @@ class _DrawerPageState extends State<DrawerPage>
               ),
               SizedBox(height: 15),
               Padding(
-                padding: EdgeInsets.only(right: 95, left: 30, top: 0),
+                padding: EdgeInsets.only(right: 60, left: 30, top: 0),
                 child: Column(
                   children: [
-                    GestureDetector(
-                      onTap: () {
+                    DrawerPageQuickLink(
+                      title: 'پرسشهای متداول',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => FrequentlyAskedQs2()),
                         );
                       },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'پرسشهای متداول',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
                     ),
-                    SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
+                    DrawerPageQuickLink(
+                      title: 'درخواست همکاری',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TechniciansGuide()),
+                        );
+                      },
+                    ),
+                    DrawerPageQuickLink(
+                      title: 'پشتیبانی',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => FrequentlyAskedQs2()),
                         );
                       },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'درخواست همکاری',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
                     ),
-                    SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FrequentlyAskedQs2()),
-                        );
-                      },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'پشتیبانی',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
+                    DrawerPageQuickLink(
+                      title: 'قوانین و مقررات',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Rules()),
                         );
                       },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'قوانین و مقررات',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
                     ),
-                    SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () async {
+                    DrawerPageQuickLink(
+                      title: 'مجله بسپارش به ما',
+                      onPressed: () async {
                         const url = 'https://blog.bespareshbema.com';
                         final uri = Uri.parse(url);
                         if (await canLaunchUrl(uri)) {
@@ -468,19 +279,6 @@ class _DrawerPageState extends State<DrawerPage>
                           throw 'Could not launch $url';
                         }
                       },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'مجله بسپارش به ما',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF037E85),
-                            // fontWeight: FontWeight.bold,
-                            fontFamily: 'iransans',
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -496,7 +294,6 @@ class _DrawerPageState extends State<DrawerPage>
                         fontSize: 16,
                         color: Color(0xFF04A8B2),
                         // fontWeight: FontWeight.bold,
-                        fontFamily: 'iransans',
                       ),
                     ),
                     SizedBox(height: 10),

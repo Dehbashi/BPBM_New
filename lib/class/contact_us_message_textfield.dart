@@ -21,6 +21,7 @@ class _ContactUsMessageTextfieldState extends State<ContactUsMessageTextfield> {
       return Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
           width: double.infinity, // Set the width of the TextField
           height: widget.height, // Set the height of the TextField
           child: TextField(
@@ -57,6 +58,7 @@ class _ContactUsMessageTextfieldState extends State<ContactUsMessageTextfield> {
       return Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
           width: double.infinity, // Set the width of the TextField
           height: widget.height, // Set the height of the TextField
           child: TextField(

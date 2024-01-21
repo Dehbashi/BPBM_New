@@ -79,6 +79,7 @@ flutter:
     - assets/icons/antennaicons/
     - assets/images/services/
     - assets/landing_icons/
+    - assets/landing_images/
 
   fonts:
     - family: iranSans

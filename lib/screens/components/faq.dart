@@ -63,7 +63,7 @@ class FAQ extends StatelessWidget {
                           style: TextStyle(
                             color: Color(0xFF025459),
                             fontSize: textsize,
-                            // fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                       ),

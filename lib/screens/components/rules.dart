@@ -182,7 +182,7 @@ class Rules extends StatelessWidget {
                               AppElevatedButton(
                                 text: 'حریم خصوصی کاربران',
                                 onPressed: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => PrivacyPage(),
