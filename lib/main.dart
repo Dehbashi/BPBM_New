@@ -8,6 +8,7 @@ import 'screens/components/landings/cctv_landing_page.dart';
 import 'screens//components/landings/lighting_landing_page.dart';
 import 'screens/components/landings/video_phone_landing_page.dart';
 import 'screens/components/landings/industrial_power_landing_page.dart';
+import 'screens/components/landings/barglar_alarm_landing_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: IndustrialPowerLandingPage(),
     );
   }
 }

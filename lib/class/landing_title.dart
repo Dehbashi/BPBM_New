@@ -14,15 +14,28 @@ class LandingTitle extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: IntrinsicWidth(
           // Wrap Row with IntrinsicWidth
-          child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'iranSans',
+          child: Stack(
+            alignment: Alignment.centerRight,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset('assets/landing_images/title_box.png'),
               ),
-              textAlign: TextAlign.right,
-            ),
+              Padding(
+                padding: EdgeInsets.only(right: 15),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'iranSans',
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
