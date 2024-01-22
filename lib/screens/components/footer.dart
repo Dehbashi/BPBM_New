@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:bpbm2/screens/home.dart';
 import 'package:bpbm2/screens/components/aboutus.dart';
 import 'package:bpbm2/screens/components/contactus.dart';
+import 'package:bpbm2/screens/components/user_enter.dart';
 
 class Footer extends StatefulWidget {
   // const Footer({super.key});
- 
+
   @override
   State<Footer> createState() => _FooterState();
 }
@@ -14,11 +15,9 @@ class Footer extends StatefulWidget {
 class _FooterState extends State<Footer> {
   // Named parameter for menu click
 
- int _currentPageIndex = 0;
+  int _currentPageIndex = 0;
 
   void _onItemTapped(int index) {
-
-
     print('current page index is $_currentPageIndex');
     print('index is $index');
 
@@ -48,7 +47,8 @@ class _FooterState extends State<Footer> {
         case 4:
           // Scaffold.of(context).openDrawer();
           // Navigate to the profile page
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => UserEnter()));
           break;
       }
     });

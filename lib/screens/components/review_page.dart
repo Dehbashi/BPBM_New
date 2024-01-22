@@ -14,8 +14,9 @@ class ReviewPage extends StatefulWidget {
   // const ReviewPage({super.key});
 
   final String serviceTitle;
+  final Function(bool) onStepCompleted;
 
-  ReviewPage({required this.serviceTitle});
+  ReviewPage({required this.serviceTitle, required this.onStepCompleted});
 
   @override
   State<ReviewPage> createState() => _ReviewPageState();
@@ -34,6 +35,9 @@ class _ReviewPageState extends State<ReviewPage> {
     super.initState();
     getQuestionAnswers();
     getPriceValues(); // Retrieve the questionAnswers when the page is initialized
+    Future.delayed(Duration.zero, () {
+      widget.onStepCompleted(true);
+    });
   }
 
   Future<void> getQuestionAnswers() async {

@@ -96,7 +96,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    updatePrice();
+    // updatePrice();
     print('your serviceTitle inside calculator page is ${widget.serviceTitle}');
     print('your active step inside calculator page is ${activeStep}');
     // String serviceTitle = widget.title;
@@ -196,7 +196,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           activeStep += 1;
                         });
                       } else if (steppingEnabled) {
-                        if (activeStep == 2 && _token != '') {
+                        if (activeStep == 2 && _token != null) {
                           setState(() {
                             activeStep += 2;
                           });
@@ -213,7 +213,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           'stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
 
                       if (activeStep > 0) {
-                        if (activeStep == 4 && _token != '') {
+                        if (activeStep == 4 && _token != null) {
                           setState(() {
                             activeStep -= 2;
                             steppingEnabled = false;

@@ -1,33 +1,26 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class TextFieldWidget extends StatefulWidget {
-  // const TextFieldWidget({super.key});
+class UserSignInTextForm extends StatefulWidget {
+  // const UserSignInTextForm({super.key});
   final String labelText;
-  final icon;
-  final bool obscureText;
-  final suffixIcon;
   String? Function(String?)? validator;
-  final void Function(String?)? onSaved;
   final TextInputType? keyboardType;
+  IconData? icon;
+  final void Function(String?)? onSaved;
 
-  TextFieldWidget({
+  UserSignInTextForm({
+    required this.keyboardType,
     required this.labelText,
-    required this.icon,
-    required this.obscureText,
-    required this.suffixIcon,
     required this.validator,
     required this.onSaved,
-    this.keyboardType,
+    this.icon,
   });
 
   @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+  State<UserSignInTextForm> createState() => _UserSignInTextFormState();
 }
 
-class _TextFieldWidgetState extends State<TextFieldWidget> {
+class _UserSignInTextFormState extends State<UserSignInTextForm> {
   TextEditingController _controller = TextEditingController();
   String? errorText;
 
@@ -49,32 +42,19 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     String? Function(String?)? validator = widget.validator;
     return Container(
       child: TextFormField(
-        controller: _controller,
-        keyboardType: widget.keyboardType,
-        validator: (value) {
-          if (widget.validator != null) {
-            final errorMessage = widget.validator!(value);
-            setState(() {
-              errorText = errorMessage;
-            });
-            return errorMessage;
-          }
-          return null;
-        },
         onSaved: widget.onSaved,
+        keyboardType: widget.keyboardType,
+        validator: validator,
         style: TextStyle(
-            fontSize: 24,
-            color: Color(0xFF037E85),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'iranSans,'),
+          color: Color(0xFF037E85),
+          fontSize: 20,
+          fontFamily: 'iranSans',
+        ),
         textAlign: TextAlign.right,
-        obscureText: widget.obscureText,
         decoration: InputDecoration(
           hintText: widget.labelText,
           hintStyle: TextStyle(
             color: Colors.grey,
-            // fontFamily: 'iranSans',
-            fontSize: 24,
           ),
           filled: true,
           fillColor: Colors.white,
@@ -88,7 +68,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               color: Colors.white,
             ),
           ),
-          prefixIcon: widget.suffixIcon,
+          prefixIcon: widget.icon != null ? Icon(widget.icon) : null,
           suffixIcon: Tooltip(
             message: 'پاکسازی شماره',
             child: GestureDetector(

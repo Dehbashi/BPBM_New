@@ -33,6 +33,7 @@ Widget buildStepWidget(int activeStep, int serviceId, String serviceTitle,
     case 4:
       return ReviewPage(
         serviceTitle: serviceTitle,
+        onStepCompleted: onStepCompleted,
       );
     case 5:
       return FinalOrderPage();
