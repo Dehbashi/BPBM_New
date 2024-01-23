@@ -6,6 +6,7 @@ import './header.dart';
 import './footer.dart';
 import './drawerpage.dart';
 import '../../class/app_elevated_button.dart';
+import '../../class/confirmation_dialog.dart';
 import './user_panel_page_orders.dart';
 import '../home.dart';
 
@@ -95,13 +96,24 @@ class _UserPanelPageState extends State<UserPanelPage> {
             AppElevatedButton(
               text: 'خروج',
               onPressed: () {
-                deleteData();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                  );
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ConfirmationDialog(
+                      title: 'خروج',
+                      message: 'آیا از خروج خود مطمئن هستید؟',
+                      onConfirm: () {
+                        deleteData();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
               },
               color: Colors.red,
               icon: Icons.logout_outlined,

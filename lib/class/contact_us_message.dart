@@ -57,21 +57,21 @@ class _ContactUsMessageState extends State<ContactUsMessage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ContactUsMessageTextfield(
-                  height: 40,
+                  height: 50,
                   text: 'موضوع پیام',
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 ContactUsMessageTextfield(
-                  height: 40,
+                  height: 50,
                   text: 'نام و نام خانوادگی',
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 ContactUsMessageTextfield(
-                  height: 40,
+                  height: 50,
                   text: 'شماره تماس برای پیگیری',
                 ),
                 SizedBox(
