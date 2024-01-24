@@ -8,6 +8,7 @@ import '../../screens/components/header.dart';
 import '../../screens/components/drawerpage.dart';
 import '../../screens/components/footer.dart';
 import '../components/function/price_box.dart';
+import './function/submit_order_data.dart';
 
 class CalculatorPage extends StatefulWidget {
   // const QuestionPage({super.key});
@@ -96,7 +97,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    updatePrice();
+    // updatePrice();
     print('your serviceTitle inside calculator page is ${widget.serviceTitle}');
     print('your active step inside calculator page is ${activeStep}');
     // String serviceTitle = widget.title;
@@ -192,6 +193,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           'isStepCompleted inside $activeStep is $isStepCompleted');
                       if (activeStep == 4) {
                         print('you can send the info to the API');
+                        submitOrderData();
                         setState(() {
                           activeStep += 1;
                         });

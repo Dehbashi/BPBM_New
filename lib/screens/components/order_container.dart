@@ -3,15 +3,38 @@ import 'package:flutter/material.dart';
 import '../../class/app_elevated_button.dart';
 import './order_container_step.dart';
 import './order_container_price.dart';
+import '../../class/user_order_info.dart';
 
-class OrderContainer extends StatefulWidget {
-  const OrderContainer({super.key});
+class OrderContainer extends StatelessWidget {
+  // const OrderContainer({super.key});
+  int orderId;
+  String serviceTitle;
+  int serviceId;
+  int orderStatus;
+  String address;
+  String technicianName;
+  String technicianCellNumber;
+  String transportationPrice;
+  String totalPrice;
+  String discount;
+  String date;
+  String time;
 
-  @override
-  State<OrderContainer> createState() => _OrderContainerState();
-}
+  OrderContainer({
+    required this.orderId,
+    required this.serviceTitle,
+    required this.orderStatus,
+    required this.address,
+    required this.technicianName,
+    required this.technicianCellNumber,
+    required this.totalPrice,
+    required this.discount,
+    required this.transportationPrice,
+    required this.date,
+    required this.time,
+    required this.serviceId,
+  });
 
-class _OrderContainerState extends State<OrderContainer> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -21,6 +44,7 @@ class _OrderContainerState extends State<OrderContainer> {
           horizontal: 20,
           vertical: 20,
         ),
+        margin: EdgeInsets.symmetric(vertical: 20),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Color(0xFFCDEEF0),
@@ -32,7 +56,7 @@ class _OrderContainerState extends State<OrderContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'سفارش شماره: 100245',
+                  'سفارش شماره: ${orderId}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFFFA14A),
@@ -48,7 +72,7 @@ class _OrderContainerState extends State<OrderContainer> {
                       width: 10,
                     ),
                     Text(
-                      '1402/07/11',
+                      date,
                       style: TextStyle(
                         color: Color(0xFF037E85),
                       ),
@@ -63,7 +87,7 @@ class _OrderContainerState extends State<OrderContainer> {
             Row(
               children: [
                 Image.asset(
-                  'assets/icons/homeicons/5.webp',
+                  'assets/icons/homeicons/$serviceId.webp',
                   color: Color(0xFF00A99D),
                   width: 64,
                   height: 64,
@@ -72,7 +96,7 @@ class _OrderContainerState extends State<OrderContainer> {
                   width: 20,
                 ),
                 Text(
-                  'نصب دوربین مداربسته',
+                  serviceTitle,
                   style: TextStyle(
                     color: Color(0xFF037E85),
                     fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/calculator_page.dart';
 import './service_selection.dart';
@@ -15,13 +16,11 @@ class GridListWidget extends StatefulWidget {
 class _GridListWidgetState extends State<GridListWidget> {
   late Map<String, dynamic> dataList;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Fetch the first question with the ID of the first item in dataList
-  //   fetchFirstQuestion(
-  //       widget.dataList.isNotEmpty ? widget.dataList[0]['id'] : null);
-  // }
+  @override
+  void initState() {
+    super.initState();
+    deleteSelectedService();
+  }
 
   // Future<void> fetchFirstQuestion(int? itemId) async {
   //   if (itemId != null) {
@@ -32,6 +31,18 @@ class _GridListWidgetState extends State<GridListWidget> {
   //     });
   //   }
   // }
+
+  Future<void> deleteSelectedService() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('serviceId', 0);
+    prefs.setString('serviceTitle', '');
+  }
+
+  Future<void> saveSelectedService(int serviceId, String serviceTitle) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('serviceId', serviceId);
+    prefs.setString('serviceTitle', serviceTitle);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +62,7 @@ class _GridListWidgetState extends State<GridListWidget> {
 
           return GestureDetector(
             onTap: () {
+              saveSelectedService(itemId, item['title']);
               Navigator.push(
                   context,
                   MaterialPageRoute(
