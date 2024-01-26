@@ -10,9 +10,9 @@ Future fetchUserOrders() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? token = prefs.getString('token');
 
+  print('token is ${token ?? ''}');
   var headers = {
     'Authorization': 'Bearer $token',
-    // 'Authorization': 'Bearer 683|oezA8RW0LqDSmENohgyBRRsTNsCSWvXzxXlj3vPg',
     'Tokenpublic': 'bpbm',
     'Content-Type': 'application/json',
   };

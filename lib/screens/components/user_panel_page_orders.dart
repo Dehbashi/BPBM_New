@@ -26,14 +26,16 @@ class _UserPanelPageOrdersState extends State<UserPanelPageOrders> {
 
   @override
   void initState() {
-    fetchData();
     super.initState();
+    fetchData(); // Call the fetchData method here
   }
 
   void fetchData() async {
     try {
       Map<String, dynamic> fetchedData = await fetchUserOrders();
-      data = fetchedData['data']['data'];
+      setState(() {
+        data = fetchedData['data']['data'];
+      });
       print('data inside user panel page orders is $data');
     } catch (e) {
       print('Error: $e');
@@ -85,41 +87,46 @@ class _UserPanelPageOrdersState extends State<UserPanelPageOrders> {
                 height: 20,
               ),
               Container(
-                height: MediaQuery.of(context).size.height*0.8,
-                child: ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    String address = data[index]['address']['text'];
-                    int orderId = data[index]['id'];
-                    int serviceId = data[index]['order']['service_id'];
-                    String serviceTitle = data[index]['service'];
-                    int orderStatus = data[index]['order_status'];
-                    String technicianName =
-                        data[index]['servicer']['user']['name'];
-                    String technicianCellNumber =
-                        data[index]['servicer']['user']['phone_number'];
-                    String transportationPrice =
-                        data[index]['order']['transportationcost'];
-                    String totalPrice = data[index]['order']['totalprice'];
-                    String discount = data[index]['order']['discount'];
-                    String date = data[index]['order']['date'];
-                    String time = data[index]['order']['time'];
-                    return OrderContainer(
-                      address: address,
-                      date: date,
-                      orderStatus: orderStatus,
-                      orderId: orderId,
-                      serviceId: serviceId,
-                      serviceTitle: serviceTitle,
-                      technicianCellNumber: technicianCellNumber,
-                      technicianName: technicianName,
-                      time: time,
-                      totalPrice: totalPrice,
-                      transportationPrice: transportationPrice,
-                      discount: discount,
-                    );
-                  },
-                ),
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: data.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String address = data[index]['address']['text'];
+                          int orderId = data[index]['id'];
+                          int serviceId = data[index]['order']['service_id'];
+                          String serviceTitle = data[index]['service'];
+                          int orderStatus = data[index]['order_status'];
+                          String technicianName =
+                              data[index]['servicer']['user']['name'];
+                          String technicianCellNumber =
+                              data[index]['servicer']['user']['phone_number'];
+                          String transportationPrice =
+                              data[index]['order']['transportationcost'];
+                          String totalPrice =
+                              data[index]['order']['totalprice'];
+                          String discount = data[index]['order']['discount'];
+                          String date = data[index]['order']['date'];
+                          String time = data[index]['order']['time'];
+                          return OrderContainer(
+                            address: address,
+                            date: date,
+                            orderStatus: orderStatus,
+                            orderId: orderId,
+                            serviceId: serviceId,
+                            serviceTitle: serviceTitle,
+                            technicianCellNumber: technicianCellNumber,
+                            technicianName: technicianName,
+                            time: time,
+                            totalPrice: totalPrice,
+                            transportationPrice: transportationPrice,
+                            discount: discount,
+                          );
+                        },
+                      ),
               ),
               // OrderContainer(),
             ],

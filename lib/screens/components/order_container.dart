@@ -125,7 +125,7 @@ class OrderContainer extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                'تهران - بزرگراه شهید حجازی صارمی',
+                                address,
                                 style: TextStyle(
                                   color: Color(0xFF037E85),
                                   fontSize: 12,
@@ -139,17 +139,17 @@ class OrderContainer extends StatelessWidget {
                         ),
                         OrderContainerPrice(
                           type: 'discount',
-                          price: '1450000',
+                          price: discount,
                           text: 'تخفیف',
                         ),
                         OrderContainerPrice(
                           type: 'transportation',
-                          price: '550000',
+                          price: transportationPrice,
                           icon: Icons.airport_shuttle_outlined,
                         ),
                         OrderContainerPrice(
                           type: 'total',
-                          price: '1450000',
+                          price: totalPrice,
                           text: 'جمع کل',
                         ),
                       ],
@@ -179,7 +179,7 @@ class OrderContainer extends StatelessWidget {
                         ),
                         Text(
                           'سرویسکار\n'
-                          'مهدی فولادی',
+                          '$technicianName',
                           style: TextStyle(
                             color: Color(0xFF037E85),
                             fontSize: 12,
