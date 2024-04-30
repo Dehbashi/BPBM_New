@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import './screens/components/landing.dart';
 import 'screens/home.dart';
+import 'screens/components/tabs_screen.dart';
 
 void main() {
   runApp(const MyApp());

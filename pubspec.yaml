@@ -49,6 +49,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   get_ip_address: ^0.0.6
   device_info_plus: ^9.1.1
+  flutter_bloc: ^8.1.3
 
 
 dev_dependencies:
@@ -78,8 +79,6 @@ flutter:
     - assets/icons/homeicons/
     - assets/icons/antennaicons/
     - assets/images/services/
-    - assets/landing_icons/
-    - assets/landing_images/
 
   fonts:
     - family: iranSans

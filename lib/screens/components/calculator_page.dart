@@ -189,6 +189,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       // setState(() {
                       //   activeStep += 1;
                       // });
+                      updatePrice();
                       print(
                           'isStepCompleted inside $activeStep is $isStepCompleted');
                       if (activeStep == 4) {
@@ -211,6 +212,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       }
                     },
                     onPressedPrevious: () {
+                      updatePrice();
                       print(
                           'stepping Enabled inside previous step is $steppingEnabled and $isStepCompleted');
 
